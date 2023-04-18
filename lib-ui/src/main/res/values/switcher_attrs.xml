@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="switcher_icon_color">@android:color/white</color>
+    <color name="switcher_off_color">#ff4651</color>
+    <color name="switcher_on_color">#48ea8b</color>
+    <dimen name="switcher_elevation">4dp</dimen>
+    <dimen name="switcher_height">26dp</dimen>
+    <dimen name="switcher_width">46dp</dimen>
+    <style name="BaseSwitcher">
+        <item name="switcher_width">@dimen/switcher_width</item>
+        <item name="switcher_height">@dimen/switcher_height</item>
+        <item name="switcher_on_color">@color/switcher_on_color</item>
+        <item name="switcher_off_color">@color/switcher_off_color</item>
+        <item name="switcher_icon_color">@color/switcher_icon_color</item>
+        <item name="elevation">@dimen/switcher_elevation</item>
+    </style>
+    <style name="Switcher" parent="BaseSwitcher"/>
+    <declare-styleable name="Switcher">
+        <attr name="elevation"/>
+        <attr format="dimension" name="switcher_width"/>
+        <attr format="dimension" name="switcher_height"/>
+        <attr format="boolean" name="android:checked"/>
+        <attr format="color" name="switcher_on_color"/>
+        <attr format="color" name="switcher_off_color"/>
+        <attr format="color" name="switcher_icon_color"/>
+    </declare-styleable>
+
+</resources>

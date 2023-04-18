@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/xui_config_bg_dialog_radius_white"
+        android:gravity="center"
+        android:minWidth="200dp"
+        android:minHeight="200dp"
+        android:orientation="vertical">
+
+
+        <com.lsn.lib.ui.widget.progress.materialprogressbar.MaterialProgressBar
+            style="@style/Widget.MaterialProgressBar.ProgressBar.Small"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:indeterminate="true" />
+
+
+        <TextView
+            android:id="@+id/tvTipMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/xui_tip_loading_message" />
+
+    </LinearLayout>
+</layout>

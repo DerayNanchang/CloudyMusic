@@ -1,0 +1,20 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.lsn.lib.ui">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <application>
+        <provider
+            android:name="com.lsn.lib.ui.XUIInitProvider"
+            android:authorities="${applicationId}.xui-init-provider"
+            android:exported="false"
+            android:multiprocess="true" />
+
+        <activity
+            android:name="com.lsn.lib.ui.widget.imageview.preview.ui.PreviewActivity"
+            android:theme="@style/XUITheme.Translucent" />
+        <activity
+            android:name="com.lsn.lib.ui.widget.imageview.preview.ui.VideoPlayerActivity"
+            android:theme="@style/XUITheme.Translucent" />
+    </application>
+
+</manifest>

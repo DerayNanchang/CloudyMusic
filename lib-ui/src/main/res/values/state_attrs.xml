@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">library</string>
+    
+    <string name="marker">brv_marker</string>
+    
+    <declare-styleable name="StateLayout">
+        <attr format="reference" name="empty_layout_1"/>
+        <attr format="reference" name="error_layout_1"/>
+        <attr format="reference" name="loading_layout_1"/>
+    </declare-styleable>
+
+
+    <!--下拉刷新上拉加载布局-->
+    <declare-styleable name="PageRefreshLayout">
+        <attr name="empty_layout" format="reference" />
+        <attr name="error_layout" format="reference" />
+        <attr name="loading_layout" format="reference" />
+        <!--启用缺省页-->
+        <attr name="stateEnabled" format="boolean" />
+        <!--启用拉取更多-->
+        <attr name="page_upFetchEnabled" format="boolean" />
+        <!--指定嵌套布局中的缺省页-->
+        <attr name="page_state" format="reference" />
+        <!--指定嵌套布局中的RecyclerView-->
+        <attr name="page_rv" format="reference" />
+    </declare-styleable>
+
+</resources>
