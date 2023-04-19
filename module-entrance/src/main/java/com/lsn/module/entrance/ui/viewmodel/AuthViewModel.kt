@@ -1,4 +1,4 @@
-package com.pmisy.roomkb.ui.viewmodel
+package com.lsn.module.entrance.ui.viewmodel
 
 import com.lsn.comm.core.viewmodel.BaseCoreViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel

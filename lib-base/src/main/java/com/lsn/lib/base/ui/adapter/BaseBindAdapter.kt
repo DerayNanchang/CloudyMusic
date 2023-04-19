@@ -1,4 +1,4 @@
-package com.pmisy.roomkb.adapter
+package com.lsn.lib.base.ui.adapter
 
 import android.annotation.SuppressLint
 import android.util.SparseArray
@@ -89,9 +89,14 @@ abstract class BaseBindAdapter<DATA : Any, VB : ViewDataBinding>(@LayoutRes var 
     }
 
 
+    protected fun isLoadingScrollAlpha() : Boolean{
+        return false
+    }
+
+
     private fun addAnimate(holder: BaseBindViewHolder<VB>, position: Int) {
         if (mLastPosition < position) {
-            holder.itemView.setAlpha(0f)
+            holder.itemView.alpha = 0f
             holder.itemView.animate().alpha(1f).start()
             mLastPosition = position
         }

@@ -1,4 +1,4 @@
-package com.pmisy.roomkb.di
+package com.lsn.module.entrance.di
 
 import com.pmisy.roomkb.app.PMIJEKanbanApplication
 import com.pmisy.roomkb.entity.login.UserInfEntity

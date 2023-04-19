@@ -1,9 +1,8 @@
-package com.pmisy.roomkb.exts
+package com.lsn.module.entrance.exts
 
 import com.google.gson.Gson
 import com.lsn.comm.core.net.ResponseEntity
-import com.pmisy.roomkb.app.PMIJEKanbanApplication
-import com.pmisy.roomkb.entity.login.LoginRespEntity
+import com.lsn.module.entrance.app.PMIJEKanbanApplication
 import com.pmisy.roomkb.manager.SPManager
 
 /**
@@ -14,15 +13,5 @@ import com.pmisy.roomkb.manager.SPManager
 
 
 
-fun ResponseEntity.putResponseData(gson: Gson, password:String){
-    val respEntity = this.data as LoginRespEntity
-    respEntity.userInf?.password = password
-    PMIJEKanbanApplication.application.setToken(respEntity.token)
-    PMIJEKanbanApplication.application.setUserInfo(respEntity.userInf)
-    SPManager.instance.putToken(respEntity.token)
-    respEntity?.also {
-        SPManager.instance.putLoginInfo(gson.toJson(it.userInf))
-    }
-}
 
 

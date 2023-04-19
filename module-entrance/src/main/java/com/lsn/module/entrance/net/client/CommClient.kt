@@ -3,10 +3,10 @@ package com.pmisy.roomkb.net.client
 import com.lsn.comm.core.anotation.ProvideOnlyNetwork
 import com.lsn.comm.core.anotation.ProvideReadCacheFailedRequestNetwork30
 import com.lsn.lib.net.core.entity.ResponseApi
-import com.pmisy.roomkb.entity.comm.KBEqRoomEntity
-import com.pmisy.roomkb.entity.comm.KBORRoomEntity
-import com.pmisy.roomkb.entity.comm.RoomEntity
-import com.pmisy.roomkb.entity.comm.VersionEntity
+import com.lsn.module.entrance.entity.KBEqRoomEntity
+import com.lsn.module.entrance.entity.KBORRoomEntity
+import com.lsn.module.entrance.entity.RoomEntity
+import com.lsn.module.entrance.entity.VersionEntity
 import com.pmisy.roomkb.net.service.CommApiService
 import retrofit2.Retrofit
 import javax.inject.Inject
@@ -22,7 +22,7 @@ class CommClient @Inject constructor(
     @ProvideOnlyNetwork var retrofit: Retrofit
 ) {
 
-    suspend fun getVersionInfo(
+/*    suspend fun getVersionInfo(
         clientNo: String,
         apkType: String,
     ): ResponseApi<VersionEntity> {
@@ -60,5 +60,5 @@ class CommClient @Inject constructor(
     ): ResponseApi<KBORRoomEntity> {
         return retrofit30.create(CommApiService::class.java)
             .searchProdOrderDetailList(clientNo, plantNo, roomNo, queryDate)
-    }
+    }*/
 }

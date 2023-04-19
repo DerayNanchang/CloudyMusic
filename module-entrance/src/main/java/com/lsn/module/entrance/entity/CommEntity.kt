@@ -1,4 +1,4 @@
-package com.pmisy.roomkb.entity.comm
+package com.lsn.module.entrance.entity
 
 /**
  * @Author : lsn

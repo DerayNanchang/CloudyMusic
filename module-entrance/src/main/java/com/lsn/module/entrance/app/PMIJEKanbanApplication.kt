@@ -1,4 +1,4 @@
-package com.pmisy.roomkb.app
+package com.lsn.module.entrance.app
 
 import androidx.databinding.library.baseAdapters.BR
 import com.lsn.comm.core.app.BaseCoreApplication

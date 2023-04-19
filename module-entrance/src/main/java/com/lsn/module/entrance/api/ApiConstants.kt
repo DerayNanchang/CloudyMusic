@@ -1,4 +1,4 @@
-package com.pmisy.roomkb.api
+package com.lsn.module.entrance.api
 
 
 /**

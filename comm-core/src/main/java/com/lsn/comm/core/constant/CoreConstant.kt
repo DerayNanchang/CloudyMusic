@@ -23,8 +23,7 @@ import java.io.File
  */
 object CoreConstant {
 
-    const val umeng = "umeng"
-    private var fileName = "pmisy"
+    private var fileName = "CloudyMusic"
 
     fun initUtil(context: Application) {
         // 初始化 Utils
@@ -90,7 +89,7 @@ object CoreConstant {
         val absolutePath = context.cacheDir.absolutePath
         setOkCode(0)
         return NetConfigEntity(
-            bridgeName = "mes/",
+            bridgeName = "",
             apiServiceUrl = BuildConfig.apiServiceUrl,
             appFileUrl = BuildConfig.appFileUrl,
             versionName = DeviceUtils.getSDKVersionName(),

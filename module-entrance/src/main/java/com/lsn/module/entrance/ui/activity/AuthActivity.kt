@@ -1,19 +1,19 @@
-package com.pmisy.roomkb.ui.activity
+package com.lsn.module.entrance.ui.activity
 
 import android.app.Dialog
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Process
 import android.view.View
+import com.lsn.comm.core.ui.activity.BaseCoreActivity
 import com.lsn.lib.base.ConventionalListener
 import com.lsn.lib.obs.core.OBSConfig
-import com.pmisy.roomkb.R
-import com.pmisy.roomkb.databinding.ActivityAuthBinding
-import com.pmisy.roomkb.manager.SPManager
-import com.pmisy.roomkb.ui.viewmodel.AuthViewModel
+import com.lsn.module.entrance.R
+import com.lsn.module.entrance.databinding.ActivityAuthBinding
+import com.lsn.module.entrance.manager.SPManager
+import com.lsn.module.entrance.ui.viewmodel.AuthViewModel
+import com.pmisy.roomkb.ui.activity.WelcomeActivity
 import com.umeng.commonsdk.UMConfigure
-
-//import com.umeng.commonsdk.UMConfigure
 
 
 /**
@@ -21,8 +21,7 @@ import com.umeng.commonsdk.UMConfigure
  * @CreateTime : 2023/4/4 上午 09:08
  * @Description :
  */
-class AuthActivity :
-    BaseKanbanActivity<AuthViewModel, ActivityAuthBinding>(R.layout.activity_auth) {
+class AuthActivity : BaseCoreActivity<AuthViewModel, ActivityAuthBinding>(R.layout.activity_auth) {
 
 
     override fun initView() {
@@ -44,7 +43,7 @@ class AuthActivity :
             //推送平台多维度推送决策必须调用方法(需要同意隐私协议之后初始化完成调用)
 //            PushAgent.getInstance(this).onAppStart()
 
-            val intent = Intent(this@AuthActivity, LoginActivity::class.java)
+            val intent = Intent(this@AuthActivity, WelcomeActivity::class.java)
             startActivity(intent)
             finish()
 
@@ -68,7 +67,7 @@ class AuthActivity :
                             //推送平台多维度推送决策必须调用方法(需要同意隐私协议之后初始化完成调用)
 //                            PushAgent.getInstance(this@AuthActivity).onAppStart()
                             //跳转到HomeActivity
-                            val intent = Intent(this@AuthActivity, LoginActivity::class.java)
+                            val intent = Intent(this@AuthActivity, WelcomeActivity::class.java)
                             startActivity(intent)
                             finish()
                         }

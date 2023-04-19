@@ -1,9 +1,9 @@
-package com.pmisy.roomkb.manager
+package com.lsn.module.entrance.manager
 
 import com.lsn.comm.core.utils.MMKVUtil
 import com.lsn.lib.utils.util.SPUtils
 import com.lsn.lib.utils.util.ScreenUtils
-import com.pmisy.roomkb.app.PMIJEKanbanApplication
+import com.lsn.module.entrance.app.PMIJEKanbanApplication
 
 
 /**

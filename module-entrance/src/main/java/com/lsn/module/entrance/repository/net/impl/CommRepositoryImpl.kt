@@ -15,7 +15,7 @@ import javax.inject.Inject
  */
 class CommRepositoryImpl @Inject constructor(var commClient: CommClient) : ICommRepository {
 
-    override suspend fun getVersionInfo(
+    /*    override suspend fun getVersionInfo(
         tag: String,
         clientNo: String,
         apkType: String
@@ -57,5 +57,38 @@ class CommRepositoryImpl @Inject constructor(var commClient: CommClient) : IComm
             tag,
             commClient.searchProdOrderDetailList(clientNo, plantNo, roomNo, queryDate)
         )
+    }*/
+    override suspend fun getVersionInfo(
+        tag: String,
+        clientNo: String,
+        apkType: String
+    ): Flow<ResponseEntity> {
+    }
+
+    override suspend fun searchRoom(
+        tag: String,
+        clientNo: String,
+        languageNo: String,
+        plantNo: String,
+        routeType: String
+    ): Flow<ResponseEntity> {
+    }
+
+    override suspend fun searchProdEquipmentDetailList(
+        tag: String,
+        clientNo: String,
+        plantNo: String,
+        roomNo: String,
+        queryDate: String
+    ): Flow<ResponseEntity> {
+    }
+
+    override suspend fun searchProdOrderDetailList(
+        tag: String,
+        clientNo: String,
+        plantNo: String,
+        roomNo: String,
+        queryDate: String
+    ): Flow<ResponseEntity> {
     }
 }

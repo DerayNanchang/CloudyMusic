@@ -20,41 +20,4 @@ import retrofit2.http.Query
  */
 interface CommApiService {
 
-    @FormUrlEncoded
-    @POST(ApiConstants.Comm.LOGIN)
-    suspend fun login(@Field("data") data: String): ResponseApi<LoginRespEntity>
-
-
-    @GET(ApiConstants.Comm.SEARCH_APK_INFO)
-    suspend fun getVersionInfo(
-        @Query("clientNo") clientNo: String,
-        @Query("apkType") apkType: String,
-    ): ResponseApi<VersionEntity>
-
-
-    @GET(ApiConstants.Comm.SEARCH_ROOM)
-    suspend fun searchRoom(
-        @Query("clientNo") clientNo: String,
-        @Query("languageNo") languageNo: String,
-        @Query("plantNo") plantNo: String,
-        @Query("routeType") routeType: String,
-    ): ResponseApi<List<RoomEntity>>
-
-    //    clientNo=100&plantNo=1000&roomNo=A01&queryDate=2023-03-29 00:00:00
-    @GET(ApiConstants.Comm.SEARCH_PROD_EQUIPMENT_DETAIL_LIST)
-    suspend fun searchProdEquipmentDetailList(
-        @Query("clientNo") clientNo: String,
-        @Query("plantNo") plantNo: String,
-        @Query("roomNo") roomNo: String,
-        @Query("queryDate") queryDate: String,
-    ): ResponseApi<KBEqRoomEntity>
-
-    //clientNo=100&plantNo=1000&roomNo=A03&queryDate=2023-03-29 00:00:00
-    @GET(ApiConstants.Comm.SEARCH_PROD_ORDER_DETAIL_LIST)
-    suspend fun searchProdOrderDetailList(
-        @Query("clientNo") clientNo: String,
-        @Query("plantNo") plantNo: String,
-        @Query("roomNo") roomNo: String,
-        @Query("queryDate") queryDate: String,
-    ): ResponseApi<KBORRoomEntity>
 }

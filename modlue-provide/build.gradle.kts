@@ -3,17 +3,15 @@ import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
-    id("kotlin-kapt")
-    id("dagger.hilt.android.plugin")
 }
 
 android {
-    namespace = "com.lsn.module.entrance"
-    compileSdk = libs.versions.compileSdk.get().toInt()
+    namespace = "com.lsn.modlue.provide"
+    compileSdk = 33
 
     defaultConfig {
-        minSdk = libs.versions.minSdk.get().toInt()
-        targetSdk = libs.versions.targetSdk.get().toInt()
+        minSdk = 21
+        targetSdk = 33
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -35,16 +33,15 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    buildFeatures {
+        dataBinding = true
+    }
 }
 
 dependencies {
-
     implementation(project(":comm-core"))
-
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.android.compiler)
-}
-
-kapt {
-    correctErrorTypes = true
+    /**路由框架，组件必须配置，否则调用失败*/
+    implementation("com.alibaba:arouter-api:$libc.arouter")
+    kapt("com.alibaba:arouter-compiler:$libc.arouter")
 }

@@ -1,4 +1,4 @@
-package com.pmisy.roomkb.di
+package com.lsn.module.entrance.di
 
 import com.pmisy.roomkb.repository.net.i.ICommRepository
 import com.pmisy.roomkb.repository.net.i.ILoginRepository

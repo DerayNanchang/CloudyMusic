@@ -1,4 +1,4 @@
-package com.pmisy.roomkb.adapter
+package com.lsn.lib.base.ui.adapter
 
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
