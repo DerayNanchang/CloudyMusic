@@ -15,11 +15,12 @@ android {
         minSdk = libs.versions.minSdk.get().toInt()
         targetSdk = libs.versions.targetSdk.get().toInt()
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
     }
 
     buildTypes {
         debug {
-            isMinifyEnabled = true
+            isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
         }
         release {
@@ -47,37 +48,10 @@ dependencies {
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
     implementation(project(":comm-core"))
-//    implementation(project(":comm-version"))
-//    implementation(project(":comm-mqtt"))
+    implementation(project(":module-provider"))
+    implementation(project(":module-entrance"))
+
 }
-
-/*
-configurations.all {
-    resolutionStrategy.eachDependency {
-        val requested = requested
-        if (requested.group == "androidx.annotation:annotation"){
-            if (!requested.name.startsWith("annotation")) {
-                useVersion("1.5.0")
-            }
-        }
-    }
-   resolutionStrategy {
-        val requested = requested
-        force("androidx.annotation:annotation:1.5.0")
-        force("androidx.lifecycle:lifecycle-livedata:2.4.1")
-        force("androidx.lifecycle:lifecycle:process:2.4.1")
-        force("androidx.startup:startup-runtime:1.1.1")
-        force("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
-        force("org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.6.4")
-    }
-}*/
-
-/*configurations.all {
-    resolutionStrategy.eachDependency{
-        val requested = requested
-        if (requested.group == "com")
-    }
-}*/
 
 kapt {
     correctErrorTypes = true

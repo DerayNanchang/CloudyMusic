@@ -10,7 +10,7 @@ import com.lsn.lib.base.livedata.UnPeekLiveData
  * @CreateTime : 2023/3/20 下午 02:12
  * @Description :
  */
-open class BaseViewModel : ViewModel() {
+open abstract class BaseViewModel : ViewModel() {
 
     protected val TAG: String = this.javaClass.simpleName
 

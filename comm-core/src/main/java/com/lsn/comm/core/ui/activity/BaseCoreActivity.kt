@@ -10,6 +10,7 @@ import androidx.annotation.LayoutRes
 import androidx.core.util.forEach
 import androidx.databinding.ViewDataBinding
 import androidx.databinding.library.baseAdapters.BR
+import com.alibaba.android.arouter.launcher.ARouter
 import com.lsn.comm.core.callbacks.ICore
 import com.lsn.comm.core.manager.ActivityManager
 import com.lsn.comm.core.viewmodel.BaseNetViewModel
@@ -30,7 +31,9 @@ abstract class BaseCoreActivity<VM : BaseViewModel, DB : ViewDataBinding>(@Layou
 
     override fun initView() {
         ActivityManager.get().addActivity(this)
-
+        if (isRouter()){
+//            ARouter.getInstance().inject(this);
+        }
     }
 
 
@@ -45,6 +48,9 @@ abstract class BaseCoreActivity<VM : BaseViewModel, DB : ViewDataBinding>(@Layou
 
     }
 
+    fun isRouter():Boolean{
+        return true
+    }
 
     override fun onDestroy() {
         super.onDestroy()

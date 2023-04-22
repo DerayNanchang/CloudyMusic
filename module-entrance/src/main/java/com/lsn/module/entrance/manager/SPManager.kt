@@ -3,7 +3,6 @@ package com.lsn.module.entrance.manager
 import com.lsn.comm.core.utils.MMKVUtil
 import com.lsn.lib.utils.util.SPUtils
 import com.lsn.lib.utils.util.ScreenUtils
-import com.lsn.module.entrance.app.PMIJEKanbanApplication
 
 
 /**
@@ -17,6 +16,7 @@ class SPManager private constructor() {
         const val TOKEN_NO = "TOKEN_NO"
         const val LOGIN_INFO = "LoginInfo"
         const val UMENG_AUTH = "umengAuth"
+        const val USERNAME = "USERNAME"
         const val KANBAN_MAX_COUNT = "kanban_max_count"
         const val KANBAN_MAX_COUNT_OR = "kanban_max_count_or"
 
@@ -37,11 +37,11 @@ class SPManager private constructor() {
         return SPUtils.getInstance().getString(TOKEN_NO)
     }
 
-    fun putAuth(value: Boolean){
-        SPUtils.getInstance().put(UMENG_AUTH,value)
+    fun putAuth(value: Boolean) {
+        SPUtils.getInstance().put(UMENG_AUTH, value)
     }
 
-    fun getAuth():Boolean {
+    fun getAuth(): Boolean {
         return SPUtils.getInstance().getBoolean(UMENG_AUTH)
     }
 
@@ -163,8 +163,8 @@ class SPManager private constructor() {
         return MMKVUtil.getDouble(getUserNo() + "_" + key, 0.0)
     }
 
-    private fun getUserNo(): String {
-        return PMIJEKanbanApplication.application.getUserNo()
+    private fun getUserNo(): String? {
+        return MMKVUtil.getString(USERNAME)
     }
 
 

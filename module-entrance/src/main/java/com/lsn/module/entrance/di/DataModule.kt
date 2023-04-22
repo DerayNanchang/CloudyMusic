@@ -1,7 +1,5 @@
 package com.lsn.module.entrance.di
 
-import com.pmisy.roomkb.app.PMIJEKanbanApplication
-import com.pmisy.roomkb.entity.login.UserInfEntity
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -11,8 +9,8 @@ import dagger.hilt.components.SingletonComponent
 @InstallIn(SingletonComponent::class)
 object DataModule {
 
-    @Provides
-    fun provideUserInfo():UserInfEntity?{
-        return PMIJEKanbanApplication.application.getUserInfo()
-    }
+//    @Provides
+//    fun provideUserInfo():UserInfEntity?{
+//        return PMIJEKanbanApplication.application.getUserInfo()
+//    }
 }

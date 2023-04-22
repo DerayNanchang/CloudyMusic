@@ -87,15 +87,6 @@ abstract class BaseVDActivity<VM : BaseViewModel, DB : ViewDataBinding>(@LayoutR
     }
 
 
-/*    override  fun showErrorTipsObs() {
-        if (viewModel is BaseNetViewModel) {
-            val baseNetViewModel = viewModel as BaseNetViewModel
-            baseNetViewModel.error.observe(this) {
-                showErrorTip(it)
-            }
-        }
-    }*/
-
 
     override fun bindingViewModel() {
         binding.run {

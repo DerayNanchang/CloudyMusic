@@ -1,5 +1,7 @@
 package com.lsn.lib.obs.core
 
+import android.content.Context
+import com.umeng.commonsdk.UMConfigure
 import com.umeng.umcrash.UMCrash
 
 
@@ -22,6 +24,11 @@ class OBSHelp private constructor() {
 
     fun pushGenerateCustomLog(e: Throwable) {
         UMCrash.generateCustomLog(e, "test")
+    }
+
+
+    fun submitPolicyGrantResult(context:Context,isSubmit:Boolean){
+        UMConfigure.submitPolicyGrantResult(context, isSubmit)
     }
 
 }

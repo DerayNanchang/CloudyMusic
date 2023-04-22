@@ -35,11 +35,17 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    buildFeatures {
+        dataBinding = true
+    }
+
 }
 
 dependencies {
 
     implementation(project(":comm-core"))
+    implementation(project(":module-provider"))
 
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)

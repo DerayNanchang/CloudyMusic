@@ -15,6 +15,13 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+
+        //路由框架配置
+        kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.name)
+            }
+        }
     }
 
     buildTypes {
@@ -74,6 +81,10 @@ dependencies {
 
     api(project(":lib-base"))
     api(project(":lib-net"))
+
+    /**路由框架，组件必须配置，否则调用失败*/
+    implementation("com.alibaba:arouter-api:1.5.1")
+    kapt("com.alibaba:arouter-compiler:1.5.1")
 }
 
 kapt {

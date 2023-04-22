@@ -7,6 +7,7 @@ import com.lsn.lib.base.ui.IBUI
 import com.lsn.lib.base.ui.IViewModel
 import com.lsn.lib.base.viewmodel.BaseViewModel
 import java.lang.reflect.ParameterizedType
+import java.util.Objects
 
 /**
  * @Author : lsn
