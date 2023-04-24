@@ -20,8 +20,6 @@
             <option value="$PROJECT_DIR$/lib-utils" />
             <option value="$PROJECT_DIR$/module-entrance" />
             <option value="$PROJECT_DIR$/module-provider" />
-            <option value="$PROJECT_DIR$/rubik_annotations" />
-            <option value="$PROJECT_DIR$/rubik_router" />
           </set>
         </option>
       </GradleProjectSettings>

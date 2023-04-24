@@ -2,6 +2,7 @@ package com.lsn.comm.core.app
 
 import android.app.Application
 import com.lsn.comm.core.constant.CoreConstant
+import com.lsn.comm.core.utils.MMKVUtil
 import com.lsn.lib.net.core.NetConfigEntity
 import com.lsn.lib.obs.core.OBSConfig
 import com.lsn.lib.utils.util.SPUtils
@@ -42,6 +43,7 @@ abstract class BaseCoreApplication : Application() {
         if (auth) {
             OBSConfig.initUMeng(this)
         }
+        MMKVUtil.init(this)
 
         //建议子线程中初始化SDK（启动优化）
         //建议子线程中初始化SDK（启动优化）

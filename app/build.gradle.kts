@@ -16,6 +16,12 @@ android {
         targetSdk = libs.versions.targetSdk.get().toInt()
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
+        kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.name)
+            }
+        }
+
     }
 
     buildTypes {
@@ -50,6 +56,10 @@ dependencies {
     implementation(project(":comm-core"))
     implementation(project(":module-provider"))
     implementation(project(":module-entrance"))
+
+
+    implementation("com.alibaba:arouter-api:1.5.2")
+    kapt("com.alibaba:arouter-compiler:1.5.2")
 
 }
 

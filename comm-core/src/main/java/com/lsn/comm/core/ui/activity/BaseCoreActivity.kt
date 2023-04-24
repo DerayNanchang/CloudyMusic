@@ -32,7 +32,7 @@ abstract class BaseCoreActivity<VM : BaseViewModel, DB : ViewDataBinding>(@Layou
     override fun initView() {
         ActivityManager.get().addActivity(this)
         if (isRouter()){
-//            ARouter.getInstance().inject(this);
+            ARouter.getInstance().inject(this);
         }
     }
 

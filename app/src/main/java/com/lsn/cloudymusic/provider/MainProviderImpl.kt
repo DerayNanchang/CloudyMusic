@@ -11,14 +11,14 @@ import com.lsn.module.provider.scheduler.RouterHelp
  * @CreateTime : 2023/4/20 上午 08:32
  * @Description :
  */
-@Route(path = RouterHelp.MAIN_PROVIDE, name = "Main模块提供者")
+@Route(path = RouterHelp.MAIN_PROVIDE)
 class MainProviderImpl : MainProvider {
     override fun actionMain() {
         RouterHelp.get.actionMain()
     }
 
-
     override fun init(context: Context?) {
 
     }
+
 }

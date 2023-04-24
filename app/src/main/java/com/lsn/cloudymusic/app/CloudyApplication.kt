@@ -1,11 +1,9 @@
 package com.lsn.cloudymusic.app
 
 import com.alibaba.android.arouter.launcher.ARouter
-import com.lsn.comm.core.BuildConfig
 import com.lsn.comm.core.app.BaseCoreApplication
-import com.lsn.lib.ui.logs.UILog.isDebug
+import com.lsn.lib.net.BuildConfig
 import dagger.hilt.android.HiltAndroidApp
-import dagger.hilt.android.qualifiers.ApplicationContext
 
 
 /**

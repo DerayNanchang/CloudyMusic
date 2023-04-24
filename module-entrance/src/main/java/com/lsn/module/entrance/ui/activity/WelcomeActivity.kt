@@ -2,13 +2,11 @@ package com.lsn.module.entrance.ui.activity
 
 import android.os.Handler
 import com.alibaba.android.arouter.facade.annotation.Autowired
-import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.lsn.comm.core.ui.activity.BaseCoreActivity
 import com.lsn.comm.core.utils.WeakCacheUtil
 import com.lsn.lib.base.bus.LiveBus
 import com.lsn.lib.ui.widget.TypeTextView
-import com.lsn.lib.ui.widget.switchs.comm.Constant
 import com.lsn.module.entrance.R
 import com.lsn.module.entrance.databinding.ActivityWelcomeBinding
 import com.lsn.module.provider.main.provide.MainProvider
@@ -21,10 +19,15 @@ import com.pmisy.roomkb.ui.viewmodel.WelcomeViewModel
  * @CreateTime : 2023/4/4 上午 09:08
  * @Description :
  */
-@Route(path = RouterHelp.ENTRANCE_WELCOME)
 class WelcomeActivity :
     BaseCoreActivity<WelcomeViewModel, ActivityWelcomeBinding>(R.layout.activity_welcome),
     TypeTextView.OnTypeViewListener {
+
+
+
+    @JvmField
+    @Autowired(name = RouterHelp.MAIN_PROVIDE)
+    var mainProvider: MainProvider ? = null
 
 
     override fun getViewModelClass(): Class<WelcomeViewModel> {
@@ -36,6 +39,8 @@ class WelcomeActivity :
     }
 
 
+
+
     override fun initView() {
         super.initView()
 
@@ -43,12 +48,12 @@ class WelcomeActivity :
         binding.tvType.run {
             if (WeakCacheUtil.isOpenLauncherText()) {
                 setOnTypeViewListener(this@WelcomeActivity)
-//                start(tips, 120)
+                start(tips, 120)
                 LiveBus.get().with("",String::class.java).postValue("")
                 mainProvider?.actionMain()
             } else {
                 text = tips
-//                startToMain(2000)
+                startToMain(2000)
                 mainProvider?.actionMain()
             }
         }
@@ -76,7 +81,7 @@ class WelcomeActivity :
         Handler().postDelayed({
 
 //            var mainProvider = ARouter.getInstance().build(RouterHelp.MAIN_PROVIDE) as MainProvider
-            mainProvider?.actionMain()
+//            mainProvider?.actionMain()
         }, time)
     }
 

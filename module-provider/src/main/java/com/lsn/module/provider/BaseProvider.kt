@@ -1,6 +1,6 @@
 package com.lsn.module.provider
 
-import android.content.Context
+import com.alibaba.android.arouter.facade.template.IProvider
 
 
 /**

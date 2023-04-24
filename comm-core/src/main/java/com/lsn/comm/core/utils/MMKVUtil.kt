@@ -12,6 +12,8 @@ import com.tencent.mmkv.MMKV
  */
 object MMKVUtil {
 
+    private var USERNAME = "USERNAME"
+
 
     private var mMMKV: MMKV? = null
 
@@ -28,52 +30,57 @@ object MMKVUtil {
     }
 
     fun putBoolean(key: String, value: Boolean) {
-        getMMKV().encode(key, value)
+        getMMKV().encode(getUserNo() + "_" + key, value)
     }
 
     fun getBoolean(key: String, default: Boolean): Boolean =
-        getMMKV().decodeBool(key, default)
+        getMMKV().decodeBool(getUserNo() + "_" + key, default)
 
     fun getBoolean(key: String): Boolean =
-        getBoolean(key, false)
+        getBoolean(getUserNo() + "_" + key, false)
 
     fun putString(key: String, value: String?) {
-        getMMKV().encode(key, value)
+        getMMKV().encode(getUserNo() + "_" + key, value)
     }
 
     fun getString(key: String, default: String?): String? =
-        getMMKV().decodeString(key, default)
+        getMMKV().decodeString(getUserNo() + "_" + key, default)
 
     fun getString(key: String): String? =
-        getString(key, null)
+        getString(getUserNo() + "_" + key, null)
 
     fun putInt(key: String, value: Int) {
-        getMMKV().encode(key, value)
+        getMMKV().encode(getUserNo() + "_" + key, value)
     }
 
     fun getInt(key: String, default: Int): Int =
-        getMMKV().decodeInt(key, default)
+        getMMKV().decodeInt(getUserNo() + "_" + key, default)
 
     fun putLong(key: String, value: Long) {
-        getMMKV().encode(key, value)
+        getMMKV().encode(getUserNo() + "_" + key, value)
     }
 
     fun getLong(key: String, default: Long): Long =
-        getMMKV().decodeLong(key, default)
+        getMMKV().decodeLong(getUserNo() + "_" + key, default)
 
     fun putDouble(key: String, value: Double) {
-        getMMKV().encode(key, value)
+        getMMKV().encode(getUserNo() + "_" + key, value)
     }
 
     fun getDouble(key: String, default: Double): Double =
-        getMMKV().decodeDouble(key, default)
+        getMMKV().decodeDouble(getUserNo() + "_" + key, default)
 
     fun putFloat(key: String, value: Float) {
-        getMMKV().encode(key, value)
+        getMMKV().encode(getUserNo() + "_" + key, value)
     }
 
     fun getFloat(key: String, default: Float): Float =
-        getMMKV().decodeFloat(key, default)
+        getMMKV().decodeFloat(getUserNo() + "_" + key, default)
+
+
+    private fun getUserNo(): String? {
+      return  getMMKV().decodeString(USERNAME, USERNAME)
+    }
 
     fun clear() {
         getMMKV().clear()

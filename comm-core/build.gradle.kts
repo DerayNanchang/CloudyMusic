@@ -66,25 +66,22 @@ dependencies {
 
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
-
-    implementation("com.tencent:mmkv:1.2.15")
+    implementation(libs.mmkv)
     // Kotlin
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.5.30")
+    implementation(libs.jetbrains.kotlin.stdlib)
     // 协程核心库
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+    implementation(libs.jetbrains.kotlinx.coroutines.core)
     // 协程 Android 支持库
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
+    implementation(libs.jetbrains.kotlinx.coroutines.android)
     // lifecycle 对于协程的扩展封装
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.4.1")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.4.1")
-
-
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.lifecycle.livedata.ktx)
     api(project(":lib-base"))
     api(project(":lib-net"))
 
     /**路由框架，组件必须配置，否则调用失败*/
-    implementation("com.alibaba:arouter-api:1.5.1")
-    kapt("com.alibaba:arouter-compiler:1.5.1")
+    implementation("com.alibaba:arouter-api:1.5.2")
+    kapt("com.alibaba:arouter-compiler:1.5.2")
 }
 
 kapt {
