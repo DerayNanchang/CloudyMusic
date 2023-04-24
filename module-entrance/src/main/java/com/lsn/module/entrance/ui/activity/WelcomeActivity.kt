@@ -8,10 +8,14 @@ import com.lsn.comm.core.utils.WeakCacheUtil
 import com.lsn.lib.base.bus.LiveBus
 import com.lsn.lib.ui.widget.TypeTextView
 import com.lsn.module.entrance.R
+import com.lsn.module.entrance.api.ApiConstants
 import com.lsn.module.entrance.databinding.ActivityWelcomeBinding
 import com.lsn.module.provider.main.provide.MainProvider
 import com.lsn.module.provider.scheduler.RouterHelp
 import com.pmisy.roomkb.ui.viewmodel.WelcomeViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.HiltAndroidApp
+import com.lsn.module.entrance.entity.HitokotoEncodeEntity as HitokotoEncodeEntity
 
 
 /**
@@ -19,15 +23,15 @@ import com.pmisy.roomkb.ui.viewmodel.WelcomeViewModel
  * @CreateTime : 2023/4/4 上午 09:08
  * @Description :
  */
+@AndroidEntryPoint
 class WelcomeActivity :
     BaseCoreActivity<WelcomeViewModel, ActivityWelcomeBinding>(R.layout.activity_welcome),
     TypeTextView.OnTypeViewListener {
 
 
-
     @JvmField
     @Autowired(name = RouterHelp.MAIN_PROVIDE)
-    var mainProvider: MainProvider ? = null
+    var mainProvider: MainProvider? = null
 
 
     override fun getViewModelClass(): Class<WelcomeViewModel> {
@@ -38,33 +42,11 @@ class WelcomeActivity :
         resources.getStringArray(R.array.nonsenses)
     }
 
-
-
-
-    override fun initView() {
-        super.initView()
-
-        val tips = mTypes[(mTypes.indices).random()]
-        binding.tvType.run {
-            if (WeakCacheUtil.isOpenLauncherText()) {
-                setOnTypeViewListener(this@WelcomeActivity)
-                start(tips, 120)
-                LiveBus.get().with("",String::class.java).postValue("")
-                mainProvider?.actionMain()
-            } else {
-                text = tips
-                startToMain(2000)
-                mainProvider?.actionMain()
-            }
-        }
-    }
-
     override fun initData() {
         super.initData()
-    }
 
-    override fun initEvent() {
-        super.initEvent()
+        viewModel.getHitokotoEncode()
+
     }
 
     override fun onTypeStart() {
@@ -72,16 +54,41 @@ class WelcomeActivity :
     }
 
     override fun onTypeOver() {
-//        startToMain(800)
+        startToMain(800)
+    }
+
+
+    override fun onResponseReceiver() {
+        super.onResponseReceiver()
+
+        viewModel.success.observe(this) {
+
+            when (it.api) {
+                ApiConstants.Comm.HITOKOTO_ENCODE -> {
+                    val hitokotoEncodeEntity = it.data as HitokotoEncodeEntity
+                    val tips = hitokotoEncodeEntity.hitokoto
+                    binding.tvType.run {
+                        if (WeakCacheUtil.isOpenLauncherText()) {
+                            setOnTypeViewListener(this@WelcomeActivity)
+                            start(tips, 120)
+                        } else {
+                            text = tips
+                            startToMain(2000)
+                        }
+                    }
+                }
+            }
+
+        }
+
     }
 
 
     private fun startToMain(time: Long) {
 
         Handler().postDelayed({
-
-//            var mainProvider = ARouter.getInstance().build(RouterHelp.MAIN_PROVIDE) as MainProvider
-//            mainProvider?.actionMain()
+            mainProvider?.actionMain()
+            finish()
         }, time)
     }
 

@@ -87,6 +87,12 @@ fun ViewGroup?.addToolbar() {
                         tvTitle.text = toolbar.title
                     }
                 }
+                val rlCommToolbarBack = toolbarView.findViewById<RelativeLayout>(R.id.rlCommToolbarBack)
+                if (toolbar.showBack) {
+                    rlCommToolbarBack.visibility = View.VISIBLE
+                } else {
+                    rlCommToolbarBack.visibility = View.GONE
+                }
             }
         }
     }

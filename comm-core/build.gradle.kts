@@ -80,8 +80,8 @@ dependencies {
     api(project(":lib-net"))
 
     /**路由框架，组件必须配置，否则调用失败*/
-    implementation("com.alibaba:arouter-api:1.5.2")
-    kapt("com.alibaba:arouter-compiler:1.5.2")
+    implementation(libs.alibaba.arouter.api)
+    kapt(libs.alibaba.arouter.compiler)
 }
 
 kapt {

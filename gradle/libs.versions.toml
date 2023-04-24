@@ -23,6 +23,7 @@ hilt = "2.44"
 gson = "2.9.0"
 okhttpLogging = "4.9.3"
 retrofit = "2.9.0"
+leakcanary = "2.10"
 reflect = "1.7.0"
 activityKtx = "1.6.1"
 fragmentKtx = "1.5.5"
@@ -43,6 +44,7 @@ umid = "6430d95aba6a5259c432a051" #友盟APPId
 umComm = "9.5.6"
 umAsms = "1.6.3"
 umApm = "1.9.1"
+arouter = "1.5.2"
 messageSecret = "36900331a98736d3ed7d4d92daea3112"
 [libraries]
 material = { module = "com.google.android.material:material", version.ref = "material" }
@@ -69,6 +71,7 @@ jetbrains-kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx
 okhttp3-logging-interceptor = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "okhttpLogging" }
 retrofit2 = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 retrofit2-converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
+leakcanary = { module = "com.squareup.leakcanary:leakcanary-android", version.ref = "leakcanary" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
 hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
 hilt-android-gradle-plugin = { module = "com.google.dagger:hilt-android-gradle-plugin", version.ref = "hilt" }
@@ -83,3 +86,5 @@ mmkv = { module = "com.tencent:mmkv", version.ref = "xmkv" }
 umeng-umsdk-common = { module = "com.umeng.umsdk:common", version.ref = "umComm" }
 umeng-umsdk-asms = { module = "com.umeng.umsdk:asms", version.ref = "umAsms" }
 umeng-umsdk-apm = { module = "com.umeng.umsdk:apm", version.ref = "umApm" }
+alibaba-arouter-api = { module = "com.alibaba:arouter-api", version.ref = "arouter" }
+alibaba-arouter-compiler = { module = "com.alibaba:arouter-compiler", version.ref = "arouter" }

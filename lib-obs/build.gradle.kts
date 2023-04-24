@@ -53,5 +53,5 @@ dependencies {
     //友盟Push依赖
 //    api("com.umeng.umsdk:push:6.5.8")
     // debugImplementation because LeakCanary should only run in debug builds.
-    debugImplementation("com.squareup.leakcanary:leakcanary-android:2.10")
+    debugImplementation(libs.leakcanary)
 }

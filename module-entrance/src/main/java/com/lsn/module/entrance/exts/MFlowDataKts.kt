@@ -38,3 +38,31 @@ fun flowTranData(tag: String, responseApi: ResponseApi<*>): Flow<ResponseEntity>
         it.page != HttpClient.NULL_DATA && it.size != HttpClient.NULL_DATA
     }
 }
+
+
+
+fun flowTranData(tag: String,data:Any): Flow<ResponseEntity> {
+    val data = data
+    val entity = when (data) {
+        is PageEntity<*> -> {
+            val pageEntity = data as PageEntity<*>
+            if (data.datas == null) {
+                var mData: ArrayList<String> = ArrayList()
+                ResponseEntity(tag, mData, pageEntity.curPage, pageEntity.size,pageEntity.total)
+            } else {
+                ResponseEntity(tag, data.datas, pageEntity.curPage, pageEntity.size,pageEntity.total)
+            }
+        }
+        else -> {
+            if (data != null) {
+                ResponseEntity(tag, data)
+            } else {
+                ResponseEntity(tag, "", HttpClient.NULL_DATA, HttpClient.NULL_DATA)
+            }
+        }
+    }
+    return flow { emit(entity) }.filter {
+        // 拦截异常数据
+        it.page != HttpClient.NULL_DATA && it.size != HttpClient.NULL_DATA
+    }
+}

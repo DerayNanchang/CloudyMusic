@@ -58,11 +58,16 @@ abstract class BaseVDActivity<VM : BaseViewModel, DB : ViewDataBinding>(@LayoutR
     }
 
     private fun viewContent() {
-        binding = DataBindingUtil.bind(buildContentView())!!
-        setContentView(binding.root)
+//        binding = DataBindingUtil.bind(buildContentView())!!
+
+        binding = DataBindingUtil.inflate(LayoutInflater.from(this), layoutRes, null, false)
+        val linearLayout = LinearLayout(this)
+        linearLayout.orientation = LinearLayout.VERTICAL
+        linearLayout.addToolbar()
+        linearLayout.addView(binding.root)
+        setContentView(linearLayout)
         alterStatusColor()
         viewModel = createViewModel(this)
-
         // 放在[initView]之前，不然错误的在[initView]方法里请求了，响应太快[createObserver]都没还没执行
         addLoadingObserve(viewModel)
         initView()
@@ -85,7 +90,6 @@ abstract class BaseVDActivity<VM : BaseViewModel, DB : ViewDataBinding>(@LayoutR
     override fun addLoadingObserve(vararg viewModels: BaseViewModel) {
         addLoadingObserve(this, *viewModels)
     }
-
 
 
     override fun bindingViewModel() {

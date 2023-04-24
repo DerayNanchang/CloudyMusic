@@ -44,6 +44,6 @@ dependencies {
 
     implementation(project(":comm-core"))
 
-    implementation("com.alibaba:arouter-api:1.5.2")
-    kapt("com.alibaba:arouter-compiler:1.5.2")
+    implementation(libs.alibaba.arouter.api)
+    kapt(libs.alibaba.arouter.compiler)
 }

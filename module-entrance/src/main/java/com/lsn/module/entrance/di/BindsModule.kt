@@ -1,5 +1,7 @@
 package com.lsn.module.entrance.di
 
+import com.lsn.module.entrance.repository.net.i.IEntranceRepository
+import com.lsn.module.entrance.repository.net.impl.EntranceRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -9,11 +11,7 @@ import dagger.hilt.components.SingletonComponent
 @InstallIn(SingletonComponent::class)
 interface BindsModule {
 
-//    @Binds
-//    fun bindLoginRepository(loginRepository: LoginRepositoryImpl): ILoginRepository
-//
-//
-//    @Binds
-//    fun bindCommRepository(commRepository: CommRepositoryImpl): ICommRepository
+    @Binds
+    fun bindEntranceRepository(entranceRepositoryImpl: EntranceRepositoryImpl): IEntranceRepository
 
 }

@@ -31,8 +31,8 @@ abstract class BaseCoreActivity<VM : BaseViewModel, DB : ViewDataBinding>(@Layou
 
     override fun initView() {
         ActivityManager.get().addActivity(this)
-        if (isRouter()){
-            ARouter.getInstance().inject(this);
+        if (isRouter()) {
+            ARouter.getInstance().inject(this)
         }
     }
 
@@ -48,7 +48,7 @@ abstract class BaseCoreActivity<VM : BaseViewModel, DB : ViewDataBinding>(@Layou
 
     }
 
-    fun isRouter():Boolean{
+    fun isRouter(): Boolean {
         return true
     }
 

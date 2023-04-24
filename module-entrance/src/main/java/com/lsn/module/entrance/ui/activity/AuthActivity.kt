@@ -47,6 +47,7 @@ class AuthActivity : BaseCoreActivity<AuthViewModel, ActivityAuthBinding>(R.layo
             //推送平台多维度推送决策必须调用方法(需要同意隐私协议之后初始化完成调用)
 //            PushAgent.getInstance(this).onAppStart()
             startActivity<WelcomeActivity>()
+            finish()
 
         } else {
             runOnUiThread {
@@ -69,6 +70,7 @@ class AuthActivity : BaseCoreActivity<AuthViewModel, ActivityAuthBinding>(R.layo
 //                            PushAgent.getInstance(this@AuthActivity).onAppStart()
                             //跳转到HomeActivity
                             startActivity<WelcomeActivity>()
+                            finish()
                         }
 
                         override fun onCancel() {

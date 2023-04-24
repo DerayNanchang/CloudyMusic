@@ -1,9 +1,14 @@
 package com.lsn.comm.core.net
 
+import android.content.Context
 import android.text.TextUtils
 import com.google.gson.Gson
 import com.lsn.comm.core.app.BaseCoreApplication
 import com.lsn.comm.core.app.BaseCoreApplication.Companion.app
+import com.lsn.lib.base.annotation.StatusBarColor
+import com.lsn.lib.net.core.annotation.NetBaseUrlFunc
+import com.lsn.lib.net.core.annotation.NetClientClazz
+import com.lsn.lib.net.core.annotation.NetResponseFunc
 import com.lsn.lib.net.core.cache.CacheManager
 import com.lsn.lib.net.core.cache.CacheMode
 import com.lsn.lib.net.core.cache.IFileCache
@@ -37,6 +42,8 @@ class HttpClient @Inject constructor() {
     private var gson = Gson()
     private var cacheTime = 0L // 默认不缓存
     private var cacheMode = CacheMode.ONLY_NETWORK // 默认不缓存
+    private var baseUrl:String = ""
+    private var isStandard  = true
 
     companion object {
         fun getInstance() = HttpClickHelp.httpClient
@@ -63,6 +70,14 @@ class HttpClient @Inject constructor() {
         return this
     }
 
+    fun setBaseUrl(baseUrl: String){
+        this.baseUrl = baseUrl
+    }
+
+    fun isStandard(standard: Boolean){
+        this.isStandard = standard
+    }
+
     fun provideRetrofit(cacheMode: CacheMode, cacheTime: Long): Retrofit {
         if (cacheMode != CacheMode.ONLY_NETWORK) {
             return setCacheModel(cacheMode).provideRetrofit()
@@ -76,6 +91,14 @@ class HttpClient @Inject constructor() {
 
     private fun provideRetrofit(): Retrofit {
         var baseUrl = getLinkUrl(config.apiServiceUrl)
+//        val clazz: Class<Any> = javaClass
+//        val annotation = clazz.getAnnotation(NetBaseUrlFunc::class.java)
+//        if (annotation != null) {
+//            if (!TextUtils.isEmpty(annotation.baseUrl)) {
+//                baseUrl = annotation.baseUrl
+//            }
+//        }
+
         return Retrofit.Builder()
             .client(provideOkHttpClient())
             .baseUrl(baseUrl)
@@ -84,8 +107,18 @@ class HttpClient @Inject constructor() {
     }
 
     private fun provideOkHttpClient(): OkHttpClient {
+
+        val javaClass = javaClass
+        val annotation = javaClass.getAnnotation(NetResponseFunc::class.java)
+
         return OkHttpClient.Builder().apply {
-            addInterceptor(ResponseParseInterceptor(gson))
+            if (annotation != null) {
+                if (annotation.isStandard) {
+                    addInterceptor(ResponseParseInterceptor(gson))
+                }
+            } else {
+                addInterceptor(ResponseParseInterceptor(gson))
+            }
             addInterceptor(CacheInterceptor(getInternalCache(), gson, cacheMode, cacheTime))
 
             /* if (isSSL) {
