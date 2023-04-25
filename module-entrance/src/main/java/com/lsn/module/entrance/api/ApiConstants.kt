@@ -1,7 +1,5 @@
 package com.lsn.module.entrance.api
 
-import com.lsn.module.entrance.entity.HitokotoEncodeEntity
-
 
 /**
  * @Author : lsn
@@ -10,11 +8,21 @@ import com.lsn.module.entrance.entity.HitokotoEncodeEntity
  */
 interface ApiConstants {
 
-    interface Comm {
+    interface OrderBaseApis{
+
+        companion object{
+            var HITOKOTO = "https://v1.hitokoto.cn/"
+            var BING = "https://www.bing.com/"
+        }
+    }
+
+
+    interface Entrance {
         companion object {
-            // 获取文本
+            // 获取每日一言的数据
             const val HITOKOTO_ENCODE = "?encode=json"
 
+            const val HP_IMAGE_ARCHIVE = "HPImageArchive.aspx"
 
         }
     }

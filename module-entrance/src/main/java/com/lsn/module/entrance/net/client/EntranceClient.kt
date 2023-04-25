@@ -1,10 +1,15 @@
 package com.lsn.module.entrance.net.client
 
-import com.lsn.comm.core.anotation.ProvideOnlyNetwork
 import com.lsn.comm.core.anotation.ProvideReadCacheFailedRequestNetwork30
+import com.lsn.comm.core.net.HttpClient
+import com.lsn.lib.net.core.cache.CacheMode
+import com.lsn.lib.net.core.cache.HttpPlugins.getOkHttpClient
+import com.lsn.module.entrance.api.ApiConstants
+import com.lsn.module.entrance.entity.HPImageArchiveEntity
 import com.lsn.module.entrance.entity.HitokotoEncodeEntity
 import com.lsn.module.entrance.net.service.IEntranceService
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Inject
 
 
@@ -15,14 +20,35 @@ import javax.inject.Inject
  */
 class EntranceClient @Inject constructor(
     @ProvideReadCacheFailedRequestNetwork30 var requestNetwork30: Retrofit,
-    @ProvideOnlyNetwork var retrofit: Retrofit,
+    var retrofit: HttpClient,
 ) {
 
 
     suspend fun getHitokotoEncode(): HitokotoEncodeEntity {
-        return requestNetwork30.create(IEntranceService::class.java)
+        val linkUrl = retrofit.getLinkUrl(ApiConstants.OrderBaseApis.HITOKOTO)
+        retrofit.setCacheModel(CacheMode.REQUEST_NETWORK_FAILED_READ_CACHE)
+        retrofit.setCacheTime(HttpClient.DAYS_30)
+        val build = retrofit.getBuildRetrofit()
+            .client(retrofit.getOkHttpClient(isStandard = false))
+            .baseUrl(linkUrl)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        return build.create(IEntranceService::class.java)
             .getHitokotoEncode()
     }
 
+
+    suspend fun getHPImageArchive(format: String, idx: Int, n: Int): HPImageArchiveEntity {
+        val linkUrl = retrofit.getLinkUrl(ApiConstants.OrderBaseApis.BING)
+        retrofit.setCacheModel(CacheMode.REQUEST_NETWORK_FAILED_READ_CACHE)
+        retrofit.setCacheTime(HttpClient.DAYS_30)
+        val build = retrofit.getBuildRetrofit()
+            .client(retrofit.getOkHttpClient(isStandard = false))
+            .baseUrl(linkUrl)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        return build.create(IEntranceService::class.java)
+            .getHPImageArchive(format,idx, n)
+    }
 
 }

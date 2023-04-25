@@ -1,5 +1,6 @@
 package com.lsn.lib.base.ui.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.SparseArray
 import android.view.LayoutInflater
@@ -40,6 +41,11 @@ abstract class BaseVDActivity<VM : BaseViewModel, DB : ViewDataBinding>(@LayoutR
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        if (intent.flags and Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT != 0) {
+            finish()
+            return
+        }
+
         viewContent()
 
         /*if (BuildConfig.DEBUG){
@@ -60,8 +66,9 @@ abstract class BaseVDActivity<VM : BaseViewModel, DB : ViewDataBinding>(@LayoutR
     private fun viewContent() {
 //        binding = DataBindingUtil.bind(buildContentView())!!
 
-        binding = DataBindingUtil.inflate(LayoutInflater.from(this), layoutRes, null, false)
         val linearLayout = LinearLayout(this)
+        binding = DataBindingUtil.inflate(LayoutInflater.from(this), layoutRes, linearLayout, false)
+        linearLayout.layoutParams = ViewGroup.LayoutParams(matchParent,matchParent)
         linearLayout.orientation = LinearLayout.VERTICAL
         linearLayout.addToolbar()
         linearLayout.addView(binding.root)

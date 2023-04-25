@@ -85,6 +85,7 @@ object DataBindingComponent {
             Glide.with(imageView.context)
                 .load(url)
                 .into(imageView)
+
         } else if (res != null) {
             Glide.with(imageView.context)
                 .load(res)

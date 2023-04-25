@@ -16,7 +16,7 @@ import okhttp3.ResponseBody
  * @CreateTime : 2023/3/30 上午 10:17
  * @Description :
  */
-class ResponseParseInterceptor(var gson: Gson) : Interceptor {
+class ResponseParseInterceptor(var gson: Gson,var isStandard:Boolean = true) : Interceptor {
 
 
     override fun intercept(chain: Interceptor.Chain): Response {
@@ -26,17 +26,23 @@ class ResponseParseInterceptor(var gson: Gson) : Interceptor {
         if (body != null) {
             val string = body.string()
             if (!TextUtils.isEmpty(string)) {
-                val responseApi = gson.fromJson(string, ResponseApi::class.java)
-                return if (responseApi.code == getOkCode()) {
-                    response.newBuilder()
+                if (isStandard){
+                    val responseApi = gson.fromJson(string, ResponseApi::class.java)
+                    return if (responseApi.code == getOkCode()) {
+                        response.newBuilder()
+                            .body(ResponseBody.create(body.contentType(), string))
+                            .build()
+                    } else {
+                        throw ParseDataException(
+                            Code.Exception.NO_SERVICE_DATA_EXCEPTION_CODE.toString(),
+                            "状态码异常 信息 : " + responseApi.message,
+                            response
+                        )
+                    }
+                }else{
+                    return response.newBuilder()
                         .body(ResponseBody.create(body.contentType(), string))
                         .build()
-                } else {
-                    throw ParseDataException(
-                        Code.Exception.NO_SERVICE_DATA_EXCEPTION_CODE.toString(),
-                        "状态码异常 信息 : " + responseApi.message,
-                        response
-                    )
                 }
             } else {
                 // body.string 异常

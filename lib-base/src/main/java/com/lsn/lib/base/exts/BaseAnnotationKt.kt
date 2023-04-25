@@ -115,43 +115,43 @@ fun Activity?.alterStatusColor() {
         statusBarColor?.apply {
             when (value) {
                 StatusColorCategory.DEFAULT_COLOR, StatusColorCategory.WHITE_COLOR -> PStatusBarUtil.setResStatusBar(
-                    this as Activity?,
+                    this@alterStatusColor,
                     com.lsn.lib.ui.R.color.white,
                     false,
                     true
                 )
                 StatusColorCategory.TRANSPARENT_COLOR -> PStatusBarUtil.setResStatusBar(
-                    this as Activity?,
+                    this@alterStatusColor,
                     com.lsn.lib.ui.R.color.transparent,
                     false,
                     true
                 )
                 StatusColorCategory.BLACK_COLOR -> PStatusBarUtil.setResStatusBar(
-                    this as Activity?,
+                    this@alterStatusColor,
                     com.lsn.lib.ui.R.color.black,
                     false,
                     false
                 )
                 StatusColorCategory.THEME_COLOR -> PStatusBarUtil.setResStatusBar(
-                    this as Activity?,
+                    this@alterStatusColor,
                     com.lsn.lib.ui.R.color.colorAccent,
                     false,
                     false
                 )
                 StatusColorCategory.FD_COLOR -> PStatusBarUtil.setResStatusBar(
-                    this as Activity?,
+                    this@alterStatusColor,
                     com.lsn.lib.ui.R.color.fdfdfd,
                     false,
                     false
                 )
                 StatusColorCategory.F6F5F3_COLOR -> PStatusBarUtil.setResStatusBar(
-                    this as Activity?,
+                    this@alterStatusColor,
                     com.lsn.lib.ui.R.color.F6F5F3,
                     false,
                     false
                 )
                 StatusColorCategory.E9E9E9_COLOR -> PStatusBarUtil.setResStatusBar(
-                    this as Activity?,
+                    this@alterStatusColor,
                     com.lsn.lib.ui.R.color.e9e9e9,
                     false,
                     false

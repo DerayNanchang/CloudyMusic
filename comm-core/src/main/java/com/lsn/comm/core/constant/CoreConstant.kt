@@ -104,11 +104,11 @@ object CoreConstant {
         )
     }
 
-    fun getApkFile():File{
+    fun getApkFile(): File {
         return FileHelp.get().initApkDir(fileName)
     }
 
-    fun getImgFile():File{
+    fun getImgFile(): File {
         return FileHelp.get().initImgDir(fileName)
     }
 }

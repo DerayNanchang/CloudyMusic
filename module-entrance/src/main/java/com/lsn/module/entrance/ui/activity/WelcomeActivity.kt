@@ -1,21 +1,23 @@
 package com.lsn.module.entrance.ui.activity
 
-import android.os.Handler
+import android.app.Activity
+import android.os.Build
+import android.view.View
+import android.view.Window
+import android.view.WindowManager
 import com.alibaba.android.arouter.facade.annotation.Autowired
-import com.alibaba.android.arouter.launcher.ARouter
+import com.bumptech.glide.Glide
 import com.lsn.comm.core.ui.activity.BaseCoreActivity
 import com.lsn.comm.core.utils.WeakCacheUtil
-import com.lsn.lib.base.bus.LiveBus
 import com.lsn.lib.ui.widget.TypeTextView
 import com.lsn.module.entrance.R
 import com.lsn.module.entrance.api.ApiConstants
 import com.lsn.module.entrance.databinding.ActivityWelcomeBinding
+import com.lsn.module.entrance.entity.HPImageArchiveEntity
+import com.lsn.module.entrance.ui.viewmodel.WelcomeViewModel
 import com.lsn.module.provider.main.provide.MainProvider
 import com.lsn.module.provider.scheduler.RouterHelp
-import com.pmisy.roomkb.ui.viewmodel.WelcomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.HiltAndroidApp
-import com.lsn.module.entrance.entity.HitokotoEncodeEntity as HitokotoEncodeEntity
 
 
 /**
@@ -38,18 +40,20 @@ class WelcomeActivity :
         return WelcomeViewModel::class.java
     }
 
-    private val mTypes: Array<String> by lazy {
-        resources.getStringArray(R.array.nonsenses)
+    override fun initView() {
+        super.initView()
+        hideStatusBar(this)
     }
 
     override fun initData() {
         super.initData()
 
-        viewModel.getHitokotoEncode()
+        viewModel.getHPImageArchive()
 
     }
 
     override fun onTypeStart() {
+
 
     }
 
@@ -64,9 +68,26 @@ class WelcomeActivity :
         viewModel.success.observe(this) {
 
             when (it.api) {
-                ApiConstants.Comm.HITOKOTO_ENCODE -> {
-                    val hitokotoEncodeEntity = it.data as HitokotoEncodeEntity
+                ApiConstants.Entrance.HITOKOTO_ENCODE -> {
+                    /*val hitokotoEncodeEntity = it.data as HitokotoEncodeEntity
                     val tips = hitokotoEncodeEntity.hitokoto
+                    binding.tvType.run {
+                        if (WeakCacheUtil.isOpenLauncherText()) {
+                            setOnTypeViewListener(this@WelcomeActivity)
+                            start(tips, 120)
+                        } else {
+                            text = tips
+                            startToMain(2000)
+                        }
+                    }*/
+                }
+
+
+                ApiConstants.Entrance.HP_IMAGE_ARCHIVE->{
+                    val hitokotoEncodeEntity = it.data as HPImageArchiveEntity
+                    val tips = hitokotoEncodeEntity.images[0].desc
+//                    val url = hitokotoEncodeEntity.images[0].url
+//                    Glide.with(this@WelcomeActivity).load(url).into(binding.ivPGV)
                     binding.tvType.run {
                         if (WeakCacheUtil.isOpenLauncherText()) {
                             setOnTypeViewListener(this@WelcomeActivity)
@@ -83,13 +104,31 @@ class WelcomeActivity :
 
     }
 
+    fun hideStatusBar(activity: Activity?) {
+        if (activity == null) return
+        val window: Window = activity.getWindow() ?: return
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        )
+        window.getDecorView()
+            .setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE)
+        val lp: WindowManager.LayoutParams = window.getAttributes()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            lp.layoutInDisplayCutoutMode =
+                WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
+        }
+        window.setAttributes(lp)
+    }
+
+
 
     private fun startToMain(time: Long) {
 
-        Handler().postDelayed({
-            mainProvider?.actionMain()
-            finish()
-        }, time)
+//        Handler().postDelayed({
+//            mainProvider?.actionMain()
+//            finish()
+//        }, time)
     }
 
 

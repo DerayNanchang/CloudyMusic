@@ -2,6 +2,7 @@ package com.lsn.module.entrance.ui.activity
 
 import android.content.DialogInterface
 import android.os.Process
+import coil.load
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.lsn.comm.core.exts.comm.startActivity
 import com.lsn.comm.core.ui.activity.BaseCoreActivity
@@ -46,6 +47,7 @@ class AuthActivity : BaseCoreActivity<AuthViewModel, ActivityAuthBinding>(R.layo
 //            mInAppMessageManager.setMainActivityPath("com.umeng.soexample.HomeActivity")
             //推送平台多维度推送决策必须调用方法(需要同意隐私协议之后初始化完成调用)
 //            PushAgent.getInstance(this).onAppStart()
+//            var path = "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fsafe-img.xhscdn.com%2Fbw1%2F09ee8879-d22b-4beb-bc30-20b0997b3539%3FimageView2%2F2%2Fw%2F1080%2Fformat%2Fjpg&refer=http%3A%2F%2Fsafe-img.xhscdn.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1684992747&t=d606801c6dfd930fe98dca289f13ac35"
             startActivity<WelcomeActivity>()
             finish()
 
