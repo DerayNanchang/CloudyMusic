@@ -6,7 +6,7 @@ package com.pmisy.roomkb
  * @CreateTime : 2023/4/6 上午 11:33
  * @Description :
  */
-interface Constants {
+interface EntranceConstants {
 
     interface EQ {
 

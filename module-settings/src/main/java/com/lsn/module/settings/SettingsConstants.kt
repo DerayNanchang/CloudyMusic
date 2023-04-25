@@ -1,4 +1,4 @@
-package com.lsn.module.graphic
+package com.lsn.module.settings
 
 
 /**
@@ -6,10 +6,12 @@ package com.lsn.module.graphic
  * @CreateTime : 2023/4/6 上午 11:33
  * @Description :
  */
-interface GraphicConstants {
+interface SettingsConstants {
+
 
     companion object {
 
     }
+
 
 }

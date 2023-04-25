@@ -2,6 +2,7 @@ package com.lsn.module.provider.scheduler
 
 import com.alibaba.android.arouter.facade.Postcard
 import com.alibaba.android.arouter.launcher.ARouter
+import com.pmisy.roomkb.Constants
 
 
 /**
@@ -13,20 +14,11 @@ class RouterHelp private constructor() {
 
     companion object RouterPath {
         val get = Instance.routerHelp
-        private const val MAIN = "/main"
-        const val MAIN_INDEX = "$MAIN/index"
-        const val MAIN_PROVIDE = "$MAIN/provider"
-
-
-        private const val ENTRANCE = "/entrance"
-        const val ENTRANCE_AUTH = "$ENTRANCE/auth"
-        const val ENTRANCE_WELCOME = "$ENTRANCE/welcome"
     }
 
 
     fun actionMain() {
-        ARouter.getInstance().build(MAIN_INDEX).navigation();
-//        actionAct(MAIN_INDEX)
+        ARouter.getInstance().build(Constants.RouterPath.MAIN.INDEX).navigation();
     }
 
 

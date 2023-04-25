@@ -6,7 +6,7 @@ package com.lsn.lib.ui.widget.switchs.comm
  * @CreateTime : 2023/4/18 下午 05:14
  * @Description :
  */
-object Constant {
+object UIConstant {
     const val SWITCHER_ANIMATION_DURATION = 800L
     const val COLOR_ANIMATION_DURATION = 300L
     const val TRANSLATE_ANIMATION_DURATION = 200L

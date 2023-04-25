@@ -7,6 +7,7 @@ import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import com.alibaba.android.arouter.facade.annotation.Autowired
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.lsn.comm.core.ui.activity.BaseCoreActivity
 import com.lsn.comm.core.utils.WeakCacheUtil
 import com.lsn.lib.ui.widget.TypeTextView
@@ -16,9 +17,9 @@ import com.lsn.module.entrance.databinding.ActivityWelcomeBinding
 import com.lsn.module.entrance.entity.HPImageArchiveEntity
 import com.lsn.module.entrance.ui.viewmodel.WelcomeViewModel
 import com.lsn.module.provider.main.provide.MainProvider
-import com.lsn.module.provider.scheduler.RouterHelp
+import com.pmisy.roomkb.Constants
+import com.pmisy.roomkb.EntranceConstants
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.NonCancellable.start
 
 
 /**
@@ -26,6 +27,7 @@ import kotlinx.coroutines.NonCancellable.start
  * @CreateTime : 2023/4/4 上午 09:08
  * @Description :
  */
+@Route(path = Constants.RouterPath.ENTRANCE.ENTRANCE_WELCOME)
 @AndroidEntryPoint
 class WelcomeActivity :
     BaseCoreActivity<WelcomeViewModel, ActivityWelcomeBinding>(R.layout.activity_welcome),
@@ -33,7 +35,7 @@ class WelcomeActivity :
 
 
     @JvmField
-    @Autowired(name = RouterHelp.MAIN_PROVIDE)
+    @Autowired(name = Constants.RouterPath.MAIN.PROVIDE)
     var mainProvider: MainProvider? = null
 
 

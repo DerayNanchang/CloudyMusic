@@ -13,6 +13,7 @@ import com.lsn.module.entrance.databinding.ActivityAuthBinding
 import com.lsn.module.provider.comm.manager.SPManager
 import com.lsn.module.entrance.ui.viewmodel.AuthViewModel
 import com.lsn.module.provider.scheduler.RouterHelp
+import com.pmisy.roomkb.Constants
 import com.umeng.commonsdk.UMConfigure
 
 
@@ -21,7 +22,7 @@ import com.umeng.commonsdk.UMConfigure
  * @CreateTime : 2023/4/4 上午 09:08
  * @Description :
  */
-@Route(path = RouterHelp.ENTRANCE_AUTH)
+@Route(path = Constants.RouterPath.ENTRANCE.ENTRANCE_AUTH)
 class AuthActivity : BaseCoreActivity<AuthViewModel, ActivityAuthBinding>(R.layout.activity_auth) {
 
 

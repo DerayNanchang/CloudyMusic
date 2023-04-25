@@ -1,18 +1,13 @@
 package com.lsn.cloudymusic
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import androidx.databinding.DataBindingUtil.setContentView
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.alibaba.android.arouter.launcher.ARouter
 import com.lsn.cloudy.R
 import com.lsn.cloudy.databinding.ActivityMainBinding
 import com.lsn.comm.core.ui.activity.BaseCoreActivity
 import com.lsn.lib.base.annotation.Toolbar
-import com.lsn.module.provider.scheduler.RouterHelp
-import com.umeng.analytics.pro.ac
+import com.pmisy.roomkb.EntranceConstants
 
-@Route(path = RouterHelp.MAIN_INDEX)
+@Route(path = EntranceConstants.RouterPath.MAIN.INDEX)
 @Toolbar(title = "Welcome", showBack = false)
 class MainActivity : BaseCoreActivity<MainViewModel, ActivityMainBinding>(R.layout.activity_main) {
 

@@ -9,8 +9,8 @@ import android.util.AttributeSet
 import android.view.View
 import androidx.annotation.ColorInt
 import com.lsn.lib.ui.R
-import com.lsn.lib.ui.widget.switchs.comm.Constant.KEY_CHECKED
-import com.lsn.lib.ui.widget.switchs.comm.Constant.STATE
+import com.lsn.lib.ui.widget.switchs.comm.UIConstant.KEY_CHECKED
+import com.lsn.lib.ui.widget.switchs.comm.UIConstant.STATE
 import com.lsn.lib.ui.widget.switchs.comm.Extensions.isLollipopOrAbove
 import com.lsn.lib.ui.widget.switchs.comm.Extensions.toPx
 import kotlin.math.min

@@ -17,14 +17,14 @@ import android.view.ViewOutlineProvider
 import androidx.core.animation.doOnEnd
 import androidx.core.animation.doOnStart
 import androidx.core.graphics.withTranslation
-import com.lsn.lib.ui.widget.switchs.comm.Constant.BOUNCE_ANIM_AMPLITUDE_IN
-import com.lsn.lib.ui.widget.switchs.comm.Constant.BOUNCE_ANIM_AMPLITUDE_OUT
-import com.lsn.lib.ui.widget.switchs.comm.Constant.BOUNCE_ANIM_FREQUENCY_IN
-import com.lsn.lib.ui.widget.switchs.comm.Constant.BOUNCE_ANIM_FREQUENCY_OUT
-import com.lsn.lib.ui.widget.switchs.comm.Constant.COLOR_ANIMATION_DURATION
-import com.lsn.lib.ui.widget.switchs.comm.Constant.ON_CLICK_RADIUS_OFFSET
-import com.lsn.lib.ui.widget.switchs.comm.Constant.SWITCHER_ANIMATION_DURATION
-import com.lsn.lib.ui.widget.switchs.comm.Constant.TRANSLATE_ANIMATION_DURATION
+import com.lsn.lib.ui.widget.switchs.comm.UIConstant.BOUNCE_ANIM_AMPLITUDE_IN
+import com.lsn.lib.ui.widget.switchs.comm.UIConstant.BOUNCE_ANIM_AMPLITUDE_OUT
+import com.lsn.lib.ui.widget.switchs.comm.UIConstant.BOUNCE_ANIM_FREQUENCY_IN
+import com.lsn.lib.ui.widget.switchs.comm.UIConstant.BOUNCE_ANIM_FREQUENCY_OUT
+import com.lsn.lib.ui.widget.switchs.comm.UIConstant.COLOR_ANIMATION_DURATION
+import com.lsn.lib.ui.widget.switchs.comm.UIConstant.ON_CLICK_RADIUS_OFFSET
+import com.lsn.lib.ui.widget.switchs.comm.UIConstant.SWITCHER_ANIMATION_DURATION
+import com.lsn.lib.ui.widget.switchs.comm.UIConstant.TRANSLATE_ANIMATION_DURATION
 import com.lsn.lib.ui.widget.switchs.comm.Extensions.isLollipopOrAbove
 import com.lsn.lib.ui.widget.switchs.comm.Extensions.lerp
 

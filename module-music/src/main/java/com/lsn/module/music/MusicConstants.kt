@@ -8,20 +8,8 @@ package com.lsn.module.music
  */
 interface MusicConstants {
 
-    interface EQ {
+    companion object{
 
-        companion object {
-
-        }
-
-    }
-
-    interface EVENT {
-
-        companion object {
-
-
-        }
     }
 
 }

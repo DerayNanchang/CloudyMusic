@@ -1,16 +1,9 @@
 package com.lsn.comm.core.ui.fragment
 
 import android.os.Bundle
-import android.util.SparseArray
-import android.widget.LinearLayout
-import android.widget.RelativeLayout
-import android.widget.TextView
 import androidx.annotation.LayoutRes
-import androidx.core.util.forEach
 import androidx.databinding.ViewDataBinding
-import androidx.databinding.library.baseAdapters.BR
 import com.lsn.comm.core.callbacks.ICore
-import com.lsn.comm.core.manager.ActivityManager
 import com.lsn.comm.core.ui.activity.BaseCoreActivity
 import com.lsn.lib.base.ui.fragment.BaseVDFragment
 import com.lsn.lib.base.viewmodel.BaseViewModel
