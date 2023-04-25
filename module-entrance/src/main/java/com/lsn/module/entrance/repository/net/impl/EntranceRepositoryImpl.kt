@@ -2,9 +2,7 @@ package com.lsn.module.entrance.repository.net.impl
 
 import com.lsn.comm.core.net.ResponseEntity
 import com.lsn.comm.core.net.flowTranData
-import com.lsn.lib.net.core.annotation.NetBaseUrlFunc
-import com.lsn.lib.net.core.annotation.NetResponseFunc
-import com.lsn.module.entrance.api.ApiConstants
+import com.lsn.module.provider.comm.api.ApiConstants
 import com.lsn.module.entrance.net.client.EntranceClient
 import com.lsn.module.entrance.repository.net.i.IEntranceRepository
 import kotlinx.coroutines.flow.Flow

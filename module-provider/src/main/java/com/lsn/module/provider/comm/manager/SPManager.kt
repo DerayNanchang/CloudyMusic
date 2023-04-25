@@ -1,8 +1,6 @@
-package com.lsn.module.entrance.manager
+package com.lsn.module.provider.comm.manager
 
 import com.lsn.comm.core.utils.MMKVUtil
-import com.lsn.lib.utils.util.SPUtils
-import com.lsn.lib.utils.util.ScreenUtils
 
 
 /**
@@ -46,44 +44,8 @@ class SPManager private constructor() {
     }
 
 
-    fun putLoginInfo(value: String) {
-        SPUtils.getInstance().put(LOGIN_INFO, value)
-    }
 
 
-    fun getLoginInfo(): String? {
-        return SPUtils.getInstance().getString(LOGIN_INFO)
-    }
-
-
-    fun putKanbanMaxCount(value: Int) {
-        putInt(KANBAN_MAX_COUNT, value)
-    }
-
-    fun putKanbanMaxCountOr(value: Int) {
-        putInt(KANBAN_MAX_COUNT_OR, value)
-    }
-
-
-    fun getKanbanMaxCount(): Int {
-        var def = 0
-        if (ScreenUtils.isPortrait()) {
-            def = 18
-        } else {
-            def = 10
-        }
-        return getInt(KANBAN_MAX_COUNT, def)
-    }
-
-    fun getKanbanMaxCountOR(): Int {
-        var def = 0
-        if (ScreenUtils.isPortrait()) {
-            def = 13
-        } else {
-            def = 7
-        }
-        return getInt(KANBAN_MAX_COUNT_OR, def)
-    }
 
 
     private fun putString(key: String, value: String) {

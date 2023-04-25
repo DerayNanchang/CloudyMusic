@@ -2,7 +2,7 @@ package com.lsn.module.entrance.ui.viewmodel
 
 import androidx.databinding.ObservableField
 import com.lsn.comm.core.viewmodel.BaseCoreViewModel
-import com.lsn.module.entrance.api.ApiConstants
+import com.lsn.module.provider.comm.api.ApiConstants
 import com.lsn.module.entrance.entity.HPImageArchiveEntity
 import com.lsn.module.entrance.entity.HPImageArchiveImagesEntity
 import com.lsn.module.entrance.repository.net.i.IEntranceRepository

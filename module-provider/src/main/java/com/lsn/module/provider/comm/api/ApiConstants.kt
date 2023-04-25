@@ -1,4 +1,4 @@
-package com.lsn.module.entrance.api
+package com.lsn.module.provider.comm.api
 
 
 /**

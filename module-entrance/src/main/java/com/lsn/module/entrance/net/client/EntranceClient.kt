@@ -3,8 +3,7 @@ package com.lsn.module.entrance.net.client
 import com.lsn.comm.core.anotation.ProvideReadCacheFailedRequestNetwork30
 import com.lsn.comm.core.net.HttpClient
 import com.lsn.lib.net.core.cache.CacheMode
-import com.lsn.lib.net.core.cache.HttpPlugins.getOkHttpClient
-import com.lsn.module.entrance.api.ApiConstants
+import com.lsn.module.provider.comm.api.ApiConstants
 import com.lsn.module.entrance.entity.HPImageArchiveEntity
 import com.lsn.module.entrance.entity.HitokotoEncodeEntity
 import com.lsn.module.entrance.net.service.IEntranceService

@@ -2,22 +2,23 @@ package com.lsn.module.entrance.ui.activity
 
 import android.app.Activity
 import android.os.Build
+import android.os.Handler
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import com.alibaba.android.arouter.facade.annotation.Autowired
-import com.bumptech.glide.Glide
 import com.lsn.comm.core.ui.activity.BaseCoreActivity
 import com.lsn.comm.core.utils.WeakCacheUtil
 import com.lsn.lib.ui.widget.TypeTextView
 import com.lsn.module.entrance.R
-import com.lsn.module.entrance.api.ApiConstants
+import com.lsn.module.provider.comm.api.ApiConstants
 import com.lsn.module.entrance.databinding.ActivityWelcomeBinding
 import com.lsn.module.entrance.entity.HPImageArchiveEntity
 import com.lsn.module.entrance.ui.viewmodel.WelcomeViewModel
 import com.lsn.module.provider.main.provide.MainProvider
 import com.lsn.module.provider.scheduler.RouterHelp
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.NonCancellable.start
 
 
 /**
@@ -83,11 +84,9 @@ class WelcomeActivity :
                 }
 
 
-                ApiConstants.Entrance.HP_IMAGE_ARCHIVE->{
+                ApiConstants.Entrance.HP_IMAGE_ARCHIVE -> {
                     val hitokotoEncodeEntity = it.data as HPImageArchiveEntity
                     val tips = hitokotoEncodeEntity.images[0].desc
-//                    val url = hitokotoEncodeEntity.images[0].url
-//                    Glide.with(this@WelcomeActivity).load(url).into(binding.ivPGV)
                     binding.tvType.run {
                         if (WeakCacheUtil.isOpenLauncherText()) {
                             setOnTypeViewListener(this@WelcomeActivity)
@@ -121,14 +120,11 @@ class WelcomeActivity :
         window.setAttributes(lp)
     }
 
-
-
     private fun startToMain(time: Long) {
-
-//        Handler().postDelayed({
-//            mainProvider?.actionMain()
-//            finish()
-//        }, time)
+        Handler().postDelayed({
+            mainProvider?.actionMain()
+            finish()
+        }, time)
     }
 
 

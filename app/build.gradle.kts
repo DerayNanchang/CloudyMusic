@@ -56,8 +56,14 @@ dependencies {
     implementation(project(":comm-core"))
     implementation(project(":module-provider"))
     implementation(project(":module-entrance"))
+    implementation(project(":module-music"))
+    implementation(project(":module-video"))
+    implementation(project(":module-graphic"))
+    implementation(project(":module-settings"))
 
     implementation(libs.alibaba.arouter.api)
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
     kapt(libs.alibaba.arouter.compiler)
 
 }

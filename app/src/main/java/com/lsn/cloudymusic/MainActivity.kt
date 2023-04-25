@@ -13,7 +13,7 @@ import com.lsn.module.provider.scheduler.RouterHelp
 import com.umeng.analytics.pro.ac
 
 @Route(path = RouterHelp.MAIN_INDEX)
-@Toolbar(title = "这是首页", showBack = false)
+@Toolbar(title = "Welcome", showBack = false)
 class MainActivity : BaseCoreActivity<MainViewModel, ActivityMainBinding>(R.layout.activity_main) {
 
 

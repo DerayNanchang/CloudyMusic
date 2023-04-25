@@ -2,7 +2,6 @@ package com.lsn.module.entrance.ui.activity
 
 import android.content.DialogInterface
 import android.os.Process
-import coil.load
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.lsn.comm.core.exts.comm.startActivity
 import com.lsn.comm.core.ui.activity.BaseCoreActivity
@@ -11,7 +10,7 @@ import com.lsn.lib.obs.core.OBSConfig
 import com.lsn.lib.obs.core.OBSHelp
 import com.lsn.module.entrance.R
 import com.lsn.module.entrance.databinding.ActivityAuthBinding
-import com.lsn.module.entrance.manager.SPManager
+import com.lsn.module.provider.comm.manager.SPManager
 import com.lsn.module.entrance.ui.viewmodel.AuthViewModel
 import com.lsn.module.provider.scheduler.RouterHelp
 import com.umeng.commonsdk.UMConfigure

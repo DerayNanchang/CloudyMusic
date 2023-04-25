@@ -1,6 +1,6 @@
 package com.lsn.module.entrance.net.service
 
-import com.lsn.module.entrance.api.ApiConstants
+import com.lsn.module.provider.comm.api.ApiConstants
 import com.lsn.module.entrance.entity.HPImageArchiveEntity
 import com.lsn.module.entrance.entity.HitokotoEncodeEntity
 import retrofit2.http.GET
