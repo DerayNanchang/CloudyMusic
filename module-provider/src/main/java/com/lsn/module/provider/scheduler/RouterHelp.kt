@@ -31,6 +31,19 @@ class RouterHelp private constructor() {
         return ARouter.getInstance().build(path)
     }
 
+    fun actionMusicIndex() {
+        ARouter.getInstance().build(Constants.RouterPath.MUSIC.MUSIC_INDEX).navigation()
+    }
+    fun actionVideoIndex() {
+        ARouter.getInstance().build(Constants.RouterPath.VIDEO.VIDEO_INDEX).navigation()
+    }
+    fun actionGraphicIndex() {
+        ARouter.getInstance().build(Constants.RouterPath.GRAPHIC.VIDEO_INDEX).navigation()
+    }
+    fun actionSettingsIndex() {
+        ARouter.getInstance().build(Constants.RouterPath.SETTINGS.VIDEO_INDEX).navigation()
+    }
+
     private object Instance {
         var routerHelp = RouterHelp()
     }
