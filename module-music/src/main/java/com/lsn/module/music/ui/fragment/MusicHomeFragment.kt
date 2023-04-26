@@ -5,7 +5,7 @@ import com.lsn.comm.core.ui.fragment.BaseCoreFragment
 import com.lsn.module.music.R
 import com.lsn.module.music.databinding.FragmentMusicHomeBinding
 import com.lsn.module.music.ui.viewmodel.MusicViewModel
-import com.pmisy.roomkb.Constants
+import com.lsn.module.provider.comm.constant.Constants
 
 
 /**

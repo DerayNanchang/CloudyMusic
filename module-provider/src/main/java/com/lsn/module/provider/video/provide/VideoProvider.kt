@@ -1,4 +1,4 @@
-package com.lsn.module.provider.main.provide
+package com.lsn.module.provider.video.provide
 
 import androidx.fragment.app.Fragment
 import com.lsn.module.provider.BaseProvider

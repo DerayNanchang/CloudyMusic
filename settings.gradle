@@ -18,7 +18,7 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "CloudyMusic"
+rootProject.name = "PMoment"
 include ':app'
 include ':lib-base'
 include ':lib-obs'

@@ -1,4 +1,4 @@
-package com.pmisy.roomkb
+package com.lsn.module.provider.comm.constant
 
 
 /**

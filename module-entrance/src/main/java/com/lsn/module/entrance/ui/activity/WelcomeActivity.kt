@@ -20,8 +20,7 @@ import com.lsn.module.entrance.databinding.ActivityWelcomeBinding
 import com.lsn.module.entrance.entity.HPImageArchiveEntity
 import com.lsn.module.entrance.ui.viewmodel.WelcomeViewModel
 import com.lsn.module.provider.main.provide.MainProvider
-import com.lsn.module.provider.main.provide.VideoProvider
-import com.pmisy.roomkb.Constants
+import com.lsn.module.provider.comm.constant.Constants
 import dagger.hilt.android.AndroidEntryPoint
 
 

@@ -1,4 +1,4 @@
-package com.lsn.cloudymusic.app
+package com.lsn.perfect.moment.app
 
 import com.alibaba.android.arouter.launcher.ARouter
 import com.lsn.comm.core.app.BaseCoreApplication
@@ -12,7 +12,7 @@ import dagger.hilt.android.HiltAndroidApp
  * @Description :
  */
 @HiltAndroidApp
-class CloudyApplication : BaseCoreApplication() {
+class PMomentApplication : BaseCoreApplication() {
 
     override fun onCreate() {
         super.onCreate()

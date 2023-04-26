@@ -1,5 +1,5 @@
 [versions]
-appName = "cloudy"  #// app  name
+appName = "PMoment"  #// app  name
 versionCode = "10"
 versionName = "1.0.0"
 httpApiServerUrlDevelop = "http://120.77.248.168:6060/"  #// 测试地址 6065
@@ -12,7 +12,7 @@ httpApiServerFileRelease = "http://120.77.248.168:8888/"
 minSdk = "21"
 compileSdk = "33"
 targetSdk = "30"
-appId = "com.lsn.cloudy"
+appId = "com.lsn.perfect.moment"
 #@ 基础lib
 ktx = "1.9.0"
 appcompat = "1.6.1"

@@ -1,4 +1,4 @@
-package com.lsn.cloudymusic
+package com.lsn.perfect.moment
 
 import com.lsn.comm.core.viewmodel.BaseCoreViewModel
 

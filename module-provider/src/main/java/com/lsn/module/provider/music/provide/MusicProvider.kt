@@ -1,4 +1,4 @@
-package com.lsn.module.provider.main.provide
+package com.lsn.module.provider.music.provide
 
 import androidx.fragment.app.Fragment
 import com.lsn.module.provider.BaseProvider

@@ -1,25 +1,30 @@
-package com.lsn.cloudymusic
+package com.lsn.perfect.moment
 
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.google.android.material.bottomnavigation.BottomNavigationItemView
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView
-import com.lsn.cloudy.R
-import com.lsn.cloudy.databinding.ActivityMainBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.lsn.comm.core.ui.activity.BaseCoreActivity
 import com.lsn.comm.core.ui.fragment.BaseCoreFragment
 import com.lsn.lib.base.annotation.Toolbar
-import com.lsn.module.provider.main.provide.*
-import com.pmisy.roomkb.Constants
+import com.lsn.module.provider.graphic.provide.GraphicProvider
+import com.lsn.module.provider.mine.provide.MineProvider
+import com.lsn.module.provider.music.provide.MusicProvider
+import com.lsn.perfect.moment.databinding.ActivityMainBinding
+import com.lsn.module.provider.comm.constant.Constants
+import com.lsn.module.provider.video.provide.VideoProvider
 
 @Route(path = Constants.RouterPath.MAIN.INDEX)
 @Toolbar(title = "Welcome", showBack = false)
-class MainActivity : BaseCoreActivity<MainViewModel, ActivityMainBinding>(R.layout.activity_main) {
+class MainActivity : BaseCoreActivity<MainViewModel, ActivityMainBinding>(R.layout.activity_main),
+    BottomNavigationView.OnNavigationItemSelectedListener {
 
 
     @JvmField
@@ -43,7 +48,7 @@ class MainActivity : BaseCoreActivity<MainViewModel, ActivityMainBinding>(R.layo
     private var mMusicHomeFragment: Fragment? = null
     private var mVideoHomeFragment: Fragment? = null
     private var mGraphicHomeFragment: Fragment? = null
-    private var mSettingsHomeFragment: Fragment? = null
+    private var mMineHomeFragment: Fragment? = null
 
 
     private lateinit var mTvMainMusicHomeMsg: TextView
@@ -76,13 +81,39 @@ class MainActivity : BaseCoreActivity<MainViewModel, ActivityMainBinding>(R.layo
         addTabBadge()
     }
 
+    override fun initEvent() {
+        super.initEvent()
+
+        binding.navView.setOnNavigationItemSelectedListener(this)
+    }
+
 
     private fun switchToMusic() {
         if (mMusicHomeFragment == null) {
             mMusicHomeFragment = musicProvider?.getMusicHomeFragment()
         }
         replace(mMusicHomeFragment, "music")
-//        PStatusBarUtil.setResStatusBar(this, R.color.F6F5F3, false, true)
+    }
+
+    private fun switchToVideo() {
+        if (mVideoHomeFragment == null) {
+            mVideoHomeFragment = videoProvider?.getVideoHomeFragment()
+        }
+        replace(mVideoHomeFragment, "music")
+    }
+
+    private fun switchToGraphic() {
+        if (mGraphicHomeFragment == null) {
+            mGraphicHomeFragment = graphicProvider?.getGraphicHomeFragment()
+        }
+        replace(mGraphicHomeFragment, "music")
+    }
+
+    private fun switchToMine() {
+        if (mMineHomeFragment == null) {
+            mMineHomeFragment = mineProvider?.getMineHomeFragment()
+        }
+        replace(mMineHomeFragment, "music")
     }
 
 
@@ -143,6 +174,32 @@ class MainActivity : BaseCoreActivity<MainViewModel, ActivityMainBinding>(R.layo
                 }
             }
         }
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        var showNavigation = false
+        when (item.itemId) {
+            R.id.em_main_nav_music -> {
+                switchToMusic()
+                showNavigation = true
+            }
+            R.id.em_main_nav_video -> {
+                switchToVideo()
+                showNavigation = true
+                invalidateOptionsMenu()
+            }
+
+            R.id.em_main_nav_graphic -> {
+                switchToGraphic()
+                showNavigation = true
+            }
+            R.id.em_main_nav_me -> {
+                switchToMine()
+                showNavigation = true
+            }
+        }
+        invalidateOptionsMenu()
+        return showNavigation
     }
 
 }

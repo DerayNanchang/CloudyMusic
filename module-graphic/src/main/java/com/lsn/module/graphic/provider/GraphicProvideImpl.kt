@@ -4,9 +4,9 @@ import android.content.Context
 import androidx.fragment.app.Fragment
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.lsn.module.graphic.ui.fragment.GraphicHomeFragment
-import com.lsn.module.provider.main.provide.GraphicProvider
+import com.lsn.module.provider.comm.constant.Constants
+import com.lsn.module.provider.graphic.provide.GraphicProvider
 import com.lsn.module.provider.scheduler.RouterHelp
-import com.pmisy.roomkb.Constants
 
 
 /**
