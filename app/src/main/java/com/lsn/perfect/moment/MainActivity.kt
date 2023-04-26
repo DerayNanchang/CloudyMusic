@@ -134,7 +134,6 @@ class MainActivity : BaseCoreActivity<MainViewModel, ActivityMainBinding>(R.layo
         }
     }
 
-
     /**
      * 添加BottomNavigationView中每个item右上角的红点
      */
