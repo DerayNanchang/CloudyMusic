@@ -1,5 +1,10 @@
 package com.lsn.lib.base.exts
 
+import android.app.Activity
+import android.os.Build
+import android.view.View
+import android.view.Window
+import android.view.WindowManager
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
@@ -58,6 +63,23 @@ fun IBUI.addLoadingObserve(
             }
         }
     }
+}
+
+
+fun Activity?.hideStatusBar() {
+    if (this == null) return
+    val window: Window = this.window ?: return
+    window.setFlags(
+        WindowManager.LayoutParams.FLAG_FULLSCREEN,
+        WindowManager.LayoutParams.FLAG_FULLSCREEN
+    )
+    window.getDecorView().systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+    val lp: WindowManager.LayoutParams = window.getAttributes()
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+        lp.layoutInDisplayCutoutMode =
+            WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
+    }
+    window.attributes = lp
 }
 
 

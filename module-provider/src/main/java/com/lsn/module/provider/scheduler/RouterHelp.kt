@@ -32,16 +32,16 @@ class RouterHelp private constructor() {
     }
 
     fun actionMusicIndex() {
-        ARouter.getInstance().build(Constants.RouterPath.MUSIC.MUSIC_INDEX).navigation()
+        ARouter.getInstance().build(Constants.RouterPath.MUSIC.INDEX).navigation()
     }
     fun actionVideoIndex() {
-        ARouter.getInstance().build(Constants.RouterPath.VIDEO.VIDEO_INDEX).navigation()
+        ARouter.getInstance().build(Constants.RouterPath.VIDEO.INDEX).navigation()
     }
     fun actionGraphicIndex() {
-        ARouter.getInstance().build(Constants.RouterPath.GRAPHIC.VIDEO_INDEX).navigation()
+        ARouter.getInstance().build(Constants.RouterPath.GRAPHIC.INDEX).navigation()
     }
-    fun actionSettingsIndex() {
-        ARouter.getInstance().build(Constants.RouterPath.SETTINGS.VIDEO_INDEX).navigation()
+    fun actionMineIndex() {
+        ARouter.getInstance().build(Constants.RouterPath.MINE.INDEX).navigation()
     }
 
     private object Instance {

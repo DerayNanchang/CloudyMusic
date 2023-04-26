@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/em_main_nav_music"
+        android:icon="@drawable/selector_tab_index"
+        android:title="音乐" />
+
+    <item
+        android:id="@+id/em_main_nav_video"
+        android:icon="@drawable/selector_main_chat"
+        android:title="视频" />
+
+    <item
+        android:id="@+id/em_main_nav_graphic"
+        android:icon="@drawable/selector_tab_center"
+        android:title="图文" />
+
+    <item
+        android:id="@+id/em_main_nav_me"
+        android:icon="@drawable/selector_tab_me"
+        android:title="我的" />
+
+</menu>

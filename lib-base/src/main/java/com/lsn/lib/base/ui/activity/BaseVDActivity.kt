@@ -46,7 +46,7 @@ abstract class BaseVDActivity<VM : BaseViewModel, DB : ViewDataBinding>(@LayoutR
             return
         }
 
-        viewContent()
+        viewContent(savedInstanceState)
 
         /*if (BuildConfig.DEBUG){
                 try {
@@ -63,7 +63,7 @@ abstract class BaseVDActivity<VM : BaseViewModel, DB : ViewDataBinding>(@LayoutR
             }*/
     }
 
-    private fun viewContent() {
+    private fun viewContent(savedInstanceState: Bundle?) {
 //        binding = DataBindingUtil.bind(buildContentView())!!
 
         val linearLayout = LinearLayout(this)
@@ -77,7 +77,7 @@ abstract class BaseVDActivity<VM : BaseViewModel, DB : ViewDataBinding>(@LayoutR
         viewModel = createViewModel(this)
         // 放在[initView]之前，不然错误的在[initView]方法里请求了，响应太快[createObserver]都没还没执行
         addLoadingObserve(viewModel)
-        initView()
+        initView(savedInstanceState)
         initData()
         initEvent()
         bindingViewModel()
@@ -221,7 +221,7 @@ abstract class BaseVDActivity<VM : BaseViewModel, DB : ViewDataBinding>(@LayoutR
     }
 
 
-    abstract fun initView()
+    abstract fun initView(savedInstanceState: Bundle?)
     abstract fun initData()
     abstract fun initEvent()
 }

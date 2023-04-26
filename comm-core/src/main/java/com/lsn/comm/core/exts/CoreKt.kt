@@ -2,8 +2,12 @@ package com.lsn.comm.core.exts
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.os.Build
 import android.os.Handler
 import android.os.Looper
+import android.view.View
+import android.view.Window
+import android.view.WindowManager
 import com.lsn.comm.core.callbacks.OnKeyBackClickListener
 import com.lsn.lib.base.entity.ProgressEntity
 import com.lsn.lib.ui.utils.WidgetUtils
@@ -74,3 +78,4 @@ fun delay(time: Long, action: () -> Unit) {
     if (noPrepare)
         Looper.loop()
 }
+

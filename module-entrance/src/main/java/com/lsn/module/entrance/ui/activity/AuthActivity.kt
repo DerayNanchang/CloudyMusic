@@ -1,6 +1,7 @@
 package com.lsn.module.entrance.ui.activity
 
 import android.content.DialogInterface
+import android.os.Bundle
 import android.os.Process
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.lsn.comm.core.exts.comm.startActivity
@@ -12,7 +13,6 @@ import com.lsn.module.entrance.R
 import com.lsn.module.entrance.databinding.ActivityAuthBinding
 import com.lsn.module.provider.comm.manager.SPManager
 import com.lsn.module.entrance.ui.viewmodel.AuthViewModel
-import com.lsn.module.provider.scheduler.RouterHelp
 import com.pmisy.roomkb.Constants
 import com.umeng.commonsdk.UMConfigure
 
@@ -22,7 +22,7 @@ import com.umeng.commonsdk.UMConfigure
  * @CreateTime : 2023/4/4 上午 09:08
  * @Description :
  */
-@Route(path = Constants.RouterPath.ENTRANCE.ENTRANCE_AUTH)
+@Route(path = Constants.RouterPath.ENTRANCE.AUTH)
 class AuthActivity : BaseCoreActivity<AuthViewModel, ActivityAuthBinding>(R.layout.activity_auth) {
 
 
@@ -30,8 +30,8 @@ class AuthActivity : BaseCoreActivity<AuthViewModel, ActivityAuthBinding>(R.layo
         return AuthViewModel::class.java
     }
 
-    override fun initView() {
-        super.initView()
+    override fun initView(savedInstanceState: Bundle?) {
+        super.initView(savedInstanceState)
         val auth = SPManager.instance.getAuth()
 
         if (auth) {

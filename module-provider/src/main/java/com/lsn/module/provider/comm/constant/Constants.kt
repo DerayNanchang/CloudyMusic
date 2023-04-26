@@ -67,8 +67,8 @@ interface Constants {
 
             companion object {
                 private const val ENTRANCE = "/entrance"
-                const val ENTRANCE_AUTH = "$ENTRANCE/auth"
-                const val ENTRANCE_WELCOME = "$ENTRANCE/welcome"
+                const val AUTH = "$ENTRANCE/auth"
+                const val WELCOME = "$ENTRANCE/welcome"
             }
         }
 
@@ -76,14 +76,16 @@ interface Constants {
         interface MUSIC {
             companion object {
                 private const val MUSIC = "/music"
-                const val MUSIC_INDEX = "$MUSIC/index"
+                const val INDEX = "$MUSIC/index"
+                const val PROVIDE = "$MUSIC/provider"
             }
         }
 
         interface VIDEO {
             companion object {
                 private const val VIDEO = "/video"
-                const val VIDEO_INDEX = "$VIDEO/index"
+                const val INDEX = "$VIDEO/index"
+                const val PROVIDE = "$VIDEO/provider"
             }
         }
 
@@ -91,14 +93,16 @@ interface Constants {
         interface GRAPHIC {
             companion object {
                 private const val GRAPHIC = "/graphic"
-                const val VIDEO_INDEX = "$GRAPHIC/index"
+                const val INDEX = "$GRAPHIC/index"
+                const val PROVIDE = "$GRAPHIC/provider"
             }
         }
 
-        interface SETTINGS {
+        interface MINE {
             companion object {
-                private const val SETTINGS = "/settings"
-                const val VIDEO_INDEX = "$SETTINGS/index"
+                private const val MINE = "/settings"
+                const val INDEX = "$MINE/index"
+                const val PROVIDE = "$MINE/provider"
             }
         }
     }

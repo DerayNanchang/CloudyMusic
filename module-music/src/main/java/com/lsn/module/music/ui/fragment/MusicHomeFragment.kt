@@ -13,7 +13,7 @@ import com.pmisy.roomkb.Constants
  * @CreateTime : 2023/4/25 下午 05:21
  * @Description :
  */
-@Route(path = Constants.RouterPath.MUSIC.MUSIC_INDEX)
+@Route(path = Constants.RouterPath.MUSIC.INDEX)
 class MusicHomeFragment :
     BaseCoreFragment<MusicViewModel, FragmentMusicHomeBinding>(R.layout.fragment_music_home) {
 

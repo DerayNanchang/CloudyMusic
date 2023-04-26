@@ -1,19 +1,21 @@
 package com.lsn.comm.core.ui.activity
 
+import android.app.Activity
+import android.os.Build
+import android.os.Bundle
 import android.util.SparseArray
 import android.view.View
+import android.view.Window
+import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.annotation.LayoutRes
-import androidx.core.util.forEach
 import androidx.databinding.ViewDataBinding
-import androidx.databinding.library.baseAdapters.BR
 import com.alibaba.android.arouter.launcher.ARouter
 import com.lsn.comm.core.callbacks.ICore
 import com.lsn.comm.core.manager.ActivityManager
-import com.lsn.comm.core.viewmodel.BaseNetViewModel
 import com.lsn.lib.base.ui.activity.BaseVDActivity
 import com.lsn.lib.base.viewmodel.BaseViewModel
 import com.lsn.lib.base.R
@@ -29,7 +31,7 @@ abstract class BaseCoreActivity<VM : BaseViewModel, DB : ViewDataBinding>(@Layou
     ICore {
 
 
-    override fun initView() {
+    override fun initView(savedInstanceState: Bundle?) {
         ActivityManager.get().addActivity(this)
         if (isRouter()) {
             ARouter.getInstance().inject(this)
@@ -51,6 +53,9 @@ abstract class BaseCoreActivity<VM : BaseViewModel, DB : ViewDataBinding>(@Layou
     fun isRouter(): Boolean {
         return true
     }
+
+
+
 
     override fun onDestroy() {
         super.onDestroy()

@@ -1,9 +1,12 @@
 package com.lsn.module.graphic.provider
 
 import android.content.Context
-import com.lsn.module.provider.main.provide.MusicProvider
-import com.lsn.module.provider.main.provide.SettingsProvider
+import androidx.fragment.app.Fragment
+import com.alibaba.android.arouter.facade.annotation.Route
+import com.lsn.module.graphic.ui.fragment.GraphicHomeFragment
+import com.lsn.module.provider.main.provide.GraphicProvider
 import com.lsn.module.provider.scheduler.RouterHelp
+import com.pmisy.roomkb.Constants
 
 
 /**
@@ -11,10 +14,18 @@ import com.lsn.module.provider.scheduler.RouterHelp
  * @CreateTime : 2023/4/25 下午 05:49
  * @Description :
  */
-class GraphicProvideImpl : GraphicProvideImpl {
-    override fun actionMusicIndex() {
-        RouterHelp.get.actionMusicIndex()
+@Route(path = Constants.RouterPath.GRAPHIC.PROVIDE)
+class GraphicProvideImpl : GraphicProvider {
+
+
+    override fun actionGraphicIndex() {
+        RouterHelp.get.actionGraphicIndex()
     }
+
+    override fun getGraphicHomeFragment(): Fragment {
+        return GraphicHomeFragment()
+    }
+
 
     override fun init(context: Context?) {
 

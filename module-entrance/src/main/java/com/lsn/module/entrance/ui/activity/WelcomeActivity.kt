@@ -2,6 +2,7 @@ package com.lsn.module.entrance.ui.activity
 
 import android.app.Activity
 import android.os.Build
+import android.os.Bundle
 import android.os.Handler
 import android.view.View
 import android.view.Window
@@ -10,12 +11,15 @@ import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.lsn.comm.core.ui.activity.BaseCoreActivity
 import com.lsn.comm.core.utils.WeakCacheUtil
+import com.lsn.lib.base.annotation.StatusBar
+import com.lsn.lib.base.exts.hideStatusBar
 import com.lsn.lib.ui.widget.TypeTextView
 import com.lsn.module.entrance.R
 import com.lsn.module.provider.comm.api.ApiConstants
 import com.lsn.module.entrance.databinding.ActivityWelcomeBinding
 import com.lsn.module.entrance.entity.HPImageArchiveEntity
 import com.lsn.module.entrance.ui.viewmodel.WelcomeViewModel
+import com.lsn.module.provider.main.provide.MainProvider
 import com.lsn.module.provider.main.provide.VideoProvider
 import com.pmisy.roomkb.Constants
 import dagger.hilt.android.AndroidEntryPoint
@@ -26,7 +30,8 @@ import dagger.hilt.android.AndroidEntryPoint
  * @CreateTime : 2023/4/4 上午 09:08
  * @Description :
  */
-@Route(path = Constants.RouterPath.ENTRANCE.ENTRANCE_WELCOME)
+@StatusBar(isShow = false)
+@Route(path = Constants.RouterPath.ENTRANCE.WELCOME)
 @AndroidEntryPoint
 class WelcomeActivity :
     BaseCoreActivity<WelcomeViewModel, ActivityWelcomeBinding>(R.layout.activity_welcome),
@@ -35,17 +40,13 @@ class WelcomeActivity :
 
     @JvmField
     @Autowired(name = Constants.RouterPath.MAIN.PROVIDE)
-    var mainProvider: VideoProvider? = null
+    var mainProvider: MainProvider? = null
 
 
     override fun getViewModelClass(): Class<WelcomeViewModel> {
         return WelcomeViewModel::class.java
     }
 
-    override fun initView() {
-        super.initView()
-        hideStatusBar(this)
-    }
 
     override fun initData() {
         super.initData()
@@ -99,27 +100,9 @@ class WelcomeActivity :
                     }
                 }
             }
-
         }
-
     }
 
-    fun hideStatusBar(activity: Activity?) {
-        if (activity == null) return
-        val window: Window = activity.getWindow() ?: return
-        window.setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN
-        )
-        window.getDecorView()
-            .setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE)
-        val lp: WindowManager.LayoutParams = window.getAttributes()
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            lp.layoutInDisplayCutoutMode =
-                WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
-        }
-        window.setAttributes(lp)
-    }
 
     private fun startToMain(time: Long) {
         Handler().postDelayed({

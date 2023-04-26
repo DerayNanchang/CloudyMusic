@@ -59,7 +59,7 @@ dependencies {
     implementation(project(":module-music"))
     implementation(project(":module-video"))
     implementation(project(":module-graphic"))
-    implementation(project(":module-settings"))
+    implementation(project(":module-mine"))
 
     implementation(libs.alibaba.arouter.api)
     implementation(libs.androidx.navigation.fragment.ktx)

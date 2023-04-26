@@ -5,24 +5,20 @@ import android.content.Context
 import android.content.IntentFilter
 import android.os.Build
 import android.text.TextUtils
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.FrameLayout
+import android.view.*
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.annotation.LayoutRes
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.forEach
 import com.lsn.lib.base.StatusColorCategory
 import com.lsn.lib.base.annotation.NetListenEnabled
-import com.lsn.lib.base.annotation.StatusBarColor
 import com.lsn.lib.base.annotation.Toolbar
 import com.lsn.lib.base.receiver.NetConnectReceiver
 import com.lsn.lib.utils.util.PStatusBarUtil
 import com.lsn.lib.utils.util.SizeUtils
 import com.lsn.lib.base.R
+import com.lsn.lib.base.annotation.StatusBar
 
 /**
  * @Author : lsn
@@ -102,7 +98,7 @@ fun ViewGroup?.addToolbar() {
 fun Activity?.alterStatusColor() {
     this?.apply {
         val clazz: Class<out Context> = javaClass
-        val statusBarColor = clazz.getAnnotation(StatusBarColor::class.java)
+        val statusBarColor = clazz.getAnnotation(StatusBar::class.java)
         if (statusBarColor == null) {
             PStatusBarUtil.setResStatusBar(
                 this as Activity?,
@@ -112,56 +108,60 @@ fun Activity?.alterStatusColor() {
             )
             return
         }
-        statusBarColor?.apply {
-            when (value) {
-                StatusColorCategory.DEFAULT_COLOR, StatusColorCategory.WHITE_COLOR -> PStatusBarUtil.setResStatusBar(
-                    this@alterStatusColor,
-                    com.lsn.lib.ui.R.color.white,
-                    false,
-                    true
-                )
-                StatusColorCategory.TRANSPARENT_COLOR -> PStatusBarUtil.setResStatusBar(
-                    this@alterStatusColor,
-                    com.lsn.lib.ui.R.color.transparent,
-                    false,
-                    true
-                )
-                StatusColorCategory.BLACK_COLOR -> PStatusBarUtil.setResStatusBar(
-                    this@alterStatusColor,
-                    com.lsn.lib.ui.R.color.black,
-                    false,
-                    false
-                )
-                StatusColorCategory.THEME_COLOR -> PStatusBarUtil.setResStatusBar(
-                    this@alterStatusColor,
-                    com.lsn.lib.ui.R.color.colorAccent,
-                    false,
-                    false
-                )
-                StatusColorCategory.FD_COLOR -> PStatusBarUtil.setResStatusBar(
-                    this@alterStatusColor,
-                    com.lsn.lib.ui.R.color.fdfdfd,
-                    false,
-                    false
-                )
-                StatusColorCategory.F6F5F3_COLOR -> PStatusBarUtil.setResStatusBar(
-                    this@alterStatusColor,
-                    com.lsn.lib.ui.R.color.F6F5F3,
-                    false,
-                    false
-                )
-                StatusColorCategory.E9E9E9_COLOR -> PStatusBarUtil.setResStatusBar(
-                    this@alterStatusColor,
-                    com.lsn.lib.ui.R.color.e9e9e9,
-                    false,
-                    false
-                )
-                /*else -> PStatusBarUtil.setResStatusBar(
-                    context as Activity?,
-                    statusBarTextColor.value,
-                    false,
-                    false
-                )*/
+        if (!statusBarColor.isShow){
+            hideStatusBar()
+        }else{
+            statusBarColor?.apply {
+                when (color) {
+                    StatusColorCategory.DEFAULT_COLOR, StatusColorCategory.WHITE_COLOR -> PStatusBarUtil.setResStatusBar(
+                        this@alterStatusColor,
+                        com.lsn.lib.ui.R.color.white,
+                        false,
+                        true
+                    )
+                    StatusColorCategory.TRANSPARENT_COLOR -> PStatusBarUtil.setResStatusBar(
+                        this@alterStatusColor,
+                        com.lsn.lib.ui.R.color.transparent,
+                        false,
+                        true
+                    )
+                    StatusColorCategory.BLACK_COLOR -> PStatusBarUtil.setResStatusBar(
+                        this@alterStatusColor,
+                        com.lsn.lib.ui.R.color.black,
+                        false,
+                        false
+                    )
+                    StatusColorCategory.THEME_COLOR -> PStatusBarUtil.setResStatusBar(
+                        this@alterStatusColor,
+                        com.lsn.lib.ui.R.color.colorAccent,
+                        false,
+                        false
+                    )
+                    StatusColorCategory.FD_COLOR -> PStatusBarUtil.setResStatusBar(
+                        this@alterStatusColor,
+                        com.lsn.lib.ui.R.color.fdfdfd,
+                        false,
+                        false
+                    )
+                    StatusColorCategory.F6F5F3_COLOR -> PStatusBarUtil.setResStatusBar(
+                        this@alterStatusColor,
+                        com.lsn.lib.ui.R.color.F6F5F3,
+                        false,
+                        false
+                    )
+                    StatusColorCategory.E9E9E9_COLOR -> PStatusBarUtil.setResStatusBar(
+                        this@alterStatusColor,
+                        com.lsn.lib.ui.R.color.e9e9e9,
+                        false,
+                        false
+                    )
+                    /*else -> PStatusBarUtil.setResStatusBar(
+                        context as Activity?,
+                        statusBarTextColor.value,
+                        false,
+                        false
+                    )*/
+                }
             }
         }
     }

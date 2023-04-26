@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" tools:ignore="ResourceName"     android:enterFadeDuration="800"
+    android:exitFadeDuration="1200">
+    <item android:drawable="@mipmap/ic_vector_cockpit_selected" android:state_selected="true" />
+    <item android:drawable="@mipmap/ic_vector_cockpit" android:state_selected="false" />
+</selector>

@@ -13,7 +13,7 @@ import com.pmisy.roomkb.Constants
  * @CreateTime : 2023/4/25 下午 05:21
  * @Description :
  */
-@Route(path = Constants.RouterPath.GRAPHIC.VIDEO_INDEX)
+@Route(path = Constants.RouterPath.GRAPHIC.INDEX)
 class GraphicHomeFragment :
     BaseCoreFragment<GraphicViewModel, FragmentGraphicHomeBinding>(R.layout.fragment_graphic_home) {
 

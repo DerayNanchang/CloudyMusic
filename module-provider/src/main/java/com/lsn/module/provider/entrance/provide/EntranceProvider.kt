@@ -1,5 +1,6 @@
 package com.lsn.module.provider.main.provide
 
+import androidx.fragment.app.Fragment
 import com.lsn.module.provider.BaseProvider
 
 /**
@@ -11,4 +12,5 @@ interface EntranceProvider : BaseProvider {
 
     fun actionEntranceIndex()
 
+    fun getEntranceHomeFragment() : Fragment
 }

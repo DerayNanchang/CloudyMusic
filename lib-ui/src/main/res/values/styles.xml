@@ -182,7 +182,7 @@
         <item name="xui_bottom_sheet_button_text_size">15sp</item>
 
     </style>
-    
+
 
     <style name="main_bottom_view_normal">
         <item name="android:textColor">@color/c666666</item>

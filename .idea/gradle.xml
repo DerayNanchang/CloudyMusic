@@ -21,9 +21,9 @@
             <option value="$PROJECT_DIR$/lib-utils" />
             <option value="$PROJECT_DIR$/module-entrance" />
             <option value="$PROJECT_DIR$/module-graphic" />
+            <option value="$PROJECT_DIR$/module-mine" />
             <option value="$PROJECT_DIR$/module-music" />
             <option value="$PROJECT_DIR$/module-provider" />
-            <option value="$PROJECT_DIR$/module-settings" />
             <option value="$PROJECT_DIR$/module-video" />
           </set>
         </option>
