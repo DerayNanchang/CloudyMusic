@@ -1,18 +1,12 @@
 package com.lsn.module.entrance.ui.activity
 
-import android.app.Activity
-import android.os.Build
-import android.os.Bundle
 import android.os.Handler
-import android.view.View
-import android.view.Window
-import android.view.WindowManager
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.lsn.comm.core.net.ResponseEntity
 import com.lsn.comm.core.ui.activity.BaseCoreActivity
 import com.lsn.comm.core.utils.WeakCacheUtil
 import com.lsn.lib.base.annotation.StatusBar
-import com.lsn.lib.base.exts.hideStatusBar
 import com.lsn.lib.ui.widget.TypeTextView
 import com.lsn.module.entrance.R
 import com.lsn.module.provider.comm.api.ApiConstants
@@ -64,43 +58,41 @@ class WelcomeActivity :
     }
 
 
-    override fun onResponseReceiver() {
-        super.onResponseReceiver()
+    override fun onSuccess(it: ResponseEntity) {
+        super.onSuccess(it)
 
-        viewModel.success.observe(this) {
-
-            when (it.api) {
-                ApiConstants.Entrance.HITOKOTO_ENCODE -> {
-                    /*val hitokotoEncodeEntity = it.data as HitokotoEncodeEntity
-                    val tips = hitokotoEncodeEntity.hitokoto
-                    binding.tvType.run {
-                        if (WeakCacheUtil.isOpenLauncherText()) {
-                            setOnTypeViewListener(this@WelcomeActivity)
-                            start(tips, 120)
-                        } else {
-                            text = tips
-                            startToMain(2000)
-                        }
-                    }*/
-                }
+        when (it.api) {
+            ApiConstants.Entrance.HITOKOTO_ENCODE -> {
+                /*val hitokotoEncodeEntity = it.data as HitokotoEncodeEntity
+                val tips = hitokotoEncodeEntity.hitokoto
+                binding.tvType.run {
+                    if (WeakCacheUtil.isOpenLauncherText()) {
+                        setOnTypeViewListener(this@WelcomeActivity)
+                        start(tips, 120)
+                    } else {
+                        text = tips
+                        startToMain(2000)
+                    }
+                }*/
+            }
 
 
-                ApiConstants.Entrance.HP_IMAGE_ARCHIVE -> {
-                    val hitokotoEncodeEntity = it.data as HPImageArchiveEntity
-                    val tips = hitokotoEncodeEntity.images[0].desc
-                    binding.tvType.run {
-                        if (WeakCacheUtil.isOpenLauncherText()) {
-                            setOnTypeViewListener(this@WelcomeActivity)
-                            start(tips, 120)
-                        } else {
-                            text = tips
-                            startToMain(2000)
-                        }
+            ApiConstants.Entrance.HP_IMAGE_ARCHIVE -> {
+                val hitokotoEncodeEntity = it.data as HPImageArchiveEntity
+                val tips = hitokotoEncodeEntity.images[0].desc
+                binding.tvType.run {
+                    if (WeakCacheUtil.isOpenLauncherText()) {
+                        setOnTypeViewListener(this@WelcomeActivity)
+                        start(tips, 120)
+                    } else {
+                        text = tips
+                        startToMain(2000)
                     }
                 }
             }
         }
     }
+
 
 
     private fun startToMain(time: Long) {

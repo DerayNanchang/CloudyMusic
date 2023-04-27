@@ -44,7 +44,7 @@ dependencies {
     api(libs.github.refresh.kernel)
     api(libs.github.refresh.header)
     api(libs.github.refresh.footer)
-    implementation(libs.github.inflationx.calligraphy3)
-    implementation(libs.github.inflationx.viewpump)
+    api(libs.github.inflationx.calligraphy3)
+    api(libs.github.inflationx.viewpump)
     api(project(":lib-res-pillar"))
 }

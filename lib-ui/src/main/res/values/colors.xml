@@ -10,7 +10,7 @@
     <color name="textColorPrimary">@color/black</color>                         <!--ToolBar上的Title颜色-->
 
 
-    <color name="themeColor">#0070C0</color>
+    <color name="themeColor">@color/DDCAE2</color>
     <color name="theme_color">@color/themeColor</color>
     <color name="bgcCommColor">@color/c999999</color>
     <color name="lineCommColor">@color/d4d4d4</color>
@@ -40,6 +40,20 @@
     <color name="D7DEE5">#D7DEE5</color>
     <color name="X479dff">#479dff</color>
     <color name="E4D5995">#4D5995</color>
+
+
+
+
+    <color name="BDD4DE">#BDD4DE</color>
+    <color name="X8AAD8D">#8AAD8D</color>
+    <color name="X71A157">#71A157</color>
+    <color name="FBCE56">#FBCE56</color>
+    <color name="DDCAE2">#DDCAE2</color>
+    <color name="C3C9C9">#C3C9C9</color>
+    <color name="X636266">#636266</color>
+
+
+
 
     <color name="cred">#FA3D3D</color>    <!--红-->
     <color name="red">#ED3333</color>    <!--红-->

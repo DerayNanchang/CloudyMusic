@@ -1,17 +1,20 @@
 package com.lsn.comm.core.net
 
 import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import com.lsn.comm.core.app.BaseCoreApplication.Companion.app
+import com.lsn.lib.net.core.ResponseModel
 import com.lsn.lib.net.core.cache.CacheManager
 import com.lsn.lib.net.core.cache.CacheMode
 import com.lsn.lib.net.core.cache.IFileCache
+import com.lsn.lib.net.core.converter.gson.GsonConverterFactory
 import com.lsn.lib.net.core.interceptors.CacheInterceptor
+import com.lsn.lib.net.core.interceptors.NeteaseCloudResponseInterceptor
 import com.lsn.lib.net.core.interceptors.ResponseParseInterceptor
 import com.lsn.lib.utils.util.DateUtil
 import com.lsn.lib.utils.util.SizeUtils
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
@@ -32,7 +35,7 @@ class HttpClient @Inject constructor() {
         File(config.cacheFilePath, config.diskCacheName),
         SizeUtils.mb2bit(config.diskCacheSize)
     )
-    private var gson = Gson()
+    private var gson = GsonBuilder().disableHtmlEscaping().create();
     private var cacheTime = 0L // 默认不缓存
     private var cacheMode = CacheMode.ONLY_NETWORK // 默认不缓存
     private var singleRetrofit = Retrofit.Builder()
@@ -79,10 +82,11 @@ class HttpClient @Inject constructor() {
 
     private fun provideRetrofit(): Retrofit {
         var baseUrl = getLinkUrl()
+
         return getBuildRetrofit()
             .client(getOkHttpClient())
             .baseUrl(baseUrl)
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
     }
 
@@ -95,10 +99,14 @@ class HttpClient @Inject constructor() {
         }
     }
 
-    fun getOkHttpClient(isStandard: Boolean = true): OkHttpClient {
+    fun getOkHttpClient(responseModel: ResponseModel = ResponseModel.STANDARD): OkHttpClient {
 
         return OkHttpClient.Builder().apply {
-            addInterceptor(ResponseParseInterceptor(gson,isStandard))
+            if (responseModel == ResponseModel.STANDARD) {
+                addInterceptor(ResponseParseInterceptor(gson))
+            } else if (responseModel == ResponseModel.NETEASECLOUD) {
+                addInterceptor(NeteaseCloudResponseInterceptor(gson))
+            }
             addInterceptor(CacheInterceptor(getInternalCache(), gson, cacheMode, cacheTime))
 
             /* if (isSSL) {

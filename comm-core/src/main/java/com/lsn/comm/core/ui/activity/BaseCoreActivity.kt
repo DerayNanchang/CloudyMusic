@@ -1,24 +1,14 @@
 package com.lsn.comm.core.ui.activity
 
-import android.app.Activity
-import android.os.Build
 import android.os.Bundle
-import android.util.SparseArray
-import android.view.View
-import android.view.Window
-import android.view.WindowManager
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.RelativeLayout
-import android.widget.TextView
 import androidx.annotation.LayoutRes
 import androidx.databinding.ViewDataBinding
 import com.alibaba.android.arouter.launcher.ARouter
 import com.lsn.comm.core.callbacks.ICore
 import com.lsn.comm.core.manager.ActivityManager
+import com.lsn.comm.core.net.ResponseEntity
+import com.lsn.comm.core.viewmodel.BaseNetViewModel
 import com.lsn.lib.base.ui.activity.BaseVDActivity
-import com.lsn.lib.base.viewmodel.BaseViewModel
-import com.lsn.lib.base.R
 
 
 /**
@@ -26,7 +16,7 @@ import com.lsn.lib.base.R
  * @CreateTime : 2023/3/20 下午 03:41
  * @Description :
  */
-abstract class BaseCoreActivity<VM : BaseViewModel, DB : ViewDataBinding>(@LayoutRes private var layoutRes: Int) :
+abstract class BaseCoreActivity<VM : BaseNetViewModel, DB : ViewDataBinding>(@LayoutRes private var layoutRes: Int) :
     BaseVDActivity<VM, DB>(layoutRes),
     ICore {
 
@@ -40,21 +30,25 @@ abstract class BaseCoreActivity<VM : BaseViewModel, DB : ViewDataBinding>(@Layou
 
 
     override fun initData() {
-        onResponseReceiver()
+        onSuccessObs()
     }
 
     override fun initEvent() {
     }
 
-    protected open fun onResponseReceiver() {
+    private fun onSuccessObs() {
+        viewModel.success.observe(this) {
+            onSuccess(it)
+        }
+    }
+
+    protected open fun onSuccess(it: ResponseEntity) {
 
     }
 
     fun isRouter(): Boolean {
         return true
     }
-
-
 
 
     override fun onDestroy() {

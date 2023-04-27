@@ -50,7 +50,7 @@ dependencies {
     implementation(project(":comm-core"))
     implementation(project(":module-provider"))
 
-//    implementation(libs.coil)
+    implementation(libs.coil)
 
 
     implementation(libs.hilt.android)

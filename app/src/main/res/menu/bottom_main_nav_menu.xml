@@ -3,22 +3,22 @@
 
     <item
         android:id="@+id/em_main_nav_music"
-        android:icon="@drawable/selector_tab_index"
+        android:icon="@drawable/selector_tab_music"
         android:title="音乐" />
 
     <item
         android:id="@+id/em_main_nav_video"
-        android:icon="@drawable/selector_main_chat"
+        android:icon="@drawable/selector_main_video"
         android:title="视频" />
 
     <item
         android:id="@+id/em_main_nav_graphic"
-        android:icon="@drawable/selector_tab_center"
+        android:icon="@drawable/selector_tab_grapsic"
         android:title="图文" />
 
     <item
         android:id="@+id/em_main_nav_me"
-        android:icon="@drawable/selector_tab_me"
+        android:icon="@drawable/selector_tab_mine"
         android:title="我的" />
 
 </menu>

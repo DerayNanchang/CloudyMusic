@@ -5,6 +5,7 @@ import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.widget.TextView
+import androidx.core.app.ActivityCompat.invalidateOptionsMenu
 import androidx.fragment.app.Fragment
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
@@ -20,9 +21,11 @@ import com.lsn.module.provider.music.provide.MusicProvider
 import com.lsn.perfect.moment.databinding.ActivityMainBinding
 import com.lsn.module.provider.comm.constant.Constants
 import com.lsn.module.provider.video.provide.VideoProvider
+import dagger.hilt.android.AndroidEntryPoint
 
 @Route(path = Constants.RouterPath.MAIN.INDEX)
 @Toolbar(title = "Welcome", showBack = false)
+@AndroidEntryPoint
 class MainActivity : BaseCoreActivity<MainViewModel, ActivityMainBinding>(R.layout.activity_main),
     BottomNavigationView.OnNavigationItemSelectedListener {
 

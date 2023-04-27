@@ -2,6 +2,7 @@ package com.lsn.module.entrance.net.client
 
 import com.lsn.comm.core.anotation.ProvideReadCacheFailedRequestNetwork30
 import com.lsn.comm.core.net.HttpClient
+import com.lsn.lib.net.core.ResponseModel
 import com.lsn.lib.net.core.cache.CacheMode
 import com.lsn.module.provider.comm.api.ApiConstants
 import com.lsn.module.entrance.entity.HPImageArchiveEntity
@@ -28,7 +29,7 @@ class EntranceClient @Inject constructor(
         retrofit.setCacheModel(CacheMode.REQUEST_NETWORK_FAILED_READ_CACHE)
         retrofit.setCacheTime(HttpClient.DAYS_30)
         val build = retrofit.getBuildRetrofit()
-            .client(retrofit.getOkHttpClient(isStandard = false))
+            .client(retrofit.getOkHttpClient(ResponseModel.OTHER))
             .baseUrl(linkUrl)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
@@ -42,7 +43,7 @@ class EntranceClient @Inject constructor(
         retrofit.setCacheModel(CacheMode.REQUEST_NETWORK_FAILED_READ_CACHE)
         retrofit.setCacheTime(HttpClient.DAYS_30)
         val build = retrofit.getBuildRetrofit()
-            .client(retrofit.getOkHttpClient(isStandard = false))
+            .client(retrofit.getOkHttpClient(ResponseModel.OTHER))
             .baseUrl(linkUrl)
             .addConverterFactory(GsonConverterFactory.create())
             .build()

@@ -2,12 +2,12 @@
 appName = "PMoment"  #// app  name
 versionCode = "10"
 versionName = "1.0.0"
-httpApiServerUrlDevelop = "http://120.77.248.168:6060/"  #// 测试地址 6065
-httpApiServerFileDevelop = "http://120.77.248.168:8888/"
-httpApiServerUrlAlpha = "http://120.77.248.168:6060/"
-httpApiServerFileAlpha = "http://120.77.248.168:8888/"
-httpApiServerUrlRelease = "http://120.77.248.168:6060/"
-httpApiServerFileRelease = "http://120.77.248.168:8888/"
+httpApiServerUrlDevelop = "https://autumnfish.cn/"  #// 测试地址 6065
+httpApiServerFileDevelop = "https://autumnfish.cn/"
+httpApiServerUrlAlpha = "https://autumnfish.cn/"
+httpApiServerFileAlpha = "https://autumnfish.cn/"
+httpApiServerUrlRelease = "https://autumnfish.cn/"
+httpApiServerFileRelease = "https://autumnfish.cn/"
 #@ 基础属性
 minSdk = "21"
 compileSdk = "33"

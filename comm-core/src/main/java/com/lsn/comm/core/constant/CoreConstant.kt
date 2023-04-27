@@ -87,7 +87,7 @@ object CoreConstant {
     private fun initNet(context: Application): NetConfigEntity {
 
         val absolutePath = context.cacheDir.absolutePath
-        setOkCode(0)
+        setOkCode(200)
         return NetConfigEntity(
             bridgeName = "",
             apiServiceUrl = BuildConfig.apiServiceUrl,
@@ -95,7 +95,7 @@ object CoreConstant {
             versionName = DeviceUtils.getSDKVersionName(),
             versionCode = DeviceUtils.getSDKVersionCode(),
             cacheFilePath = absolutePath,
-            diskCacheName = "bmisyCache",
+            diskCacheName = "PMoment",
             diskCacheSize = 10f,           // 单位MB
             defCacheDay = 7f,              // 单位天
             connectTime = 5000,            // 单位毫秒

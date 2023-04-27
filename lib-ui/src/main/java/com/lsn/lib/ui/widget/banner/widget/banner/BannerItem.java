@@ -9,6 +9,25 @@ package com.lsn.lib.ui.widget.banner.widget.banner;
 public class BannerItem {
     public String imgUrl;
     public String title;
+    private String clientUrl;
+    private String titleColor;
+
+
+    public String getTitleColor() {
+        return titleColor;
+    }
+
+    public void setTitleColor(String titleColor) {
+        this.titleColor = titleColor;
+    }
+
+    public String getClientUrl() {
+        return clientUrl;
+    }
+
+    public void setClientUrl(String clientUrl) {
+        this.clientUrl = clientUrl;
+    }
 
     public String getImgUrl() {
         return imgUrl;
@@ -27,4 +46,6 @@ public class BannerItem {
         this.title = title;
         return this;
     }
+
+
 }
