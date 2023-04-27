@@ -18,6 +18,5 @@ interface IMusicService {
     suspend fun getBanner(): MusicBannerList
 
 
-    @GET()
 
 }
