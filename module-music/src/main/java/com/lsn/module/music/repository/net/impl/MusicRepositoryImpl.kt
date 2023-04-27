@@ -4,6 +4,8 @@ import com.google.gson.GsonBuilder
 import com.lsn.comm.core.net.ResponseEntity
 import com.lsn.comm.core.net.flowTranData
 import com.lsn.lib.ui.widget.banner.widget.banner.BannerItem
+import com.lsn.module.music.entity.HomeSimpleItemData
+import com.lsn.module.music.entity.MusicAlbum
 import com.lsn.module.music.net.client.MusicClient
 import com.lsn.module.music.repository.net.i.IMusicRepository
 import com.lsn.module.provider.comm.api.ApiConstants
@@ -34,4 +36,45 @@ class MusicRepositoryImpl @Inject constructor(var musicClient: MusicClient) :
         }
         return flowTranData(tag, bannerList)
     }
+
+    override suspend fun getAlbumNewest(tag: String): Flow<ResponseEntity> {
+        val albums = musicClient.getAlbumNewest().albums
+        val data = ArrayList<HomeSimpleItemData>()
+        albums?.forEach {
+            val homeSimpleItemData = HomeSimpleItemData(it.id, it.picUrl, it.name)
+            data.add(homeSimpleItemData)
+        }
+        return flowTranData(tag, data)
+    }
+
+    override suspend fun getAlbumNew(tag: String): Flow<ResponseEntity> {
+        val albums = musicClient.getAlbumNew().albums
+        val data = ArrayList<HomeSimpleItemData>()
+        albums?.forEach {
+            val homeSimpleItemData = HomeSimpleItemData(it.id, it.picUrl, it.name)
+            data.add(homeSimpleItemData)
+        }
+        return flowTranData(tag, data)
+    }
+
+    override suspend fun getMV(tag: String): Flow<ResponseEntity> {
+        val albums = musicClient.getMV().data
+        val data = ArrayList<HomeSimpleItemData>()
+        albums?.forEach {
+            val homeSimpleItemData = HomeSimpleItemData(it.id, it.cover, it.name)
+            data.add(homeSimpleItemData)
+        }
+        return flowTranData(tag, data)
+    }
+
+    override suspend fun getArtists(tag: String): Flow<ResponseEntity> {
+        val albums = musicClient.getArtists().artists
+        val data = ArrayList<HomeSimpleItemData>()
+        albums?.forEach {
+            val homeSimpleItemData = HomeSimpleItemData(it.id, it.picUrl, it.name)
+            data.add(homeSimpleItemData)
+        }
+        return flowTranData(tag, data)
+    }
+
 }

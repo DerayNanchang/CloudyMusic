@@ -48,6 +48,23 @@ interface ApiConstants {
             const val ALBUM_NEW = "album/new?area=KR&limit=10"
 
 
+            /**
+             * 调用此接口 , 可获取最新 mv
+             * 可选参数 : area: 地区,可选值为全部,内地,港台,欧美,日本,韩国,不填则为全部
+             * 可选参数 : limit: 取出数量 , 默认为 30
+             * 接口地址 : /mv/first
+             */
+            const val MV_FIRST = "mv/first?limit=10"
+
+
+            /**
+             * 调用此接口 , 可获取热门歌手数据
+             * 可选参数 : limit: 取出数量 , 默认为 50
+             * offset: 偏移数量 , 用于分页 , 如 :( 页数 -1)*50, 其中 50 为 limit 的值 , 默认 为 0
+             * 接口地址 : /top/artists
+             */
+            const val TOP_ARTISTS = "top/artists?offset=0&limit=30"
+
         }
 
     }

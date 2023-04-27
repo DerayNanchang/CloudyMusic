@@ -6,6 +6,13 @@ package com.lsn.module.music.entity
  * @CreateTime : 2023/4/27 下午 06:51
  * @Description :
  */
+
+data class MusicAlbumNew(
+    val total: Int = 0,
+    val albums: List<MusicAlbum>? = null,
+    val code: Int = 0
+)
+
 data class MusicAlbum(
     val alias: List<String>,
     val artist: MusiCartist,
@@ -27,7 +34,7 @@ data class MusicAlbum(
     val picUrl: String = "",
     val publishTime: Long,
     val size: Int = 0,
-    val songs: String = "",
+    val songs: List<String>,
     val status: Int = 0,
     val tags: String = "",
     val type: String = ""

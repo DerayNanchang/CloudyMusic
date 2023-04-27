@@ -27,4 +27,37 @@ class MusicHomeViewModel @Inject constructor(
         })
     }
 
+
+    fun getAlbumNewest() {
+        request({
+            val alBumNewest =
+                iMusicRepository.getAlbumNewest(ApiConstants.Music.ALBUM_NEWEST).first()
+            onSuccess(alBumNewest)
+        })
+    }
+
+
+    fun getAlbumNew() {
+        request({
+            val albumNew = iMusicRepository.getAlbumNew(ApiConstants.Music.ALBUM_NEW).first()
+            onSuccess(albumNew)
+        })
+    }
+
+
+    fun getMV() {
+        request({
+            val albumNew = iMusicRepository.getMV(ApiConstants.Music.MV_FIRST).first()
+            onSuccess(albumNew)
+        })
+    }
+
+    fun getArtists() {
+        request({
+            val albumNew = iMusicRepository.getAlbumNew(ApiConstants.Music.TOP_ARTISTS).first()
+            onSuccess(albumNew)
+        })
+    }
+
+
 }

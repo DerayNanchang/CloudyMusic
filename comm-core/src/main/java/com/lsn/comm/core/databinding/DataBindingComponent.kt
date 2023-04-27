@@ -80,7 +80,7 @@ object DataBindingComponent {
 
     @BindingAdapter("xUrl", "xRes", requireAll = false)
     @JvmStatic
-    fun setImageView(imageView: ImageView, url: String?, res: Any) {
+    fun setImageView(imageView: ImageView, url: String?, res: Any?) {
         if (!TextUtils.isEmpty(url)) {
             Glide.with(imageView.context)
                 .load(url)
