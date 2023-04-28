@@ -18,7 +18,7 @@ data class MusicMVs(
     val cover: String,
     val desc: String,
     val duration: Int,
-    val id: Int,
+    val id: Long,
     val mark: Int,
     val name: String,
     val playCount: Int,

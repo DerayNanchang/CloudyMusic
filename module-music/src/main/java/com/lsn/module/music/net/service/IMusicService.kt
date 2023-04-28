@@ -3,6 +3,7 @@ package com.lsn.module.music.net.service
 import com.lsn.module.music.entity.*
 import com.lsn.module.provider.comm.api.ApiConstants
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 
 /**
@@ -16,7 +17,17 @@ interface IMusicService {
     @GET(ApiConstants.Music.BANNER)
     suspend fun getBanner(): MusicBannerList
 
-    // 最近专辑
+
+    // 推荐歌单 personalized
+    @GET(ApiConstants.Music.PERSONALIZED)
+    suspend fun getPersonalized(@Query("limit") limit: Int): MusicPersonalizedRoot
+
+
+    // 关联歌单
+    @GET(ApiConstants.Music.RELATED_PLAYLIST)
+    suspend fun getRelatedPlaylist(): MusicRelatedPlaylistRoot
+
+
     @GET(ApiConstants.Music.ALBUM_NEWEST)
     suspend fun getAlbumNewest(): MusicAlbumNew
 
@@ -31,7 +42,6 @@ interface IMusicService {
     // 热门歌手
     @GET(ApiConstants.Music.TOP_ARTISTS)
     suspend fun getArtists(): MusicArtistsRoot
-
 
 
 }

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <drawable name="txt_color">#000000</drawable>
+    <drawable name="txt_color_c">#999999</drawable>
+
+
+
+    <color name="x050505">#050505</color>
+    <color name="x787878">#787878</color>
+    <color name="xF5F5F5">#F5F5F5</color>
+
+
+    <color name="playlistPageBackground">#F7ECEA</color>
+    <color name="colorPageBackground">#FFFFFF</color>
+    <color name="colorBlurViewBackground">#BFFFFFFF</color>
+</resources>

@@ -1,5 +1,10 @@
 package com.lsn.module.music.adapter
 
+import android.text.TextUtils
+import android.widget.ImageView
+import androidx.databinding.BindingAdapter
+import com.bumptech.glide.Glide
+
 
 /**
  * @Author : lsn
@@ -10,5 +15,20 @@ package com.lsn.module.music.adapter
 
 object MusicAdapter {
 
+
+    @BindingAdapter("xUrl", "xRes", requireAll = false)
+    @JvmStatic
+    fun setImageView(imageView: ImageView, url: String?, res: Any?) {
+        if (!TextUtils.isEmpty(url)) {
+            Glide.with(imageView.context)
+                .load(url)
+                .into(imageView)
+
+        } else if (res != null) {
+            Glide.with(imageView.context)
+                .load(res)
+                .into(imageView)
+        }
+    }
 
 }

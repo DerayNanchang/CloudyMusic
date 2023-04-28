@@ -83,12 +83,42 @@ fun ViewGroup?.addToolbar() {
                         tvTitle.text = toolbar.title
                     }
                 }
-                val rlCommToolbarBack = toolbarView.findViewById<RelativeLayout>(R.id.rlCommToolbarBack)
+                val rlCommToolbarBack =
+                    toolbarView.findViewById<RelativeLayout>(R.id.rlCommToolbarBack)
                 if (toolbar.showBack) {
                     rlCommToolbarBack.visibility = View.VISIBLE
                 } else {
                     rlCommToolbarBack.visibility = View.GONE
                 }
+
+
+                toolbar.color.apply {
+                    when (this) {
+                        StatusColorCategory.DEFAULT_COLOR, StatusColorCategory.WHITE_COLOR -> {
+                            toolbarView.setBackgroundColor(resources.getColor(com.lsn.lib.ui.R.color.white))
+                        }
+                        StatusColorCategory.TRANSPARENT_COLOR -> {
+                            toolbarView.setBackgroundColor(resources.getColor(com.lsn.lib.ui.R.color.transparent))
+                        }
+                        StatusColorCategory.BLACK_COLOR -> {
+                            toolbarView.setBackgroundColor(resources.getColor(com.lsn.lib.ui.R.color.black))
+                        }
+                        StatusColorCategory.THEME_COLOR -> {
+                            toolbarView.setBackgroundColor(resources.getColor(com.lsn.lib.ui.R.color.colorAccent))
+                        }
+                        StatusColorCategory.FD_COLOR -> {
+                            toolbarView.setBackgroundColor(resources.getColor(com.lsn.lib.ui.R.color.fdfdfd))
+                        }
+                        StatusColorCategory.F6F5F3_COLOR -> {
+                            toolbarView.setBackgroundColor(resources.getColor(com.lsn.lib.ui.R.color.F6F5F3))
+                        }
+                        StatusColorCategory.E9E9E9_COLOR -> {
+                            toolbarView.setBackgroundColor(resources.getColor(com.lsn.lib.ui.R.color.e9e9e9))
+                        }
+                    }
+                }
+
+
             }
         }
     }
@@ -108,9 +138,9 @@ fun Activity?.alterStatusColor() {
             )
             return
         }
-        if (!statusBarColor.isShow){
+        if (!statusBarColor.isShow) {
             hideStatusBar()
-        }else{
+        } else {
             statusBarColor?.apply {
                 when (color) {
                     StatusColorCategory.DEFAULT_COLOR, StatusColorCategory.WHITE_COLOR -> PStatusBarUtil.setResStatusBar(

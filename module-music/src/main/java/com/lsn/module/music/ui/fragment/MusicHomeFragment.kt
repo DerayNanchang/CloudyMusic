@@ -1,22 +1,22 @@
 package com.lsn.module.music.ui.fragment
 
 import android.os.Bundle
+import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import coil.load
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.bumptech.glide.Glide
 import com.google.gson.Gson
+import com.lsn.comm.core.exts.comm.startActivity
 import com.lsn.comm.core.net.ResponseEntity
 import com.lsn.comm.core.ui.fragment.BaseCoreFragment
 import com.lsn.lib.ui.widget.banner.widget.banner.BannerItem
-import com.lsn.lib.ui.widget.layout.linkage.view.LinkageLinearLayout
 import com.lsn.module.music.R
-import com.lsn.module.music.adapter.AlbumNewAdapter
+import com.lsn.module.music.adapter.MusicHomeSimpleItemAdapter
+import com.lsn.module.music.adapter.MusicPersonalizedAdapter
 import com.lsn.module.music.databinding.FragmentMusicHomeBinding
 import com.lsn.module.music.entity.HomeSimpleItemData
-import com.lsn.module.music.entity.MusicAlbum
-import com.lsn.module.music.entity.MusicBannerList
+import com.lsn.module.music.entity.MusicPersonalized
+import com.lsn.module.music.ui.activity.MusicListActivity
 import com.lsn.module.music.ui.viewmodel.MusicHomeViewModel
 import com.lsn.module.provider.comm.api.ApiConstants
 import com.lsn.module.provider.comm.constant.Constants
@@ -34,10 +34,10 @@ class MusicHomeFragment :
     BaseCoreFragment<MusicHomeViewModel, FragmentMusicHomeBinding>(R.layout.fragment_music_home) {
 
 
-    val albumNewAdapter by lazy { AlbumNewAdapter() }
-    val albumNewestAdapter by lazy { AlbumNewAdapter() }
-    val mvAdapter by lazy { AlbumNewAdapter() }
-    val artistsAdapter by lazy { AlbumNewAdapter() }
+    private val personalizedAdapter by lazy { MusicPersonalizedAdapter() }
+    private val albumNewAdapter by lazy { MusicHomeSimpleItemAdapter() }
+    private val albumNewestAdapter by lazy { MusicHomeSimpleItemAdapter() }
+    private val mvAdapter by lazy { MusicHomeSimpleItemAdapter() }
 
 
     override fun getViewModelClass(): Class<MusicHomeViewModel> {
@@ -47,11 +47,19 @@ class MusicHomeFragment :
     override fun initView(savedInstanceState: Bundle?) {
         super.initView(savedInstanceState)
 
+        initTitleAnni()
+        setSwipeRefreshLayout(binding.srlView)
         binding.rvAlbumNew.apply {
             val linearLayoutManager = LinearLayoutManager(context)
             layoutManager = linearLayoutManager
             linearLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
             adapter = albumNewAdapter
+        }
+        binding.tvPersonalizedlist.apply {
+            val gridLayoutManager = GridLayoutManager(context, 3)
+            layoutManager = gridLayoutManager
+//            linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
+            adapter = personalizedAdapter
         }
         binding.rvAlbumNewest.apply {
             val linearLayoutManager = LinearLayoutManager(context)
@@ -65,26 +73,46 @@ class MusicHomeFragment :
             linearLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
             adapter = mvAdapter
         }
-        binding.rvArtists.apply {
-            val linearLayoutManager = LinearLayoutManager(context)
-            layoutManager = linearLayoutManager
-            linearLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
-            adapter = artistsAdapter
-        }
-
     }
 
     override fun initData() {
         super.initData()
-        viewModel.getBanner()
-        viewModel.getAlbumNew()
-        viewModel.getAlbumNewest()
-        viewModel.getMV()
-        viewModel.getArtists()
+        request()
     }
 
     override fun initEvent() {
         super.initEvent()
+
+        binding.llRecommend.setOnClickListener {
+            startActivity<MusicListActivity>()
+        }
+
+        binding.srlView.setOnRefreshListener {
+            request()
+        }
+
+
+        binding.tvAlbumNew.setOnClickListener {
+            binding.rvAlbumNew.visibility = View.VISIBLE
+            binding.rvAlbumNewest.visibility = View.GONE
+            initTitleAnni()
+            binding.tvOrderName.text = "专辑广场"
+        }
+
+
+        binding.tvAlbumNewest.setOnClickListener {
+            binding.rvAlbumNew.visibility = View.GONE
+            binding.rvAlbumNewest.visibility = View.VISIBLE
+            binding.tvAlbumNew.setTextColor(resources.getColor(com.lsn.lib.ui.R.color.c999999))
+            binding.tvAlbumNew.textSize = 12f
+            binding.tvAlbumNewest.setTextColor(resources.getColor(com.lsn.lib.ui.R.color.black))
+            binding.tvAlbumNewest.textSize = 14f
+
+            binding.tvAlbumNew.animate().scaleX(1f).scaleY(1f)
+            binding.tvAlbumNewest.animate().scaleX(1.1f).scaleY(1.1f)
+            binding.tvOrderName.text = "新碟广场"
+        }
+
     }
 
 
@@ -95,6 +123,11 @@ class MusicHomeFragment :
             ApiConstants.Music.BANNER -> {
                 val data = it.data as List<BannerItem>
                 binding.ribSimpleUsage.setSource(data).startScroll()
+            }
+
+            ApiConstants.Music.PERSONALIZED -> {
+                val data = it.data as MutableList<MusicPersonalized>
+                personalizedAdapter.setData(data)
             }
 
             ApiConstants.Music.ALBUM_NEW -> {
@@ -110,11 +143,26 @@ class MusicHomeFragment :
                 val data = it.data as MutableList<HomeSimpleItemData>
                 mvAdapter.setData(data)
             }
-            ApiConstants.Music.TOP_ARTISTS -> {
-                val data = it.data as MutableList<HomeSimpleItemData>
-                artistsAdapter.setData(data)
-            }
         }
+    }
+
+
+    private fun initTitleAnni() {
+        binding.tvAlbumNew.setTextColor(resources.getColor(com.lsn.lib.ui.R.color.black))
+        binding.tvAlbumNew.textSize = 14f
+        binding.tvAlbumNewest.setTextColor(resources.getColor(com.lsn.lib.ui.R.color.c999999))
+        binding.tvAlbumNewest.textSize = 12f
+        binding.tvAlbumNew.animate().scaleX(1.1f).scaleY(1.1f)
+        binding.tvAlbumNewest.animate().scaleX(1f).scaleY(1f)
+    }
+
+
+    private fun request() {
+        viewModel.getBanner()
+        viewModel.getPersonalized(6)
+        viewModel.getAlbumNew()
+        viewModel.getAlbumNewest()
+        viewModel.getMV()
     }
 
 }

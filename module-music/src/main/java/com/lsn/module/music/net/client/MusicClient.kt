@@ -28,6 +28,20 @@ class MusicClient @Inject constructor(
             .getBanner()
     }
 
+    suspend fun getPersonalized(limit: Int): MusicPersonalizedRoot {
+        return getNeteaseNetConfig().create(IMusicService::class.java)
+            .getPersonalized(limit)
+    }
+
+
+
+    suspend fun getRelatedPlaylist(): MusicRelatedPlaylistRoot {
+        return getNeteaseNetConfig().create(IMusicService::class.java)
+            .getRelatedPlaylist()
+    }
+
+
+
     suspend fun getAlbumNewest(): MusicAlbumNew {
         return getNeteaseNetConfig().create(IMusicService::class.java)
             .getAlbumNewest()
@@ -51,7 +65,7 @@ class MusicClient @Inject constructor(
 
     private fun getNeteaseNetConfig(): Retrofit {
         val linkUrl = retrofit.getLinkUrl()
-        retrofit.setCacheModel(CacheMode.READ_CACHE_FAILED_REQUEST_NETWORK)
+        retrofit.setCacheModel(CacheMode.REQUEST_NETWORK_FAILED_READ_CACHE)
         retrofit.setCacheTime(HttpClient.DAYS_30)
         val build = retrofit.getBuildRetrofit()
             .client(retrofit.getOkHttpClient(ResponseModel.NETEASECLOUD))

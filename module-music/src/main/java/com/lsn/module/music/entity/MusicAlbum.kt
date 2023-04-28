@@ -24,7 +24,7 @@ data class MusicAlbum(
     val companyId: Int = 0,
     val copyrightId: Int = 0,
     val description: String = "",
-    val id: Int = 0,
+    val id: Long = 0,
     val name: String = "",
     val onSale: Boolean = false,
     val paid: Boolean = false,

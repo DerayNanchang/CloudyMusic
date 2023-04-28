@@ -1187,6 +1187,66 @@
         <attr name="riv_is_touch_select_mode_enabled" format="boolean" />
     </declare-styleable>
 
+
+
+    <declare-styleable name="RadiusImageProView">
+        <!--边框宽度，默认：0-->
+        <attr name="riv_pro_border_width" format="dimension" />
+        <!--边框的颜色，默认：Color.GRAY-->
+        <attr name="riv_pro_border_color" format="color" />
+        <!--选中时，覆盖在图片上的图层颜色，默认：Color.TRANSPARENT-->
+        <attr name="riv_pro_selected_mask_color" format="color" />
+        <!--边框选中时的颜色，默认：Color.GRAY-->
+        <attr name="riv_pro_selected_border_color" format="color" />
+        <!--边框选中时的宽度，默认：0-->
+        <attr name="riv_pro_selected_border_width" format="dimension" />
+        <!--圆角的大小，默认0-->
+        <attr name="riv_pro_corner_radius" format="dimension" />
+        <!--是否是椭圆形，默认：false-->
+        <attr name="riv_pro_is_oval" format="boolean" />
+        <!--图片是否是圆形的，默认：false-->
+        <attr name="riv_pro_is_circle" format="boolean" />
+        <!--图片是否可触摸选中，默认：true-->
+        <attr name="riv_pro_is_touch_select_mode_enabled" format="boolean" />
+
+
+        <!--距离对角的距离-->
+        <attr name="label_pro_distance" format="dimension" />
+        <!--标签的宽度-->
+        <attr name="label_pro_height" format="dimension" />
+        <!--标签的背景颜色-->
+        <attr name="label_pro_backgroundColor" format="color" />
+        <!--标签的边框宽度-->
+        <attr name="label_pro_strokeWidth" format="dimension" />
+        <!--标签的边框颜色-->
+        <attr name="label_pro_strokeColor" format="color" />
+        <!--标签的文字-->
+        <attr name="label_pro_text" format="string" />
+        <!--标签的文字大小-->
+        <attr name="label_pro_textSize" format="dimension" />
+        <!--标签的文字样式-->
+        <attr name="label_pro_textStyle" format="enum">
+            <enum name="NORMAL" value="0" />
+            <enum name="BOLD" value="1" />
+            <enum name="ITALIC" value="2" />
+            <enum name="BOLD_ITALIC" value="3" />
+        </attr>
+        <!--标签的字体样式-->
+        <attr name="label_pro_textFont" format="string" />
+        <!--标签的文字颜色-->
+        <attr name="label_pro_textColor" format="color" />
+        <!--标签是否可见-->
+        <attr name="label_pro_visual" format="boolean" />
+        <!--标签的对齐方式-->
+        <attr name="label_pro_orientation" format="enum">
+            <enum name="LEFT_TOP" value="1" />
+            <enum name="RIGHT_TOP" value="2" />
+            <enum name="LEFT_BOTTOM" value="3" />
+            <enum name="RIGHT_BOTTOM" value="4" />
+        </attr>
+
+    </declare-styleable>
+
     <declare-styleable name="BezierBannerView">
         <attr name="bbv_selectedColor" format="color" />
         <attr name="bbv_unSelectedColor" format="color" />
@@ -1734,6 +1794,7 @@
     <attr name="ValidatorEditTextStyle" format="reference" />
     <attr name="MultiLineEditTextStyle" format="reference" />
     <attr name="RadiusImageViewStyle" format="reference" />
+    <attr name="RadiusImageProViewStyle" format="reference" />
     <attr name="StatusViewStyle" format="reference" />
     <attr name="EasyIndicatorStyle" format="reference" />
     <attr name="TabSegmentStyle" format="reference" />

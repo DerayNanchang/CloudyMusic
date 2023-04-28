@@ -17,7 +17,7 @@ data class MusicArtists(
     val briefDesc: String,
     val fansCount: Int,
     val followed: Boolean,
-    val id: Int,
+    val id: Long,
     val identifyTag: String,
     val img1v1Id: Long,
     val img1v1Id_str: String,
@@ -33,5 +33,5 @@ data class MusicArtists(
     val showPrivateMsg: String,
     val topicPerson: Int,
     val trans: String,
-    val transNames: String
+    val transNames: List<String>
 )

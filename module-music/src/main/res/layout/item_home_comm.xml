@@ -18,18 +18,28 @@
         android:orientation="vertical">
 
 
-        <com.lsn.lib.ui.widget.imageview.RadiusImageView
+        <com.lsn.lib.ui.widget.imageview.RadiusImageProView
             xUrl="@{item.img}"
-            app:riv_corner_radius="5dp"
             android:layout_width="100dp"
-            android:layout_height="100dp" />
+            android:layout_height="100dp"
+            app:label_pro_backgroundColor="#C2185B"
+            app:label_orientation="LEFT_TOP"
+            app:label_text="风景"
+            app:label_textStyle="ITALIC"
+            app:riv_pro_corner_radius="5dp" />
 
 
-        <TextView
+
+        <com.lsn.lib.ui.widget.textview.ReadMoreTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
             android:text="@{item.desc}"
-            android:textSize="@dimen/sp12" />
+            app:rmtv_ellipsize="****"
+            android:textColor="@color/c999999"
+            app:rmtv_trimCollapsedText=""
+            android:textSize="@dimen/sp12"
+            app:rmtv_trimLines="2" />
 
 
     </LinearLayout>

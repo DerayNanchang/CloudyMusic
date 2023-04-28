@@ -15,6 +15,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.databinding.library.baseAdapters.BR
 import com.lsn.lib.base.BuildConfig
 import com.lsn.lib.base.IDataBinding
+import com.lsn.lib.base.R
 import com.lsn.lib.base.exts.addLoadingObserve
 import com.lsn.lib.base.exts.createViewModel
 import com.lsn.lib.base.ui.IViewModel
@@ -40,16 +41,16 @@ abstract class BaseVDFragment<VM : BaseViewModel, DB : ViewDataBinding>(@LayoutR
 
     override fun init(savedInstanceState: Bundle?) {
         viewContent(savedInstanceState)
-    /*if (BuildConfig.DEBUG) {
-            viewContent(savedInstanceState)
-        } else {
-            try {
+        /*if (BuildConfig.DEBUG) {
                 viewContent(savedInstanceState)
+            } else {
+                try {
+                    viewContent(savedInstanceState)
 
-            } catch (e: Exception) {
-                OBSHelp.instance.pushGenerateCustomLog(e)
-            }
-        }*/
+                } catch (e: Exception) {
+                    OBSHelp.instance.pushGenerateCustomLog(e)
+                }
+            }*/
     }
 
     private fun viewContent(savedInstanceState: Bundle?) {

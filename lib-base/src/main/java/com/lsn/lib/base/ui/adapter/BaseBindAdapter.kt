@@ -90,7 +90,7 @@ abstract class BaseBindAdapter<DATA : Any, VB : ViewDataBinding>(@LayoutRes var 
 
 
     protected fun isLoadingScrollAlpha() : Boolean{
-        return false
+        return true
     }
 
 

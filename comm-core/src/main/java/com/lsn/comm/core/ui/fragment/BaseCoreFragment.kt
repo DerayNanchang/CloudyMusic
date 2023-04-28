@@ -3,6 +3,8 @@ package com.lsn.comm.core.ui.fragment
 import android.os.Bundle
 import androidx.annotation.LayoutRes
 import androidx.databinding.ViewDataBinding
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.lsn.comm.core.R
 import com.lsn.comm.core.callbacks.ICore
 import com.lsn.comm.core.net.ResponseEntity
 import com.lsn.comm.core.ui.activity.BaseCoreActivity
@@ -19,8 +21,11 @@ import com.lsn.lib.base.viewmodel.BaseViewModel
 abstract class BaseCoreFragment<VM : BaseNetViewModel, DB : ViewDataBinding>(@LayoutRes private var layoutRes: Int) :
     BaseVDFragment<VM, DB>(layoutRes), ICore {
 
+    protected var srl: SwipeRefreshLayout? = null
 
     override fun initView(savedInstanceState: Bundle?) {
+
+
     }
 
     override fun initData() {
@@ -31,6 +36,13 @@ abstract class BaseCoreFragment<VM : BaseNetViewModel, DB : ViewDataBinding>(@La
 
     }
 
+    fun setSwipeRefreshLayout(swipeRefreshLayout: SwipeRefreshLayout) {
+        this.srl = swipeRefreshLayout
+        swipeRefreshLayout.isRefreshing = true
+        swipeRefreshLayout.setColorSchemeColors(resources.getColor(com.lsn.lib.ui.R.color.themeColor))
+    }
+
+
     private fun onSuccessObs() {
         viewModel.success.observe(this) {
             println(it.api)
@@ -39,7 +51,7 @@ abstract class BaseCoreFragment<VM : BaseNetViewModel, DB : ViewDataBinding>(@La
     }
 
     protected open fun onSuccess(it: ResponseEntity) {
-
+        srl?.isRefreshing = false
     }
 
 
@@ -50,6 +62,11 @@ abstract class BaseCoreFragment<VM : BaseNetViewModel, DB : ViewDataBinding>(@La
             }
         }
         return null
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        srl = null
     }
 
 }

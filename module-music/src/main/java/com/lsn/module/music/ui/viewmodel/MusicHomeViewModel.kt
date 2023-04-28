@@ -28,6 +28,24 @@ class MusicHomeViewModel @Inject constructor(
     }
 
 
+    fun getPersonalized(limit: Int) {
+        request({
+            val relatedPlaylist =
+                iMusicRepository.getPersonalized(ApiConstants.Music.PERSONALIZED, limit).first()
+            onSuccess(relatedPlaylist)
+        })
+    }
+
+
+    fun getRelatedPlaylist() {
+        request({
+            val relatedPlaylist =
+                iMusicRepository.getRelatedPlaylist(ApiConstants.Music.RELATED_PLAYLIST).first()
+            onSuccess(relatedPlaylist)
+        })
+    }
+
+
     fun getAlbumNewest() {
         request({
             val alBumNewest =
@@ -54,7 +72,7 @@ class MusicHomeViewModel @Inject constructor(
 
     fun getArtists() {
         request({
-            val albumNew = iMusicRepository.getAlbumNew(ApiConstants.Music.TOP_ARTISTS).first()
+            val albumNew = iMusicRepository.getArtists(ApiConstants.Music.TOP_ARTISTS).first()
             onSuccess(albumNew)
         })
     }

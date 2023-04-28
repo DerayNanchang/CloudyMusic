@@ -1,5 +1,7 @@
 package com.lsn.lib.base.annotation
 
+import android.graphics.Color
+import com.lsn.lib.base.StatusColorCategory
 import java.lang.annotation.Retention
 import java.lang.annotation.RetentionPolicy
 
@@ -14,4 +16,5 @@ annotation class Toolbar(
     val title: String = "",
     val showBack: Boolean = true,
     val isAdd: Boolean = true,
+    val color: StatusColorCategory = StatusColorCategory.WHITE_COLOR
 )

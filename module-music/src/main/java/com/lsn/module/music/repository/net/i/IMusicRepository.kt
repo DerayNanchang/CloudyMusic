@@ -1,9 +1,7 @@
 package com.lsn.module.music.repository.net.i
 
 import com.lsn.comm.core.net.ResponseEntity
-import com.lsn.module.music.entity.MusicAlbumNew
-import com.lsn.module.music.entity.MusicArtistsRoot
-import com.lsn.module.music.entity.MusicMVRoot
+import com.lsn.module.music.entity.*
 import com.lsn.module.music.net.service.IMusicService
 import kotlinx.coroutines.flow.Flow
 import retrofit2.Retrofit
@@ -17,6 +15,11 @@ interface IMusicRepository {
 
     suspend fun getBanner(tag: String): Flow<ResponseEntity>
 
+
+    suspend fun getPersonalized(tag: String, limit: Int): Flow<ResponseEntity>
+
+
+    suspend fun getRelatedPlaylist(tag: String): Flow<ResponseEntity>
     suspend fun getAlbumNewest(tag: String): Flow<ResponseEntity>
 
     suspend fun getAlbumNew(tag: String): Flow<ResponseEntity>

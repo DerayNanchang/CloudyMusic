@@ -40,6 +40,22 @@ interface ApiConstants {
 
 
             /**
+             * 说明 : 调用此接口 , 可获取推荐歌单
+             * 可选参数 : limit: 取出数量 , 默认为 30 (不支持 offset)
+             * 接口地址 : /related/playlist
+             */
+            const val PERSONALIZED = "personalized"
+
+
+            /**
+             * 说明 : 调用此接口,传入歌单 id 可获取相关歌单(对应页面 https://music.163.com/#/playlist?id=1)
+             * 必选参数 : id : 歌单 id
+             * 接口地址 : /related/playlist
+             */
+            const val RELATED_PLAYLIST = "related/playlist?id=1"
+
+
+            /**
              * 登录后调用此接口 ,可获取全部新碟
              * limit : 返回数量 , 默认为 30
              * offset : 偏移数量，用于分页 , 如 :( 页数 -1)*30, 其中 30 为 limit 的值 , 默认为 0

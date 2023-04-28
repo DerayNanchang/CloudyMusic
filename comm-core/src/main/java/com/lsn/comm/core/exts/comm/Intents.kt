@@ -33,7 +33,6 @@ import androidx.fragment.app.Fragment
  inline fun < reified T : Activity> AnkoContext<*>.startActivity(vararg params: Pair<String, Any?>) =
     AnkoInternals.internalStartActivity(ctx, T::class.java, params)
 
-@Deprecated(message = "Use support library fragments instead. Framework fragments were deprecated in API 28.")
 inline fun <reified T : Activity> Fragment.startActivity(vararg params: Pair<String, Any?>) = run {
     activity?.let {
         AnkoInternals.internalStartActivity(it, T::class.java, params)

@@ -1,14 +1,11 @@
 package com.lsn.module.music.repository.net.impl
 
-import com.google.gson.GsonBuilder
 import com.lsn.comm.core.net.ResponseEntity
 import com.lsn.comm.core.net.flowTranData
 import com.lsn.lib.ui.widget.banner.widget.banner.BannerItem
 import com.lsn.module.music.entity.HomeSimpleItemData
-import com.lsn.module.music.entity.MusicAlbum
 import com.lsn.module.music.net.client.MusicClient
 import com.lsn.module.music.repository.net.i.IMusicRepository
-import com.lsn.module.provider.comm.api.ApiConstants
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
@@ -20,13 +17,13 @@ import javax.inject.Inject
  */
 class MusicRepositoryImpl @Inject constructor(var musicClient: MusicClient) :
     IMusicRepository {
+
     override suspend fun getBanner(tag: String): Flow<ResponseEntity> {
         val banner = musicClient.getBanner()
         val bannerList = ArrayList<BannerItem>()
         banner.banners?.apply {
             this.forEach {
                 val bannerItem = BannerItem()
-                println("图片路径 : " + it.imageUrl)
                 bannerItem.setImgUrl(it.imageUrl)
                 bannerItem.setTitle(it.typeTitle)
                 bannerItem.clientUrl = it.url
@@ -36,6 +33,39 @@ class MusicRepositoryImpl @Inject constructor(var musicClient: MusicClient) :
         }
         return flowTranData(tag, bannerList)
     }
+
+    override suspend fun getPersonalized(tag: String, limit: Int): Flow<ResponseEntity> {
+        val personalized = musicClient.getPersonalized(limit).result
+        personalized?.forEach {
+            var value = ""
+            if (it.playCount in 10000L..100000000L) {
+                value = (it.playCount / 10000).toInt().toString() + "万"
+            } else if (it.playCount > 100000000L) {
+                value = (it.playCount / 100000000L).toInt().toString() + "亿"
+            } else {
+                value = it.playCount.toString()
+            }
+            it.playCountStr = "▷ $value"
+        }
+        return flowTranData(tag, personalized)
+    }
+
+    override suspend fun getRelatedPlaylist(tag: String): Flow<ResponseEntity> {
+        val playlists = musicClient.getRelatedPlaylist().playlists
+        val data = ArrayList<HomeSimpleItemData>()
+        playlists?.forEach {
+            val homeSimpleItemData = HomeSimpleItemData(
+                it.id,
+                it.coverImgUrl,
+                it.name,
+                it.creator.nickname,
+                it.creator.userId
+            )
+            data.add(homeSimpleItemData)
+        }
+        return flowTranData(tag, data)
+    }
+
 
     override suspend fun getAlbumNewest(tag: String): Flow<ResponseEntity> {
         val albums = musicClient.getAlbumNewest().albums
