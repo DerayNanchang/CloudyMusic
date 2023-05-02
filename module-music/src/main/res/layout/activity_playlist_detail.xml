@@ -5,6 +5,15 @@
 
     <data>
 
+        <variable
+            name="vm"
+            type="com.lsn.module.music.ui.viewmodel.PlaylistDetailViewModel" />
+
+
+        <import
+            alias="textUtils"
+            type="android.text.TextUtils" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,17 +24,9 @@
         <ImageView
             android:id="@+id/ivBackground"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="400dp"
             android:scaleType="centerCrop"
             android:src="@color/red"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:background="@color/colorBlurViewBackground"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -35,7 +36,6 @@
             android:id="@+id/coordinatorLayout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginBottom="52dp"
             android:background="@color/transparent"
             android:overScrollMode="never"
             android:scrollbars="none"
@@ -56,7 +56,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/clHead"
                     android:layout_width="match_parent"
-                    android:layout_height="128dp"
+                    android:layout_height="wrap_content"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -66,8 +66,9 @@
                     <com.lsn.lib.ui.widget.imageview.RadiusImageView
                         android:id="@+id/ivCover"
                         drawable_radius="5"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
+                        xUrl="@{vm.playlistCurtData.coverImgUrl}"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
                         android:layout_marginStart="15dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/ic_svg_home_song_list"
@@ -85,10 +86,10 @@
                         android:layout_marginEnd="16dp"
                         android:lines="2"
                         android:maxLines="2"
-                        android:text="这个是标题"
-                        android:textColor="@color/x050505"
+                        android:text="@{vm.playlistCurtData.title}"
+                        android:textColor="@color/white"
                         android:textIsSelectable="true"
-                        android:textSize="16sp"
+                        android:textSize="@dimen/sp18"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toTopOf="@+id/tvDescription"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -105,8 +106,8 @@
                         android:layout_marginBottom="24dp"
                         android:lines="2"
                         android:maxLines="2"
-                        android:text="这个是描述 这个是描述 这个是描述 这个是描述 这个是描述"
-                        android:textColor="@color/x787878"
+                        android:text='@{textUtils.isEmpty(vm.playlistCurtData.desc)? "":vm.playlistCurtData.desc }'
+                        android:textColor="@color/white"
                         android:textIsSelectable="true"
                         android:textSize="12sp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -121,17 +122,17 @@
                 <LinearLayout
                     android:id="@+id/clNav"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
+                    android:layout_height="45dp"
                     android:background="@drawable/bg_slide_layout"
                     android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:paddingStart="10dp">
 
                     <ImageView
                         android:id="@+id/ivPlayAll"
-                        android:layout_width="56dp"
-                        android:layout_height="56dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
                         android:contentDescription="播放全部"
-                        android:padding="14dp"
                         android:src="@drawable/ic_svg_play_btn" />
 
                     <TextView
@@ -143,7 +144,7 @@
                         android:minWidth="10dp"
                         android:text="播放所有"
                         android:textColor="@color/black"
-                        android:textSize="16sp"
+                        android:textSize="@dimen/sp16"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -188,26 +189,51 @@
                 android:layout_height="25dp" />
 
 
-            <include
-                android:background="@color/transparent"
-                layout="@layout/include_comm_toolbar"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="55dp" />
+                android:layout_height="55dp"
+                android:background="@color/transparent">
+
+                <ImageView
+                    android:id="@+id/ivBack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:src="@drawable/ic_svg_back_w"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <TextView
+                    android:id="@+id/tvMToolbarTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="歌单"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp18"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/ivBack"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <ImageView
+                    android:id="@+id/ivSearch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:src="@drawable/ic_svg_search_w"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         </LinearLayout>
 
-        <!--
-                <include
-                    android:id="@+id/titleBar"
-                    layout="@layout/include_comm_toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:background="@color/transparent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-        -->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

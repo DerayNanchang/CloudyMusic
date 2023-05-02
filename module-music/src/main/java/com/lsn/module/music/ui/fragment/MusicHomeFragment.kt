@@ -5,7 +5,6 @@ import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.google.gson.Gson
 import com.lsn.comm.core.exts.comm.startActivity
 import com.lsn.comm.core.net.ResponseEntity
 import com.lsn.comm.core.ui.fragment.BaseCoreFragment
@@ -16,7 +15,7 @@ import com.lsn.module.music.adapter.MusicPersonalizedAdapter
 import com.lsn.module.music.databinding.FragmentMusicHomeBinding
 import com.lsn.module.music.entity.HomeSimpleItemData
 import com.lsn.module.music.entity.MusicPersonalized
-import com.lsn.module.music.ui.activity.MusicListActivity
+import com.lsn.module.music.ui.activity.PlaylistDetailActivity
 import com.lsn.module.music.ui.viewmodel.MusicHomeViewModel
 import com.lsn.module.provider.comm.api.ApiConstants
 import com.lsn.module.provider.comm.constant.Constants
@@ -84,7 +83,7 @@ class MusicHomeFragment :
         super.initEvent()
 
         binding.llRecommend.setOnClickListener {
-            startActivity<MusicListActivity>()
+            startActivity<PlaylistDetailActivity>()
         }
 
         binding.srlView.setOnRefreshListener {

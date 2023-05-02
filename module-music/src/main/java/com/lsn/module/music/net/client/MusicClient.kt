@@ -6,7 +6,6 @@ import com.lsn.lib.net.core.ResponseModel
 import com.lsn.lib.net.core.cache.CacheMode
 import com.lsn.module.music.entity.*
 import com.lsn.module.music.net.service.IMusicService
-import com.lsn.module.provider.comm.api.ApiConstants
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Inject
@@ -23,7 +22,7 @@ class MusicClient @Inject constructor(
 ) {
 
 
-    suspend fun getBanner(): MusicBannerList {
+    suspend fun getBanner(): MusicBannerRoot {
         return getNeteaseNetConfig().create(IMusicService::class.java)
             .getBanner()
     }
@@ -42,12 +41,12 @@ class MusicClient @Inject constructor(
 
 
 
-    suspend fun getAlbumNewest(): MusicAlbumNew {
+    suspend fun getAlbumNewest(): MusicAlbumNewRoot {
         return getNeteaseNetConfig().create(IMusicService::class.java)
             .getAlbumNewest()
     }
 
-    suspend fun getAlbumNew(): MusicAlbumNew {
+    suspend fun getAlbumNew(): MusicAlbumNewRoot {
         return getNeteaseNetConfig().create(IMusicService::class.java)
             .getAlbumNew()
     }
@@ -60,6 +59,17 @@ class MusicClient @Inject constructor(
     suspend fun getArtists(): MusicArtistsRoot {
         return getNeteaseNetConfig().create(IMusicService::class.java)
             .getArtists()
+    }
+
+
+    suspend fun getUserPlaylist(): MusicPlaylistRoot {
+        return getNeteaseNetConfig().create(IMusicService::class.java)
+            .getUserPlaylist()
+    }
+
+    suspend fun getPlaylistDetail(id:Long): MusicPlaylistDetailRoot {
+        return getNeteaseNetConfig().create(IMusicService::class.java)
+            .getPlaylistDetail(id)
     }
 
 

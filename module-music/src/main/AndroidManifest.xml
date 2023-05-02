@@ -5,7 +5,7 @@
 
 
         <activity
-            android:name=".ui.activity.MusicListActivity"
+            android:name=".ui.activity.PlaylistDetailActivity"
             android:configChanges="orientation|screenSize"
             android:exported="true" />
 

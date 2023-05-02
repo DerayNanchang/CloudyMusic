@@ -4,6 +4,8 @@ import com.lsn.comm.core.net.ResponseEntity
 import com.lsn.comm.core.net.flowTranData
 import com.lsn.lib.ui.widget.banner.widget.banner.BannerItem
 import com.lsn.module.music.entity.HomeSimpleItemData
+import com.lsn.module.music.entity.MusicPlaylistCurtRoot
+import com.lsn.module.music.entity.TracksCurt
 import com.lsn.module.music.net.client.MusicClient
 import com.lsn.module.music.repository.net.i.IMusicRepository
 import kotlinx.coroutines.flow.Flow
@@ -105,6 +107,69 @@ class MusicRepositoryImpl @Inject constructor(var musicClient: MusicClient) :
             data.add(homeSimpleItemData)
         }
         return flowTranData(tag, data)
+    }
+
+//    override suspend fun getUserPlaylist(
+//        tag: String,
+//        userId: String,
+//        limit: Int,
+//        offset: Int
+//    ): Flow<ResponseEntity> {
+//       return musicClient.getUserPlaylist().playlist
+//
+//    }
+
+    override suspend fun getPlaylistDetail(tag: String, id: Long): Flow<ResponseEntity> {
+
+        val playlist = musicClient.getPlaylistDetail(id).playlist
+
+        val tracksCurts = ArrayList<TracksCurt>()
+
+        playlist.tracks?.forEach {
+
+            var arNameStr = ""
+            for (i in 0 until it.ar.size) {
+                if (i == it.ar.size - 1) {
+                    arNameStr += it.ar[i].name
+                } else {
+                    arNameStr += (it.ar[i].name + "/")
+                }
+            }
+
+            var sq = false
+            if (it.sq != null) {
+                sq = true
+            }
+
+            val tracksCurt = TracksCurt(
+                id = it.id,
+                name = it.name,
+                picUrl = it.al.picUrl,
+                arName = arNameStr,// 歌手
+                alName = it.al.name,// 专辑
+                fee = it.fee,    // 是否免费
+                sq = sq,
+                mv = it.mv
+            )
+
+            tracksCurts.add(tracksCurt)
+        }
+
+
+        val musicPlaylistCurtRoot = MusicPlaylistCurtRoot(
+            id = playlist.id,
+            title = playlist.name,
+            desc = playlist.description,
+            playSize = playlist.playCount,
+            coverImgUrl = playlist.coverImgUrl,
+            userId = playlist.userId, //366231393
+            createTime = playlist.createTime,
+            updateTime = playlist.updateTime,
+            subscribedCount = playlist.subscribedCount,
+            cloudTrackCount = playlist.cloudTrackCount,
+            tracksCurts = tracksCurts,
+        )
+        return flowTranData(tag, musicPlaylistCurtRoot)
     }
 
 }

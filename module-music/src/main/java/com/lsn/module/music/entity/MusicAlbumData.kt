@@ -7,7 +7,7 @@ package com.lsn.module.music.entity
  * @Description :
  */
 
-data class MusicAlbumNew(
+data class MusicAlbumNewRoot(
     val total: Int = 0,
     val albums: List<MusicAlbum>? = null,
     val code: Int = 0

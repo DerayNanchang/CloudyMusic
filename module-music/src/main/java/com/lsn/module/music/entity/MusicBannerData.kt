@@ -7,7 +7,7 @@ package com.lsn.module.music.entity
  */
 
 
-data class MusicBannerList(
+data class MusicBannerRoot(
     var banners: List<MusicBannerItem>? = null,
     var code: Int
 )

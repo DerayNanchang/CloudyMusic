@@ -15,7 +15,7 @@ interface IMusicService {
 
 
     @GET(ApiConstants.Music.BANNER)
-    suspend fun getBanner(): MusicBannerList
+    suspend fun getBanner(): MusicBannerRoot
 
 
     // 推荐歌单 personalized
@@ -29,11 +29,11 @@ interface IMusicService {
 
 
     @GET(ApiConstants.Music.ALBUM_NEWEST)
-    suspend fun getAlbumNewest(): MusicAlbumNew
+    suspend fun getAlbumNewest(): MusicAlbumNewRoot
 
     // 最新新碟
     @GET(ApiConstants.Music.ALBUM_NEW)
-    suspend fun getAlbumNew(): MusicAlbumNew
+    suspend fun getAlbumNew(): MusicAlbumNewRoot
 
     // 最新 mv
     @GET(ApiConstants.Music.MV_FIRST)
@@ -42,6 +42,16 @@ interface IMusicService {
     // 热门歌手
     @GET(ApiConstants.Music.TOP_ARTISTS)
     suspend fun getArtists(): MusicArtistsRoot
+
+
+    // 用户歌单
+    @GET(ApiConstants.Music.USER_PLAYLIST)
+    suspend fun getUserPlaylist(): MusicPlaylistRoot
+
+
+    // 歌单详情
+    @GET(ApiConstants.Music.PLAYLIST_DETAIL)
+    suspend fun getPlaylistDetail(@Query("id") id: Long): MusicPlaylistDetailRoot
 
 
 }
