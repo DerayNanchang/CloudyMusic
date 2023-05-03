@@ -27,6 +27,7 @@ import com.lsn.lib.ui.widget.imageview.strategy.DiskCacheStrategyEnum;
 import com.lsn.lib.ui.widget.imageview.strategy.IImageLoadStrategy;
 import com.lsn.lib.ui.widget.imageview.strategy.ILoadListener;
 import com.lsn.lib.ui.widget.imageview.strategy.LoadOption;
+import com.lsn.lib.ui.widget.imageview.strategy.impl.CoilImageLoadStrategy;
 import com.lsn.lib.ui.widget.imageview.strategy.impl.GlideImageLoadStrategy;
 
 /**
@@ -48,6 +49,7 @@ public class ImageLoader implements IImageLoadStrategy {
 
     private ImageLoader() {
         mStrategy = new GlideImageLoadStrategy();
+//        mStrategy = new CoilImageLoadStrategy();
     }
 
     /**

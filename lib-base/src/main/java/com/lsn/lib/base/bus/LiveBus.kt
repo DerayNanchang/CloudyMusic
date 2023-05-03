@@ -52,7 +52,7 @@ class LiveBus {
                 if (isCallOnObserve) {
                     return
                 }
-                observer.onChanged(t)
+                observer.onChanged(t!!)
             }
         }
 

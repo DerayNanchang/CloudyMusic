@@ -79,6 +79,8 @@ dependencies {
     api(project(":lib-base"))
     api(project(":lib-net"))
 
+    api("com.github.Neo-Turak:renderscript-toolkit:v0.8")
+
     /**路由框架，组件必须配置，否则调用失败*/
     implementation(libs.alibaba.arouter.api)
     kapt(libs.alibaba.arouter.compiler)

@@ -40,6 +40,7 @@ android {
 
 dependencies {
     api(libs.glide)
+    api(libs.coil)
     api(libs.airbnb.android.lottie)
     api(libs.github.refresh.kernel)
     api(libs.github.refresh.header)

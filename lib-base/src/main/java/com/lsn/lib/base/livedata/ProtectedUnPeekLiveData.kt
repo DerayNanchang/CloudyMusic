@@ -123,20 +123,20 @@ open class ProtectedUnPeekLiveData<T> : LiveData<T> {
             this.mVersion = version
         }
 
-        override fun onChanged(t: T?) {
+        override fun onChanged(t: T) {
             if (mCurrentVersion.get() > mVersion && (t != null || isAllowNullValue)) {
                 mObserver.onChanged(t)
             }
         }
 
-        override fun equals(o: Any?): Boolean {
-            if (this === o) {
+        override fun equals(other: Any?): Boolean {
+            if (this === other) {
                 return true
             }
-            if (o == null || javaClass != o.javaClass) {
+            if (other == null || javaClass != other.javaClass) {
                 return false
             }
-            val that: ObserverWrapper<*> = o as ObserverWrapper<*>
+            val that: ObserverWrapper<*> = other as ObserverWrapper<*>
             return Objects.equals(mObserver, that.mObserver)
         }
 

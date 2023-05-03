@@ -19,6 +19,7 @@ import androidx.databinding.BindingAdapter
 import androidx.databinding.BindingMethod
 import androidx.databinding.BindingMethods
 import com.bumptech.glide.Glide
+import com.lsn.comm.core.utils.CoilUtil
 import com.lsn.lib.ui.utils.ResUtils.getResources
 import java.math.BigDecimal
 import java.math.RoundingMode
@@ -82,14 +83,13 @@ object DataBindingComponent {
     @JvmStatic
     fun setImageView(imageView: ImageView, url: String?, res: Any?) {
         if (!TextUtils.isEmpty(url)) {
-            Glide.with(imageView.context)
-                .load(url)
-                .into(imageView)
-
+            CoilUtil.load(imageView, url) {
+                isCrossfade = true
+            }
         } else if (res != null) {
-            Glide.with(imageView.context)
-                .load(res)
-                .into(imageView)
+            CoilUtil.load(imageView, res) {
+                isCrossfade = true
+            }
         }
     }
 

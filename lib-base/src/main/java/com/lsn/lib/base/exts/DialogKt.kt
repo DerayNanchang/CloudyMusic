@@ -48,7 +48,7 @@ fun Context?.showLoadingDialogExt(msg: CharSequence?) {
             hideLoadingDialogExt()
         }*/
         if (commLoadingDialog == null) {
-            commLoadingDialog = createLoadingDialog(msg)
+            commLoadingDialog = createLoadingDialog()
             commLoadingDialog!!.show()
         } else {
             if (!commLoadingDialog!!.isLoading) {
@@ -101,14 +101,14 @@ fun Context.showTipsDelayedDismiss(
     delay: Long = 1000,
     callback: (() -> Any?)? = null
 ) {
-    val dialog = createTipDialog(msg, type)
+    val dialog = createTipDialog(msg)
     Handler(Looper.getMainLooper()).postDelayed({
         dialog.dismiss()
         callback?.invoke()
     }, delay)
 }
 
-fun Context.createTipDialog(msg: CharSequence?, type: Int): LoadingDialog {
+fun Context.createTipDialog(msg: CharSequence?): LoadingDialog {
     val dialog = WidgetUtils.getLoadingDialog(this)
     dialog?.apply {
         showMsgTips(msg)
@@ -119,10 +119,10 @@ fun Context.createTipDialog(msg: CharSequence?, type: Int): LoadingDialog {
 }
 
 
-fun Context?.createLoadingDialog(msg: CharSequence?): CommLoadingDialog? {
+fun Context?.createLoadingDialog(): CommLoadingDialog? {
     this?.apply {
         val dialog = CommLoadingDialog(this)
-        dialog?.apply {
+        dialog.apply {
             setCancelable(false)
             setCanceledOnTouchOutside(false)
         }

@@ -27,8 +27,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.model.GlideUrl;
 import com.lsn.lib.ui.R;
 import com.lsn.lib.ui.utils.ResUtils;
 import com.lsn.lib.ui.widget.banner.widget.banner.BannerItem;
