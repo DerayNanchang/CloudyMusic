@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.lsn.module.music.entity.Playlist" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clMeReady"
+        android:layout_width="match_parent"
+        android:layout_height="64dp">
+
+        <!--   <androidx.cardview.widget.CardView
+               android:id="@+id/cvCover"
+               android:layout_width="48dp"
+               android:layout_height="48dp"
+               android:layout_marginStart="20dp"
+               app:cardCornerRadius="30dp"
+               app:cardElevation="1px"
+               app:layout_constraintBottom_toBottomOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toTopOf="parent">
+
+               <ImageView
+                   android:id="@+id/ivCover"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:scaleType="centerCrop"
+                   tools:srcCompat="@tools:sample/avatars" />
+           </androidx.cardview.widget.CardView>-->
+
+
+        <ImageView
+            android:id="@+id/ivCover"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="20dp"
+            android:src="@mipmap/ic_launcher"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="4dp"
+            android:ellipsize="end"
+            android:maxLength="20"
+            android:singleLine="true"
+            android:text="这个是标题这个是标题这这个这个是标题这个是标题这这个是标题这个是标题这个是标题这个是标题这个是这个题这个是这个题个是标题这个是标题这个是这个题这个是这个题是标题这个是标题这个是标题这个是标题这个是这个题这个是这个题个是标题这个是标题这个是这个题这个是这个题"
+            android:textColor="@color/c333333"
+            app:layout_constraintBottom_toTopOf="@id/tvContent"
+            app:layout_constraintStart_toEndOf="@+id/ivCover" />
+
+
+        <View
+            android:id="@+id/vBGC"
+            android:layout_width="50dp"
+            android:layout_height="10dp"
+            android:alpha="0.2"
+            android:background="@drawable/sha_radius_10_lt_rt"
+            app:layout_constraintEnd_toEndOf="@id/ivCover"
+            app:layout_constraintStart_toStartOf="@id/ivCover"
+            app:layout_constraintTop_toTopOf="@id/ivCover" />
+
+
+        <TextView
+            android:id="@+id/tvContent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="10dp"
+            android:ellipsize="end"
+            android:maxLength="30"
+            android:singleLine="true"
+            android:text="这个人很懒没有写下这个人很懒没有写下描述这个人很懒没有写下描述描述这个人很懒没有写下描述"
+            android:textColor="@color/c999999"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/ivCover"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tvName" />
+
+
+        <TextView
+            android:id="@+id/tvCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="2dp"
+            android:maxLength="8"
+            android:maxLines="1"
+            android:text="简单表述asdfasdf"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp7"
+            app:layout_constraintEnd_toEndOf="@id/vBGC"
+            app:layout_constraintTop_toTopOf="@id/vBGC" />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginStart="20dp"
+            android:background="@color/lineCommColor"
+            app:layout_constraintBottom_toBottomOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

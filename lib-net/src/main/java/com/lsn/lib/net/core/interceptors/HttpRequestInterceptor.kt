@@ -25,7 +25,6 @@ open class HttpRequestInterceptor : Interceptor {
     val originalRequest = chain.request()
     val gson = Gson()
     val toJson = gson.toJson(originalRequest)
-    println(toJson)
     val request = originalRequest.newBuilder().url(originalRequest.url).build()
 //    Timber.d(request.toString())
     return chain.proceed(request)

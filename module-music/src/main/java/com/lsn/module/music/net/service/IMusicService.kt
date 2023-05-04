@@ -46,7 +46,7 @@ interface IMusicService {
 
     // 用户歌单
     @GET(ApiConstants.Music.USER_PLAYLIST)
-    suspend fun getUserPlaylist(): MusicPlaylistRoot
+    suspend fun getUserPlaylist(@Query("uid") uid:Long): MusicPlaylistRoot
 
 
     // 歌单详情

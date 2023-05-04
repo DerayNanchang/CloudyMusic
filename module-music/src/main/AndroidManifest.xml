@@ -5,6 +5,11 @@
 
 
         <activity
+            android:name=".ui.activity.MeReadyActivity"
+            android:configChanges="orientation|screenSize"
+            android:exported="true" />
+
+        <activity
             android:name=".ui.activity.PlaylistDetailActivity"
             android:configChanges="orientation|screenSize"
             android:exported="true" />

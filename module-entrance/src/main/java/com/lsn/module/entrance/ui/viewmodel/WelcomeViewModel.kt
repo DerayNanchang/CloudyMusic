@@ -22,7 +22,8 @@ class WelcomeViewModel @Inject constructor(
     var iEntrance: IEntranceRepository
 ) : BaseCoreViewModel() {
 
-    var archiveImagesEntity: ObservableField<HPImageArchiveImagesEntity?> = ObservableField<HPImageArchiveImagesEntity?>()
+    var archiveImagesEntity: ObservableField<HPImageArchiveImagesEntity?> =
+        ObservableField<HPImageArchiveImagesEntity?>()
 
 
     fun getHitokotoEncode() {
@@ -30,7 +31,7 @@ class WelcomeViewModel @Inject constructor(
             val responseEntity =
                 iEntrance.getHitokotoEncode(ApiConstants.Entrance.HITOKOTO_ENCODE).first()
             onSuccess(responseEntity)
-        })
+        }, isShowDialog = false)
     }
 
 
@@ -43,6 +44,6 @@ class WelcomeViewModel @Inject constructor(
             val hpImageArchiveEntity = hpImageArchive.data as HPImageArchiveEntity
             archiveImagesEntity.set(hpImageArchiveEntity.images[0])
             onSuccess(hpImageArchive)
-        })
+        }, isShowDialog = false)
     }
 }

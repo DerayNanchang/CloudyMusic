@@ -1,8 +1,10 @@
 package com.lsn.comm.core.viewmodel
 
+import androidx.lifecycle.viewModelScope
 import com.lsn.comm.core.exts.launch
 import com.lsn.comm.core.exts.msg
 import com.lsn.comm.core.net.ResponseEntity
+import com.lsn.lib.base.bus.LiveBus
 import com.lsn.lib.base.livedata.ProtectedUnPeekLiveData
 import com.lsn.lib.base.livedata.UnPeekLiveData
 import com.lsn.lib.base.viewmodel.BaseViewModel
@@ -37,7 +39,6 @@ open abstract class BaseNetViewModel : BaseViewModel() {
     open var finally: ProtectedUnPeekLiveData<Boolean> = fin as ProtectedUnPeekLiveData<Boolean>
 
 
-
     /**
      * 请求成功后设置数据调用此方法
      * @param response
@@ -65,9 +66,10 @@ open abstract class BaseNetViewModel : BaseViewModel() {
      * @param loadingMsg 请求时的提示语句，不为空时才开启弹窗提示
      * @param errorLiveData 接收错误的LiveData
      */
-    protected fun request(
+    protected fun BaseNetViewModel.request(
         block: suspend CoroutineScope.() -> Unit,
         loadingMsg: String = "数据正在加载中...",
+        isShowDialog: Boolean = true,
         errorLiveData: UnPeekLiveData<String>? = null
     ) {
         launch({

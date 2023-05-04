@@ -7,6 +7,7 @@ import com.lsn.module.music.databinding.ItemPersonalizedBinding
 import com.lsn.module.music.databinding.ItemPlaylistDetailBinding
 import com.lsn.module.music.entity.HomeSimpleItemData
 import com.lsn.module.music.entity.MusicPersonalized
+import com.lsn.module.music.entity.Playlist
 import com.lsn.module.music.entity.TracksCurt
 
 /**
@@ -23,5 +24,10 @@ class MusicPersonalizedAdapter :
 
 class PlaylistDetailAdapter :
     BaseBindAdapter<TracksCurt, ItemPlaylistDetailBinding>(R.layout.item_playlist_detail)
+
+
+
+/*class MeReadyAdapter :
+    BaseBindAdapter<Playlist, ItemPlaylistDetailBinding>(R.layout.item_me_ready)*/
 
 

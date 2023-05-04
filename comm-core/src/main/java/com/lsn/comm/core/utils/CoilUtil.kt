@@ -1,8 +1,13 @@
 package com.lsn.comm.core.utils
 
+import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.widget.ImageView
+import coil.imageLoader
 import coil.load
 import coil.request.ImageRequest
+import coil.request.SuccessResult
 import coil.size.Scale
 import coil.transform.CircleCropTransformation
 import coil.transform.RoundedCornersTransformation
@@ -96,6 +101,7 @@ object CoilUtil {
        } else {
            pictureGrid.setRenderEffect(null)
        }*/
+
                 CoilDataEntity().apply(build).apply {
                     buildParam(isCrossfade, isPlaceholder, isError)
                     transformations(BlurTransformation(imageView.context, blurRadius, blurSampling))
@@ -123,6 +129,19 @@ object CoilUtil {
                 }
             }
         }
+    }
+
+
+    /**
+     * 获取网络图片的 bitmap
+     */
+    suspend fun Context.getImageBitmapByUrl(url: String): Bitmap? {
+        val request = ImageRequest.Builder(this)
+            .data(url)
+            .allowHardware(false)
+            .build()
+        val result = (imageLoader.execute(request) as SuccessResult).drawable
+        return (result as BitmapDrawable).bitmap
     }
 
 

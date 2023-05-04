@@ -26,14 +26,13 @@
             android:layout_width="match_parent"
             android:layout_height="400dp"
             android:scaleType="centerCrop"
-            android:src="@color/red"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
-            android:id="@+id/coordinatorLayout"
+            android:id="@+id/clCoordinatorLayout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:background="@color/transparent"
@@ -46,6 +45,7 @@
 
 
             <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/ablView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/transparent"
@@ -56,16 +56,15 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/clHead"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="220dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-                    <com.lsn.lib.ui.widget.imageview.RadiusImageView
+                    <ImageView
                         android:id="@+id/ivCover"
-                        drawable_radius="5"
                         xUrl="@{vm.playlistCurtData.coverImgUrl}"
                         android:layout_width="120dp"
                         android:layout_height="120dp"
@@ -119,21 +118,38 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-                <LinearLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/clNav"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
-                    android:background="@drawable/bg_slide_layout"
                     android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingStart="10dp">
+                    android:orientation="horizontal">
+
+
+                    <View
+                        android:id="@+id/vFiller"
+                        android:layout_width="match_parent"
+                        android:layout_height="15dp"
+                        android:alpha="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_slide_layout" />
+
 
                     <ImageView
                         android:id="@+id/ivPlayAll"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
+                        android:layout_marginStart="10dp"
                         android:contentDescription="播放全部"
-                        android:src="@drawable/ic_svg_play_btn" />
+                        android:src="@drawable/ic_svg_play_btn"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/tvPlayAll"
@@ -145,9 +161,12 @@
                         android:text="播放所有"
                         android:textColor="@color/black"
                         android:textSize="@dimen/sp16"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/ivPlayAll"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
 
             </com.google.android.material.appbar.AppBarLayout>
@@ -173,10 +192,10 @@
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/rlToolbarRoot"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="75dp"
             android:background="@color/transparent"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
@@ -185,14 +204,25 @@
 
 
             <View
+                android:id="@+id/vColor"
                 android:layout_width="match_parent"
-                android:layout_height="25dp" />
+                android:layout_height="match_parent"
+                android:alpha="0" />
+
+            <View
+                android:id="@+id/vStatusView"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:background="@color/transparent">
+                android:layout_height="60dp"
+                android:background="@color/transparent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/vStatusView">
 
                 <ImageView
                     android:id="@+id/ivBack"
@@ -206,7 +236,7 @@
 
 
                 <TextView
-                    android:id="@+id/tvMToolbarTitle"
+                    android:id="@+id/tvToolbarName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
@@ -232,7 +262,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

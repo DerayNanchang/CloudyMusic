@@ -51,6 +51,7 @@ dependencies {
     implementation(project(":module-provider"))
 
 
+    implementation("androidx.palette:palette:1.0.0")
 
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)

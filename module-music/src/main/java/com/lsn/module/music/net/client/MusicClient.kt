@@ -62,9 +62,9 @@ class MusicClient @Inject constructor(
     }
 
 
-    suspend fun getUserPlaylist(): MusicPlaylistRoot {
+    suspend fun getUserPlaylist(uid:Long): MusicPlaylistRoot {
         return getNeteaseNetConfig().create(IMusicService::class.java)
-            .getUserPlaylist()
+            .getUserPlaylist(uid)
     }
 
     suspend fun getPlaylistDetail(id:Long): MusicPlaylistDetailRoot {

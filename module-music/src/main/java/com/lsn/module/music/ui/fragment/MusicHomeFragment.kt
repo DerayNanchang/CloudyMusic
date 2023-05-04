@@ -15,6 +15,7 @@ import com.lsn.module.music.adapter.MusicPersonalizedAdapter
 import com.lsn.module.music.databinding.FragmentMusicHomeBinding
 import com.lsn.module.music.entity.HomeSimpleItemData
 import com.lsn.module.music.entity.MusicPersonalized
+import com.lsn.module.music.ui.activity.MeReadyActivity
 import com.lsn.module.music.ui.activity.PlaylistDetailActivity
 import com.lsn.module.music.ui.viewmodel.MusicHomeViewModel
 import com.lsn.module.provider.comm.api.ApiConstants
@@ -85,6 +86,11 @@ class MusicHomeFragment :
         binding.llRecommend.setOnClickListener {
             startActivity<PlaylistDetailActivity>()
         }
+
+        binding.llMeReady.setOnClickListener {
+            startActivity<MeReadyActivity>()
+        }
+
 
         binding.srlView.setOnRefreshListener {
             request()

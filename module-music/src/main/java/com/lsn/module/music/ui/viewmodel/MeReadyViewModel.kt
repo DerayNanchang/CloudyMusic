@@ -1,6 +1,15 @@
 package com.lsn.module.music.ui.viewmodel
 
-import com.lsn.comm.core.viewmodel.BaseCoreViewModel
+import androidx.databinding.ObservableField
+import com.lsn.comm.core.viewmodel.BaseNetViewModel
+import com.lsn.module.music.entity.Playlist
+import com.lsn.module.music.entity.PlaylistTitle
+import com.lsn.module.music.repository.net.i.IMusicRepository
+import com.lsn.module.provider.comm.api.ApiConstants
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.first
+import java.util.stream.Collectors
+import javax.inject.Inject
 
 
 /**
@@ -8,7 +17,57 @@ import com.lsn.comm.core.viewmodel.BaseCoreViewModel
  * @CreateTime : 2023/5/3 下午 06:43
  * @Description :
  */
-class MeReadyViewModel : BaseCoreViewModel() {
+@HiltViewModel
+class MeReadyViewModel @Inject constructor(
+    var iMusicRepository: IMusicRepository
+) : BaseNetViewModel() {
+
+    var playlistTitleData: ObservableField<ArrayList<PlaylistTitle>> =
+        ObservableField<ArrayList<PlaylistTitle>>()
 
 
+    var playlistContentData: ObservableField<ArrayList<ArrayList<Playlist>>> =
+        ObservableField<ArrayList<ArrayList<Playlist>>>()
+
+    fun getPlaylistDetail(uid: Long) {
+
+        request({
+            val hpImageArchive =
+                iMusicRepository.getUserPlaylist(ApiConstants.Music.USER_PLAYLIST, uid, 0, 0)
+                    .first()
+            val musicPlaylistCurtRoot = hpImageArchive.data as ArrayList<Playlist>
+
+
+            val contentArrayList = ArrayList<ArrayList<Playlist>>()
+
+            val titleArrayList = ArrayList<PlaylistTitle>().also {
+                musicPlaylistCurtRoot.apply {
+                    val meTitleList = filter { it.type == 0 }
+                    val otherTitleList = filter { it.type != 0 }
+                    contentArrayList.add(meTitleList as ArrayList<Playlist>)
+                    contentArrayList.add(otherTitleList as ArrayList<Playlist>)
+                    it.add(
+                        PlaylistTitle(
+                            0L,
+                            "创建的歌单",
+                            meTitleList.size.toString(),
+                            meTitleList.size
+                        )
+                    )
+                    it.add(
+                        PlaylistTitle(
+                            id = 0L,
+                            title = "收藏的歌单",
+                            otherTitleList.size.toString(),
+                            otherTitleList.size
+                        )
+                    )
+                }
+            }
+            playlistTitleData.set(titleArrayList)
+            playlistContentData.set(contentArrayList)
+
+            onSuccess(hpImageArchive)
+        })
+    }
 }

@@ -5,6 +5,7 @@ import com.lsn.comm.core.net.flowTranData
 import com.lsn.lib.ui.widget.banner.widget.banner.BannerItem
 import com.lsn.module.music.entity.HomeSimpleItemData
 import com.lsn.module.music.entity.MusicPlaylistCurtRoot
+import com.lsn.module.music.entity.Playlist
 import com.lsn.module.music.entity.TracksCurt
 import com.lsn.module.music.net.client.MusicClient
 import com.lsn.module.music.repository.net.i.IMusicRepository
@@ -109,15 +110,49 @@ class MusicRepositoryImpl @Inject constructor(var musicClient: MusicClient) :
         return flowTranData(tag, data)
     }
 
-//    override suspend fun getUserPlaylist(
-//        tag: String,
-//        userId: String,
-//        limit: Int,
-//        offset: Int
-//    ): Flow<ResponseEntity> {
-//       return musicClient.getUserPlaylist().playlist
-//
-//    }
+    override suspend fun getUserPlaylist(
+        tag: String,
+        userId: Long,
+        limit: Int,
+        offset: Int
+    ): Flow<ResponseEntity> {
+        val playlists = musicClient.getUserPlaylist(userId).playlist
+
+        val data = ArrayList<Playlist>()
+        playlists.forEach {
+
+            var type: Int = 0
+            if (it.creator.authenticationTypes == 2048) {
+                type = 2
+            } else {
+                if (it.userId == userId) {
+                    // 自己的歌单
+                    type = 0
+                } else {
+                    // 添加别人的歌单
+                    type = 1
+                }
+            }
+
+            val playlist = Playlist(
+                id = it.id,
+                name = it.name,
+                desc = it.description,
+                picUrl = it.coverImgUrl,
+                ownerId = it.creator.userId,
+                ownerName = it.creator.nickname,
+                trackCount = it.trackCount,
+                playCount = it.playCount,
+                type = type
+
+
+            )
+
+            println()
+            data.add(playlist)
+        }
+        return flowTranData(tag, data)
+    }
 
     override suspend fun getPlaylistDetail(tag: String, id: Long): Flow<ResponseEntity> {
 

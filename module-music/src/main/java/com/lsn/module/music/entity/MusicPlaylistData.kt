@@ -16,7 +16,7 @@ data class MusicPlaylistRoot(
 data class MusicPlaylist(
     val adType: Int,
     val algTags: String,
-    val backgroundCoverId: Int,
+    val backgroundCoverId: Long,
     val backgroundCoverUrl: String,
     val bannedTrackIds: String,
     val cloudTrackCount: Long,
@@ -45,7 +45,7 @@ data class MusicPlaylist(
     val relateResType: String,
     val remixVideo: String,
     val score: String,
-    val shareCount: Int,
+    val shareCount: Long,
     val sharedUsers: String,
     val specialType: Int,
     val status: Int,
@@ -53,9 +53,9 @@ data class MusicPlaylist(
     val subscribedCount: Long,
     val subscribers: List<Subscribers>,
     val tags: List<String>,
-    val titleImage: Int,
+    val titleImage: Long,
     val titleImageUrl: String,
-    val trackCount: Int,
+    val trackCount: Long,
     val trackIds: List<TrackIds>,
     val trackNumberUpdateTime: Long,
     val trackUpdateTime: Long,
@@ -64,7 +64,7 @@ data class MusicPlaylist(
     val updateTime: Long,
     val userId: Long,
     val videoIds: String,
-    val videos: String
+    val videos: String,
 )
 
 data class Creator(
@@ -96,7 +96,7 @@ data class Creator(
     val province: Int,
     val remarkName: String,
     val signature: String,
-    val userId: Int,
+    val userId: Long,
     val userType: Int,
     val vipType: Int
 )
@@ -131,7 +131,7 @@ data class Subscribers(
     val province: Int,
     val remarkName: Any,
     val signature: String,
-    val userId: Int,
+    val userId: Long,
     val userType: Int,
     val vipType: Int
 )

@@ -45,7 +45,6 @@ abstract class BaseCoreFragment<VM : BaseNetViewModel, DB : ViewDataBinding>(@La
 
     private fun onSuccessObs() {
         viewModel.success.observe(this) {
-            println(it.api)
             onSuccess(it)
         }
     }

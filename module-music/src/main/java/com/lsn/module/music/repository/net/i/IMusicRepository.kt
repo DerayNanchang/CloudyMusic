@@ -29,12 +29,12 @@ interface IMusicRepository {
     suspend fun getArtists(tag: String): Flow<ResponseEntity>
 
 
-/*    suspend fun getUserPlaylist(
+    suspend fun getUserPlaylist(
         tag: String,
-        userId: String,
+        userId: Long,
         limit: Int,
         offset: Int
-    ): Flow<ResponseEntity>*/
+    ): Flow<ResponseEntity>
 
 
     suspend fun getPlaylistDetail(tag:String,id:Long): Flow<ResponseEntity>
