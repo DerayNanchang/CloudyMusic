@@ -51,10 +51,10 @@ abstract class BaseBindAdapter<DATA : Any, VB : ViewDataBinding>(@LayoutRes var 
     protected open fun SparseArray<Any>.bindingParams() {}
 
     override fun onBindViewHolder(holder: BaseBindViewHolder<VB>, position: Int) {
+        if (isLoadingScrollAlpha()) {
+            addAnimate(holder, holder.layoutPosition)
+        }
         holder.itemView.setOnClickListener {
-            if (isLoadingScrollAlpha()) {
-                addAnimate(holder, holder.layoutPosition)
-            }
             itemClick?.onItemClick(position, dataList[position])
         }
 
@@ -80,7 +80,7 @@ abstract class BaseBindAdapter<DATA : Any, VB : ViewDataBinding>(@LayoutRes var 
     var itemClick: OnItemClickListener? = null
 
     interface OnItemClickListener {
-        fun onItemClick(pposition: Int, data: Any)
+        fun onItemClick(position: Int, data: Any)
     }
 
 
@@ -98,7 +98,9 @@ abstract class BaseBindAdapter<DATA : Any, VB : ViewDataBinding>(@LayoutRes var 
         if (mLastPosition < position) {
             holder.itemView.alpha = 0f
             holder.itemView.animate().alpha(1f).start()
+//            holder.itemView.animate().scaleX(1.1f).scaleY(1.1f) .start()
             mLastPosition = position
+
         }
     }
 }

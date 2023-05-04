@@ -6,6 +6,7 @@ import com.lsn.module.music.entity.Playlist
 import com.lsn.module.music.entity.PlaylistTitle
 import com.lsn.module.music.repository.net.i.IMusicRepository
 import com.lsn.module.provider.comm.api.ApiConstants
+import com.lsn.module.provider.comm.api.ApiConstants.Music.Companion.HITOKOTO_ENCODE
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.first
 import java.util.stream.Collectors
@@ -28,6 +29,15 @@ class MeReadyViewModel @Inject constructor(
 
     var playlistContentData: ObservableField<ArrayList<ArrayList<Playlist>>> =
         ObservableField<ArrayList<ArrayList<Playlist>>>()
+
+
+    fun getHitokotoEncode() {
+        request({
+            val responseEntity =
+                iMusicRepository.getHitokotoEncode(ApiConstants.Music.HITOKOTO_ENCODE).first()
+            onSuccess(responseEntity)
+        }, isShowDialog = false)
+    }
 
     fun getPlaylistDetail(uid: Long) {
 

@@ -1,9 +1,12 @@
 package com.lsn.module.music.ui.viewmodel
 
+import com.lsn.comm.core.net.ResponseEntity
+import com.lsn.comm.core.net.flowTranData
 import com.lsn.comm.core.viewmodel.BaseCoreViewModel
 import com.lsn.module.music.repository.net.i.IMusicRepository
 import com.lsn.module.provider.comm.api.ApiConstants
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import javax.inject.Inject
 import kotlin.random.Random

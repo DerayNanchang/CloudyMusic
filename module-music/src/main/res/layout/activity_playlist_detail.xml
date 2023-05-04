@@ -63,18 +63,44 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
+
                     <ImageView
                         android:id="@+id/ivCover"
-                        xUrl="@{vm.playlistCurtData.coverImgUrl}"
+                        xRUrl="@{vm.playlistCurtData.coverImgUrl}"
                         android:layout_width="120dp"
                         android:layout_height="120dp"
                         android:layout_marginStart="15dp"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/ic_svg_home_song_list"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:ignore="ContentDescription" />
+
+                    <View
+                        android:id="@+id/vCoverGB"
+                        android:layout_width="120dp"
+                        android:layout_height="15dp"
+                        android:alpha="0.2"
+                        android:background="@color/black"
+                        app:layout_constraintEnd_toEndOf="@id/ivCover"
+                        app:layout_constraintStart_toStartOf="@id/ivCover"
+                        app:layout_constraintTop_toTopOf="@id/ivCover" />
+
+
+                    <TextView
+                        android:id="@+id/tvPlayCount"
+                        drawable_radiusLT="@{8}"
+                        drawable_radiusRT="@{8}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="5dp"
+                        android:text='@{vm.playlistCurtData.playCountStr}'
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp12"
+                        app:layout_constraintBottom_toBottomOf="@id/vCoverGB"
+                        app:layout_constraintEnd_toEndOf="@id/vCoverGB"
+                        app:layout_constraintTop_toTopOf="@id/vCoverGB" />
+
 
                     <TextView
                         android:id="@+id/tvName"
@@ -96,15 +122,13 @@
                         app:layout_constraintStart_toEndOf="@+id/ivCover"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
+                    <com.lsn.lib.ui.widget.textview.ReadMoreTextView
                         android:id="@+id/tvDescription"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginEnd="16dp"
                         android:layout_marginBottom="24dp"
-                        android:lines="2"
-                        android:maxLines="2"
                         android:text='@{textUtils.isEmpty(vm.playlistCurtData.desc)? "":vm.playlistCurtData.desc }'
                         android:textColor="@color/white"
                         android:textIsSelectable="true"
@@ -113,7 +137,11 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toEndOf="@+id/ivCover"
-                        app:layout_constraintTop_toBottomOf="@+id/tvName" />
+                        app:layout_constraintTop_toBottomOf="@+id/tvName"
+                        app:rmtv_showTrimExpandedText="false"
+                        app:rmtv_trimLength="60"
+                        app:rmtv_trimLines="2"
+                        app:rmtv_trimMode="length" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -195,7 +223,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/rlToolbarRoot"
             android:layout_width="match_parent"
-            android:layout_height="75dp"
+            android:layout_height="90dp"
             android:background="@color/transparent"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
@@ -219,7 +247,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="55dp"
                 android:background="@color/transparent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/vStatusView">

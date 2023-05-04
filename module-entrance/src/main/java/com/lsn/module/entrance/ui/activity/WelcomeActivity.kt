@@ -62,7 +62,7 @@ class WelcomeActivity :
         super.onSuccess(it)
 
         when (it.api) {
-            ApiConstants.Entrance.HITOKOTO_ENCODE -> {
+            ApiConstants.Music.HITOKOTO_ENCODE -> {
                 /*val hitokotoEncodeEntity = it.data as HitokotoEncodeEntity
                 val tips = hitokotoEncodeEntity.hitokoto
                 binding.tvType.run {

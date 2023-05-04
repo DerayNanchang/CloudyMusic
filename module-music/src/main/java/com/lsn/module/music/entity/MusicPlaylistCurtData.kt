@@ -11,6 +11,7 @@ data class MusicPlaylistCurtRoot(
     val title: String,
     val desc: String? = "",
     val playSize: Long,
+    val playCountStr:String,
     val coverImgUrl: String,
     val userId: Long, //366231393
     val createTime: Long,

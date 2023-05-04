@@ -19,7 +19,6 @@
 
         <ImageView
             android:id="@+id/ivPGV"
-            xRes="@{@drawable/image_place_holder}"
             xUrl="@{vm.archiveImagesEntity.url}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

@@ -8,6 +8,8 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.lsn.comm.core.exts.comm.startActivity
 import com.lsn.comm.core.net.ResponseEntity
 import com.lsn.comm.core.ui.fragment.BaseCoreFragment
+import com.lsn.lib.base.PARA
+import com.lsn.lib.base.ui.adapter.BaseBindAdapter
 import com.lsn.lib.ui.widget.banner.widget.banner.BannerItem
 import com.lsn.module.music.R
 import com.lsn.module.music.adapter.MusicHomeSimpleItemAdapter
@@ -91,6 +93,13 @@ class MusicHomeFragment :
             startActivity<MeReadyActivity>()
         }
 
+
+        personalizedAdapter?.setOnItemClickListener(object :BaseBindAdapter.OnItemClickListener{
+            override fun onItemClick(position: Int, data: Any) {
+                val musicPersonalized = data as MusicPersonalized
+                startActivity<PlaylistDetailActivity>(PARA.LONG_ID to musicPersonalized.id)
+            }
+        })
 
         binding.srlView.setOnRefreshListener {
             request()

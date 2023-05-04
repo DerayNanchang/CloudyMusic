@@ -6,6 +6,7 @@ import com.lsn.lib.net.core.ResponseModel
 import com.lsn.lib.net.core.cache.CacheMode
 import com.lsn.module.music.entity.*
 import com.lsn.module.music.net.service.IMusicService
+import com.lsn.module.provider.comm.api.ApiConstants
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Inject
@@ -21,6 +22,18 @@ class MusicClient @Inject constructor(
     var retrofit: HttpClient,
 ) {
 
+    suspend fun getHitokotoEncode(): HitokotoEncodeEntity {
+        val linkUrl = retrofit.getLinkUrl(ApiConstants.OrderBaseApis.HITOKOTO)
+        retrofit.setCacheModel(CacheMode.READ_CACHE_FAILED_REQUEST_NETWORK)
+        retrofit.setCacheTime(HttpClient.DAYS_30)
+        val build = retrofit.getBuildRetrofit()
+            .client(retrofit.getOkHttpClient(ResponseModel.OTHER))
+            .baseUrl(linkUrl)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        return build.create(IMusicService::class.java)
+            .getHitokotoEncode()
+    }
 
     suspend fun getBanner(): MusicBannerRoot {
         return getNeteaseNetConfig().create(IMusicService::class.java)
@@ -75,7 +88,7 @@ class MusicClient @Inject constructor(
 
     private fun getNeteaseNetConfig(): Retrofit {
         val linkUrl = retrofit.getLinkUrl()
-        retrofit.setCacheModel(CacheMode.REQUEST_NETWORK_FAILED_READ_CACHE)
+        retrofit.setCacheModel(CacheMode.READ_CACHE_FAILED_REQUEST_NETWORK)
         retrofit.setCacheTime(HttpClient.DAYS_30)
         val build = retrofit.getBuildRetrofit()
             .client(retrofit.getOkHttpClient(ResponseModel.NETEASECLOUD))

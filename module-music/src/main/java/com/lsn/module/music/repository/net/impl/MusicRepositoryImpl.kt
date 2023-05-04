@@ -37,6 +37,10 @@ class MusicRepositoryImpl @Inject constructor(var musicClient: MusicClient) :
         return flowTranData(tag, bannerList)
     }
 
+    override suspend fun getHitokotoEncode(tag: String): Flow<ResponseEntity> {
+        return flowTranData(tag, musicClient.getHitokotoEncode())
+    }
+
     override suspend fun getPersonalized(tag: String, limit: Int): Flow<ResponseEntity> {
         val personalized = musicClient.getPersonalized(limit).result
         personalized?.forEach {
@@ -191,11 +195,22 @@ class MusicRepositoryImpl @Inject constructor(var musicClient: MusicClient) :
         }
 
 
+        var value = ""
+        if (playlist.playCount in 10000L..100000000L) {
+            value = (playlist.playCount / 10000).toInt().toString() + "万"
+        } else if (playlist.playCount > 100000000L) {
+            value = (playlist.playCount / 100000000L).toInt().toString() + "亿"
+        } else {
+            value = playlist.playCount.toString()
+        }
+        value = "▷ $value"
+
         val musicPlaylistCurtRoot = MusicPlaylistCurtRoot(
             id = playlist.id,
             title = playlist.name,
             desc = playlist.description,
             playSize = playlist.playCount,
+            playCountStr = value,
             coverImgUrl = playlist.coverImgUrl,
             userId = playlist.userId, //366231393
             createTime = playlist.createTime,

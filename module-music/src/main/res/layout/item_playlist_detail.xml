@@ -29,9 +29,9 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.lsn.lib.ui.widget.imageview.RadiusImageView
+        <ImageView
             android:id="@+id/ivCover"
-            xUrl="@{item.picUrl}"
+            xRUrl="@{item.picUrl}"
             android:layout_width="50dp"
             android:layout_height="50dp"
             app:layout_constraintBottom_toBottomOf="parent"

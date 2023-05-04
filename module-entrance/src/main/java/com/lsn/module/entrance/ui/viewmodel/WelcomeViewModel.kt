@@ -26,15 +26,6 @@ class WelcomeViewModel @Inject constructor(
         ObservableField<HPImageArchiveImagesEntity?>()
 
 
-    fun getHitokotoEncode() {
-        request({
-            val responseEntity =
-                iEntrance.getHitokotoEncode(ApiConstants.Entrance.HITOKOTO_ENCODE).first()
-            onSuccess(responseEntity)
-        }, isShowDialog = false)
-    }
-
-
     fun getHPImageArchive() {
         var idx = Random.nextInt(0, 4)
         request({

@@ -20,7 +20,6 @@ interface ApiConstants {
     interface Entrance {
         companion object {
             // 获取每日一言的数据
-            const val HITOKOTO_ENCODE = "?encode=json"
 
             const val HP_IMAGE_ARCHIVE = "HPImageArchive.aspx"
 
@@ -31,7 +30,7 @@ interface ApiConstants {
     interface Music {
 
         companion object {
-
+            const val HITOKOTO_ENCODE = "?encode=json"
             // 获取 banner
             const val BANNER = "banner"
 

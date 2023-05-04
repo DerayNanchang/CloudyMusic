@@ -17,6 +17,8 @@ interface IMusicService {
     @GET(ApiConstants.Music.BANNER)
     suspend fun getBanner(): MusicBannerRoot
 
+    @GET(ApiConstants.Music.HITOKOTO_ENCODE)
+    suspend fun getHitokotoEncode(): HitokotoEncodeEntity
 
     // 推荐歌单 personalized
     @GET(ApiConstants.Music.PERSONALIZED)

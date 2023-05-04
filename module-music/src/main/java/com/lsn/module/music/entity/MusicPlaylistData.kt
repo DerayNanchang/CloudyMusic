@@ -15,7 +15,7 @@ data class MusicPlaylistRoot(
 
 data class MusicPlaylist(
     val adType: Int,
-    val algTags: String,
+    val algTags: Any,
     val backgroundCoverId: Long,
     val backgroundCoverUrl: String,
     val bannedTrackIds: String,
@@ -73,7 +73,7 @@ data class Creator(
     val authStatus: Int,
     val authenticationTypes: Int,
     val authority: Int,
-    val avatarDetail: String,
+    val avatarDetail: Any,
     val avatarImgId: Long,
     val avatarImgIdStr: String,
     val avatarImgId_str: String,
@@ -88,7 +88,7 @@ data class Creator(
     val detailDescription: String,
     val djStatus: Int,
     val expertTags: List<String>,
-    val experts: String,
+    val experts: Any,
     val followed: Boolean,
     val gender: Int,
     val mutual: Boolean,

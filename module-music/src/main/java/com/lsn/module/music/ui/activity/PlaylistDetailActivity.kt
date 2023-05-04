@@ -57,7 +57,6 @@ class PlaylistDetailActivity :
 
 
         mAdapter = PlaylistDetailAdapter()
-
         binding.rvPlaylist.apply {
             adapter = mAdapter
             layoutManager = LinearLayoutManager(context)
@@ -71,6 +70,7 @@ class PlaylistDetailActivity :
         if (pid != 0L) {
             viewModel.getPlaylistDetail(pid)
         }
+
     }
 
     override fun initEvent() {
@@ -90,9 +90,11 @@ class PlaylistDetailActivity :
                             binding.vFiller.setBackgroundColor(darkMutedColor)
                         }
                     } else {
-                        val colorDrawable = binding.vFiller.background as ColorDrawable
-                        if (colorDrawable.color != Color.TRANSPARENT) {
-                            binding.vFiller.setBackgroundColor(Color.TRANSPARENT)
+                        if (binding.vFiller.background != null) {
+                            val colorDrawable = binding.vFiller.background as ColorDrawable
+                            if (colorDrawable.color != Color.TRANSPARENT) {
+                                binding.vFiller.setBackgroundColor(Color.TRANSPARENT)
+                            }
                         }
                     }
                 } else {
@@ -131,13 +133,17 @@ class PlaylistDetailActivity :
 //                                getVibrantColor：获取图片中有活力的颜色
 //                                getDarkVibrantColor：获取图片中有活力的暗色
 //                                getLightVibrantColor：获取图片中有活力的亮色
-                                darkMutedColor = getDarkVibrantColor(Color.GREEN)
+                                darkMutedColor =  getDarkVibrantColor(Color.TRANSPARENT)
+                                if (darkMutedColor == Color.TRANSPARENT){
+                                    darkMutedColor = getLightMutedColor(Color.TRANSPARENT)
+                                }
                                 binding.vColor.setBackgroundColor(darkMutedColor)
                             }
                         }
                     }
                 }
 
+                println("数据大小 : " + tracksCurts.size)
                 mAdapter.setData(tracksCurts as MutableList<TracksCurt>)
             }
         }

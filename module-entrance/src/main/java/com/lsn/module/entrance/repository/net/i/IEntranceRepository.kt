@@ -13,9 +13,6 @@ interface IEntranceRepository {
 
 
     @WorkerThread
-    suspend fun getHitokotoEncode(tag:String): Flow<ResponseEntity>
-
-    @WorkerThread
     suspend fun getHPImageArchive(tag:String,format: String, idx: Int, n: Int): Flow<ResponseEntity>
 
 }

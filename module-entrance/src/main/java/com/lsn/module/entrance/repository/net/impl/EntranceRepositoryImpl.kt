@@ -17,9 +17,6 @@ import javax.inject.Inject
 class EntranceRepositoryImpl @Inject constructor(var entranceClient: EntranceClient) :
     IEntranceRepository {
 
-    override suspend fun getHitokotoEncode(tag: String): Flow<ResponseEntity> {
-        return flowTranData(tag, entranceClient.getHitokotoEncode())
-    }
 
     override suspend fun getHPImageArchive(
         tag: String, format: String, idx: Int, n: Int

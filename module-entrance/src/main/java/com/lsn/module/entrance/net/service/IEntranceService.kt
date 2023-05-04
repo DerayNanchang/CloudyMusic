@@ -14,8 +14,6 @@ import retrofit2.http.Query
 interface IEntranceService {
 
 
-    @GET(ApiConstants.Entrance.HITOKOTO_ENCODE)
-    suspend fun getHitokotoEncode(): HitokotoEncodeEntity
 
 
     @GET(ApiConstants.Entrance.HP_IMAGE_ARCHIVE)

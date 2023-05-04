@@ -18,8 +18,8 @@
         android:orientation="vertical">
 
 
-        <com.lsn.lib.ui.widget.imageview.RadiusImageProView
-            xUrl="@{item.img}"
+        <ImageView
+            xRUrl="@{item.img}"
             android:layout_width="100dp"
             android:layout_height="100dp"
             app:label_pro_backgroundColor="#C2185B"

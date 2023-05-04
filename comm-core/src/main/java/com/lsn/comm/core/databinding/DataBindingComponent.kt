@@ -94,6 +94,21 @@ object DataBindingComponent {
     }
 
 
+    @BindingAdapter("xRUrl", "xRRes", requireAll = false)
+    @JvmStatic
+    fun setImageViewR(imageView: ImageView, url: String?, res: Any?) {
+        if (!TextUtils.isEmpty(url)) {
+            CoilUtil.loadRounded(imageView, url) {
+                isCrossfade = true
+            }
+        } else if (res != null) {
+            CoilUtil.loadRounded(imageView, res) {
+                isCrossfade = true
+            }
+        }
+    }
+
+
     //<editor-fold desc="间距">
     @BindingAdapter("paddingStart", "paddingEnd", requireAll = false)
     @JvmStatic

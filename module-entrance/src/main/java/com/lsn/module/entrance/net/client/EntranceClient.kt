@@ -24,20 +24,6 @@ class EntranceClient @Inject constructor(
 ) {
 
 
-    suspend fun getHitokotoEncode(): HitokotoEncodeEntity {
-        val linkUrl = retrofit.getLinkUrl(ApiConstants.OrderBaseApis.HITOKOTO)
-        retrofit.setCacheModel(CacheMode.REQUEST_NETWORK_FAILED_READ_CACHE)
-        retrofit.setCacheTime(HttpClient.DAYS_30)
-        val build = retrofit.getBuildRetrofit()
-            .client(retrofit.getOkHttpClient(ResponseModel.OTHER))
-            .baseUrl(linkUrl)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-        return build.create(IEntranceService::class.java)
-            .getHitokotoEncode()
-    }
-
-
     suspend fun getHPImageArchive(format: String, idx: Int, n: Int): HPImageArchiveEntity {
         val linkUrl = retrofit.getLinkUrl(ApiConstants.OrderBaseApis.BING)
         retrofit.setCacheModel(CacheMode.REQUEST_NETWORK_FAILED_READ_CACHE)

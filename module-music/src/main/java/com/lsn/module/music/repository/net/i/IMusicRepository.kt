@@ -1,5 +1,6 @@
 package com.lsn.module.music.repository.net.i
 
+import androidx.annotation.WorkerThread
 import com.lsn.comm.core.net.ResponseEntity
 import com.lsn.module.music.entity.*
 import com.lsn.module.music.net.service.IMusicService
@@ -13,6 +14,9 @@ import retrofit2.Retrofit
  */
 interface IMusicRepository {
 
+
+    @WorkerThread
+    suspend fun getHitokotoEncode(tag: String): Flow<ResponseEntity>
     suspend fun getBanner(tag: String): Flow<ResponseEntity>
 
 
