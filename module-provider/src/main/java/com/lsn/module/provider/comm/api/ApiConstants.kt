@@ -82,6 +82,14 @@ interface ApiConstants {
 
 
             /**
+             *  说明 : 调用此接口,可获取所有榜单内容摘要
+                接口地址 : /toplist/detail
+                调用例子 : /toplist/detail
+             */
+            const val TOPLIST_DETAIL = "toplist/detail"
+
+
+            /**
              * 说明 : 登录后调用此接口 , 传入用户 id, 可以获取用户歌单
              * 必选参数 : uid : 用户 id
              * 可选参数 :

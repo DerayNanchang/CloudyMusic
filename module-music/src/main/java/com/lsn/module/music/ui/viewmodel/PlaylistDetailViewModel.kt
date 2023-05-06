@@ -37,4 +37,11 @@ class PlaylistDetailViewModel@Inject constructor(
             onSuccess(hpImageArchive)
         })
     }
+
+
+    fun getTest(){
+        request({
+            iMusicRepository.getToplistDetail(ApiConstants.Music.TOPLIST_DETAIL).first()
+        })
+    }
 }

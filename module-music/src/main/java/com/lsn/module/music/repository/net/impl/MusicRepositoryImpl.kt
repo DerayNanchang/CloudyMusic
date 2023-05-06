@@ -3,12 +3,28 @@ package com.lsn.module.music.repository.net.impl
 import com.lsn.comm.core.net.ResponseEntity
 import com.lsn.comm.core.net.flowTranData
 import com.lsn.lib.ui.widget.banner.widget.banner.BannerItem
-import com.lsn.module.music.entity.HomeSimpleItemData
-import com.lsn.module.music.entity.MusicPlaylistCurtRoot
-import com.lsn.module.music.entity.Playlist
-import com.lsn.module.music.entity.TracksCurt
+import com.lsn.module.music.MusicConstants
+import com.lsn.module.music.MusicConstants.Companion.TOP_BALLAD
+import com.lsn.module.music.MusicConstants.Companion.TOP_CL_ACG
+import com.lsn.module.music.MusicConstants.Companion.TOP_CL_CA
+import com.lsn.module.music.MusicConstants.Companion.TOP_CL_CLASSICAL
+import com.lsn.module.music.MusicConstants.Companion.TOP_CL_DANYIN
+import com.lsn.module.music.MusicConstants.Companion.TOP_CL_KR
+import com.lsn.module.music.MusicConstants.Companion.TOP_CL_RAP
+import com.lsn.module.music.MusicConstants.Companion.TOP_EQ_HOT
+import com.lsn.module.music.MusicConstants.Companion.TOP_EQ_NEW
+import com.lsn.module.music.MusicConstants.Companion.TOP_HOT
+import com.lsn.module.music.MusicConstants.Companion.TOP_JP_ORICON
+import com.lsn.module.music.MusicConstants.Companion.TOP_JP_TOP
+import com.lsn.module.music.MusicConstants.Companion.TOP_KR_TOP
+import com.lsn.module.music.MusicConstants.Companion.TOP_NET_TOP
+import com.lsn.module.music.MusicConstants.Companion.TOP_NEW
+import com.lsn.module.music.MusicConstants.Companion.TOP_ORIGINAL
+import com.lsn.module.music.MusicConstants.Companion.TOP_SURGE
+import com.lsn.module.music.entity.*
 import com.lsn.module.music.net.client.MusicClient
 import com.lsn.module.music.repository.net.i.IMusicRepository
+import com.lsn.module.music.ui.activity.TopActivity
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
@@ -156,6 +172,67 @@ class MusicRepositoryImpl @Inject constructor(var musicClient: MusicClient) :
             data.add(playlist)
         }
         return flowTranData(tag, data)
+    }
+
+    override suspend fun getToplistDetail(tag: String): Flow<ResponseEntity> {
+
+
+        val hotList = listOf(TOP_SURGE, TOP_NEW, TOP_ORIGINAL, TOP_HOT)
+        val netList =
+            listOf(TOP_CL_RAP, TOP_CL_CLASSICAL, TOP_CL_DANYIN, TOP_CL_ACG, TOP_CL_KR, TOP_CL_CA)
+        val recommendList = listOf(
+            TOP_NET_TOP,
+            TOP_BALLAD,
+            TOP_JP_ORICON,
+            TOP_JP_TOP,
+            TOP_EQ_HOT,
+            TOP_EQ_NEW,
+            TOP_KR_TOP
+        )
+        val hotListStr = hotList.toString()
+        val netListStr = netList.toString()
+        val recommendListStr = recommendList.toString()
+        val list = musicClient.getToplistDetail().list
+        val musicTopCurtData = ArrayList<MusicTopCurtData>()
+
+        list.forEach {
+            var type = 0
+            if (hotListStr.contains(it.id.toString())) {
+                type = 0
+            } else if (netListStr.contains(it.id.toString())) {
+                type = 1
+            } else if (recommendListStr.contains(it.id.toString())) {
+                type = 2
+            }
+            if (type == 0){
+                MusicTopCurtData(
+                    id = it.id,
+                    name = it.name,
+                    desc = it.description,
+                    coverImgUrl = it.coverImgUrl,
+                    updateFrequency = it.updateFrequency,
+                    trackCount = it.trackCount,
+                    playCount = it.playCount,
+                    tracks = it.tracks,
+                    type = type,
+                    viewType = TopActivity.VIEW_TYPE_CONTENT_HOT
+                )
+            }else{
+                MusicTopCurtData(
+                    id = it.id,
+                    name = it.name,
+                    desc = it.description,
+                    coverImgUrl = it.coverImgUrl,
+                    updateFrequency = it.updateFrequency,
+                    trackCount = it.trackCount,
+                    playCount = it.playCount,
+                    tracks = it.tracks,
+                    type = type,
+                    viewType = TopActivity.VIEW_TYPE_CONTENT_STANDARD
+                )
+            }
+        }
+        return flowTranData(tag, musicTopCurtData)
     }
 
     override suspend fun getPlaylistDetail(tag: String, id: Long): Flow<ResponseEntity> {

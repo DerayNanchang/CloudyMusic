@@ -71,6 +71,7 @@ class PlaylistDetailActivity :
             viewModel.getPlaylistDetail(pid)
         }
 
+        viewModel.getTest()
     }
 
     override fun initEvent() {

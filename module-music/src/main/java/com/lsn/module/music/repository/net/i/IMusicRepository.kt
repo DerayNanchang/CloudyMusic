@@ -4,8 +4,10 @@ import androidx.annotation.WorkerThread
 import com.lsn.comm.core.net.ResponseEntity
 import com.lsn.module.music.entity.*
 import com.lsn.module.music.net.service.IMusicService
+import com.lsn.module.provider.comm.api.ApiConstants
 import kotlinx.coroutines.flow.Flow
 import retrofit2.Retrofit
+import retrofit2.http.GET
 
 /**
  * @Author : lsn
@@ -41,6 +43,9 @@ interface IMusicRepository {
     ): Flow<ResponseEntity>
 
 
-    suspend fun getPlaylistDetail(tag:String,id:Long): Flow<ResponseEntity>
+    suspend fun getToplistDetail(tag:String): Flow<ResponseEntity>
+
+
+    suspend fun getPlaylistDetail(tag: String, id: Long): Flow<ResponseEntity>
 
 }

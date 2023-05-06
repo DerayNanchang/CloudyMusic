@@ -80,6 +80,12 @@ class MusicClient @Inject constructor(
             .getUserPlaylist(uid)
     }
 
+
+    suspend fun getToplistDetail(): MusicTopRoot {
+        return getNeteaseNetConfig().create(IMusicService::class.java)
+            .getToplistDetail()
+    }
+
     suspend fun getPlaylistDetail(id:Long): MusicPlaylistDetailRoot {
         return getNeteaseNetConfig().create(IMusicService::class.java)
             .getPlaylistDetail(id)
