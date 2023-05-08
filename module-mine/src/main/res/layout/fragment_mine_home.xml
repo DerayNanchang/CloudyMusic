@@ -1,13 +1,195 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@color/white">
+
+                <ImageView
+                    android:id="@+id/ivAvatar"
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
+                    android:layout_marginStart="15dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <TextView
+                    android:id="@+id/tvNickName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="z"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp16"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@id/tvDesc"
+                    app:layout_constraintStart_toEndOf="@id/ivAvatar" />
+
+
+                <TextView
+                    android:id="@+id/tvDesc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="如果会再相遇"
+                    android:textColor="@color/c666666"
+                    android:textSize="@dimen/sp12"
+                    app:layout_constraintBottom_toBottomOf="@id/ivAvatar"
+                    app:layout_constraintStart_toStartOf="@id/tvNickName" />
+
+
+                <ImageView
+                    android:id="@+id/ivEnd"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginEnd="15dp"
+                    android:src="@drawable/ic_svg_end"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <ImageView
+                    android:id="@+id/ivQR"
+                    android:layout_width="23dp"
+                    android:layout_height="23dp"
+                    android:layout_marginEnd="10dp"
+                    android:src="@mipmap/ic_demo_qr"
+                    app:layout_constraintEnd_toStartOf="@id/ivEnd"
+                    app:layout_constraintTop_toTopOf="@id/ivEnd" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <com.lsn.lib.ui.widget.textview.supertextview.SuperTextView
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginTop="10dp"
+                android:paddingStart="10dp"
+                app:sCenterViewGravity="left_center"
+                app:sLeftTextColor="@color/black"
+                app:sLeftTextString="音乐设置"
+                app:sLeftViewGravity="left_center"
+                app:sRightIconRes="@drawable/ic_svg_end"
+                app:sRightViewMarginRight="10dp" />
+
+            <com.lsn.lib.ui.widget.textview.supertextview.SuperTextView
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:paddingStart="10dp"
+                app:sCenterViewGravity="left_center"
+                app:sLeftTextColor="@color/black"
+                app:sLeftTextString="播放设置"
+                app:sLeftViewGravity="left_center"
+                app:sRightIconRes="@drawable/ic_svg_end"
+                app:sRightViewMarginRight="10dp" />
+
+
+            <com.lsn.lib.ui.widget.textview.supertextview.SuperTextView
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginTop="10dp"
+                android:paddingStart="10dp"
+                app:sCenterViewGravity="left_center"
+                app:sLeftTextColor="@color/black"
+                app:sLeftTextString="皮肤"
+                app:sLeftViewGravity="left_center"
+                app:sRightIconRes="@drawable/ic_svg_end"
+                app:sRightViewMarginRight="10dp" />
+
+            <com.lsn.lib.ui.widget.textview.supertextview.SuperTextView
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:paddingStart="10dp"
+                app:sCenterViewGravity="left_center"
+                app:sLeftTextColor="@color/black"
+                app:sLeftTextString="字体"
+                app:sLeftViewGravity="left_center"
+                app:sRightIconRes="@drawable/ic_svg_end"
+                app:sRightViewMarginRight="10dp" />
+
+            <com.lsn.lib.ui.widget.textview.supertextview.SuperTextView
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:paddingStart="10dp"
+                app:sCenterViewGravity="left_center"
+                app:sLeftTextColor="@color/black"
+                app:sLeftTextString="缓存"
+                app:sLeftViewGravity="left_center"
+                app:sRightIconRes="@drawable/ic_svg_end"
+                app:sRightViewMarginRight="10dp" />
+
+            <com.lsn.lib.ui.widget.textview.supertextview.SuperTextView
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginTop="10dp"
+                android:paddingStart="10dp"
+                app:sCenterViewGravity="left_center"
+                app:sLeftTextColor="@color/black"
+                app:sLeftTextString="意见反馈"
+                app:sLeftViewGravity="left_center"
+                app:sRightIconRes="@drawable/ic_svg_end"
+                app:sRightViewMarginRight="10dp" />
+
+            <com.lsn.lib.ui.widget.textview.supertextview.SuperTextView
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:paddingStart="10dp"
+                app:sCenterViewGravity="left_center"
+                app:sLeftTextColor="@color/black"
+                app:sLeftTextString="关于"
+                app:sLeftViewGravity="left_center"
+                app:sRightIconRes="@drawable/ic_svg_end"
+                app:sRightViewMarginRight="10dp" />
+
+
+            <com.lsn.lib.ui.widget.textview.supertextview.SuperTextView
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginTop="10dp"
+                android:paddingStart="10dp"
+                app:sCenterViewGravity="left_center"
+                app:sLeftTextColor="@color/black"
+                app:sLeftTextString="切换账号"
+                app:sLeftViewGravity="left_center"
+                app:sRightIconRes="@drawable/ic_svg_end"
+                app:sRightViewMarginRight="10dp" />
+
+            <com.lsn.lib.ui.widget.textview.supertextview.SuperTextView
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:paddingStart="10dp"
+                app:sCenterViewGravity="left_center"
+                app:sLeftTextColor="@color/black"
+                app:sLeftTextString="退出"
+                app:sLeftViewGravity="left_center"
+                app:sRightIconRes="@drawable/ic_svg_end"
+                app:sRightViewMarginRight="10dp" />
+
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
 </layout>

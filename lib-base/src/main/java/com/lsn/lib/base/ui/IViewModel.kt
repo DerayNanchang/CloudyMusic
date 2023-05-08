@@ -86,6 +86,9 @@ interface IViewModel<VM : BaseViewModel> {
      */
     fun setEndDesc(desc: String)
 
+
+    fun setBaseTitle(title: String)
+
     /**
      *  获取 toolbar 右边图标布局
      */

@@ -21,4 +21,17 @@ interface IEntranceService {
         @Query("format") format: String, @Query("idx") idx: Int, @Query("n") n: Int
     ): HPImageArchiveEntity
 
+    @GET(ApiConstants.Entrance.LOGIN_QR_KEY)
+    suspend fun getLoginQrKey(): HPImageArchiveEntity
+
+    @GET(ApiConstants.Entrance.LOGIN_QR_CREATE)
+    suspend fun getLoginQrCreate(
+        @Query("format") format: String, @Query("idx") idx: Int, @Query("n") n: Int
+    ): HPImageArchiveEntity
+
+    @GET(ApiConstants.Entrance.LOGIN_QR_CHECK)
+    suspend fun getLoginQrCheck(
+        @Query("format") format: String, @Query("idx") idx: Int, @Query("n") n: Int
+    ): HPImageArchiveEntity
+
 }

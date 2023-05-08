@@ -10,7 +10,7 @@ data class MusicPersonalizedRoot(
     val hasTaste: Boolean,
     val code: Int,
     val category: Int,
-    val result: List<MusicPersonalized>
+    val result: List<MusicPersonalized>?
 )
 
 

@@ -24,7 +24,7 @@ import com.lsn.module.provider.video.provide.VideoProvider
 import dagger.hilt.android.AndroidEntryPoint
 
 @Route(path = Constants.RouterPath.MAIN.INDEX)
-@Toolbar(title = "Welcome", showBack = false)
+@Toolbar(title = "我的", showBack = false)
 @AndroidEntryPoint
 class MainActivity : BaseCoreActivity<MainViewModel, ActivityMainBinding>(R.layout.activity_main),
     BottomNavigationView.OnNavigationItemSelectedListener {
@@ -184,20 +184,24 @@ class MainActivity : BaseCoreActivity<MainViewModel, ActivityMainBinding>(R.layo
             R.id.em_main_nav_music -> {
                 switchToMusic()
                 showNavigation = true
+                setBaseTitle("音乐")
             }
             R.id.em_main_nav_video -> {
                 switchToVideo()
                 showNavigation = true
                 invalidateOptionsMenu()
+                setBaseTitle("视频")
             }
 
             R.id.em_main_nav_graphic -> {
                 switchToGraphic()
                 showNavigation = true
+                setBaseTitle("图文")
             }
             R.id.em_main_nav_me -> {
                 switchToMine()
                 showNavigation = true
+                setBaseTitle("我的")
             }
         }
         invalidateOptionsMenu()

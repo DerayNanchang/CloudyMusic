@@ -1,6 +1,7 @@
 package com.lsn.comm.core.constant
 
 import android.app.Application
+import androidx.databinding.library.baseAdapters.BR
 import com.lsn.comm.core.BuildConfig
 import com.lsn.lib.base.FileHelp
 import com.lsn.lib.net.core.NetConfigEntity
@@ -8,6 +9,12 @@ import com.lsn.lib.net.core.setOkCode
 import com.lsn.lib.ui.XUI
 import com.lsn.lib.ui.widget.rv.PageRefreshLayout
 import com.lsn.lib.ui.widget.rv.state.StateConfig
+import com.lsn.lib.ui.widget.rv.state.StateConfig.emptyLayout
+import com.lsn.lib.ui.widget.rv.state.StateConfig.errorLayout
+import com.lsn.lib.ui.widget.rv.state.StateConfig.loadingLayout
+import com.lsn.lib.ui.widget.rv.state.StateConfig.onLoading
+import com.lsn.lib.ui.widget.rv.state.StateConfig.setRetryIds
+import com.lsn.lib.ui.widget.rv.utils.BRV
 import com.lsn.lib.utils.util.DeviceUtils
 import com.lsn.lib.utils.util.Utils
 import com.scwang.smart.refresh.footer.ClassicsFooter
@@ -52,10 +59,12 @@ object CoreConstant {
      */
     private fun initBRV() {
 
+
         // 禁止错误缺省页启用下拉刷新
         PageRefreshLayout.startIndex = 0
         PageRefreshLayout.refreshEnableWhenError = false
-
+        // 初始化BindingAdapter的默认绑定ID
+        BRV.modelId = BR.item
         /**
          *  推荐在Application中进行全局配置缺省页, 当然同样每个页面可以单独指定缺省页.
          *  具体查看 https://github.com/liangjingkanji/StateLayout

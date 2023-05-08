@@ -19,6 +19,7 @@ import com.lsn.module.music.entity.HomeSimpleItemData
 import com.lsn.module.music.entity.MusicPersonalized
 import com.lsn.module.music.ui.activity.MeReadyActivity
 import com.lsn.module.music.ui.activity.PlaylistDetailActivity
+import com.lsn.module.music.ui.activity.TopActivity
 import com.lsn.module.music.ui.viewmodel.MusicHomeViewModel
 import com.lsn.module.provider.comm.api.ApiConstants
 import com.lsn.module.provider.comm.constant.Constants
@@ -91,6 +92,10 @@ class MusicHomeFragment :
 
         binding.llMeReady.setOnClickListener {
             startActivity<MeReadyActivity>()
+        }
+
+        binding.llTop.setOnClickListener {
+            startActivity<TopActivity>()
         }
 
 

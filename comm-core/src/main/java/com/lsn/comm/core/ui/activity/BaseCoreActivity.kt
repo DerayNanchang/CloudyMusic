@@ -34,6 +34,7 @@ abstract class BaseCoreActivity<VM : BaseNetViewModel, DB : ViewDataBinding>(@La
     }
 
     override fun initEvent() {
+        initBaseEvent()
     }
 
     private fun onSuccessObs() {

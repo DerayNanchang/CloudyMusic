@@ -37,6 +37,7 @@ abstract class BaseVDActivity<VM : BaseViewModel, DB : ViewDataBinding>(@LayoutR
 
     lateinit var viewModel: VM
 
+    protected var toolbarRootView: View? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,9 +69,9 @@ abstract class BaseVDActivity<VM : BaseViewModel, DB : ViewDataBinding>(@LayoutR
 
         val linearLayout = LinearLayout(this)
         binding = DataBindingUtil.inflate(LayoutInflater.from(this), layoutRes, linearLayout, false)
-        linearLayout.layoutParams = ViewGroup.LayoutParams(matchParent,matchParent)
+        linearLayout.layoutParams = ViewGroup.LayoutParams(matchParent, matchParent)
         linearLayout.orientation = LinearLayout.VERTICAL
-        linearLayout.addToolbar()
+        toolbarRootView = linearLayout.addToolbar()
         linearLayout.addView(binding.root)
         setContentView(linearLayout)
         alterStatusColor()
@@ -85,12 +86,6 @@ abstract class BaseVDActivity<VM : BaseViewModel, DB : ViewDataBinding>(@LayoutR
 
 
     private fun buildContentView(): View {
-//        val viewRoot = LayoutInflater.from(this).inflate(R.layout.include_root, null, false)
-/*        if (viewRoot is ViewGroup) {
-            viewRoot.apply {
-               addToolbar()
-            }
-        }*/
         return LayoutInflater.from(this).inflate(layoutRes, null, false)
     }
 
@@ -114,36 +109,30 @@ abstract class BaseVDActivity<VM : BaseViewModel, DB : ViewDataBinding>(@LayoutR
         return true
     }
 
-    private fun initBaseEvent() {
-        if (findViewById<View?>(R.id.rlCommToolbarBack) != null && isBaseFinish()) {
-            findViewById<View>(R.id.rlCommToolbarBack).setOnClickListener {
-                getOnBackPressedDispatcher()
+    protected fun initBaseEvent() {
+        toolbarRootView?.apply {
+            if (isBaseFinish()) {
+                findViewById<View>(R.id.rlCommToolbarBack).setOnClickListener {
+                    finish()
+                }
             }
         }
     }
 
 
     override fun getTitleRootView(): LinearLayout? {
-        if (findViewById<View>(R.id.llCommTitleRoot) != null) {
-            val name = findViewById<LinearLayout>(R.id.llCommTitleRoot)
-            return name
-        } else {
-            return null
-        }
+      return  toolbarRootView?.findViewById(R.id.llCommTitleRoot)
     }
 
     override fun getSubTitleView(): TextView? {
-        if (findViewById<View>(R.id.tvCommSubToolbarName) != null) {
-            val name = findViewById<TextView>(R.id.tvCommSubToolbarName)
-            return name
-        } else {
-            return null
-        }
+      return  toolbarRootView?.findViewById(R.id.tvCommSubToolbarName)
     }
 
     override fun setToolbarBGC(color: Int) {
-        val rlToolbarRoot = findViewById<RelativeLayout>(R.id.rlToolbarRoot)
-        rlToolbarRoot.setBackgroundResource(color)
+        toolbarRootView?.apply {
+            val rlToolbarRoot = findViewById<RelativeLayout>(R.id.rlToolbarRoot)
+            rlToolbarRoot.setBackgroundResource(color)
+        }
     }
 
     override fun setToolbarBGC(color: Int, isDark: Boolean) {
@@ -154,70 +143,79 @@ abstract class BaseVDActivity<VM : BaseViewModel, DB : ViewDataBinding>(@LayoutR
     }
 
     override fun setEndIcon(resIcon: Int) {
-        val ivInfoMore = findViewById<ImageView>(R.id.ivInfoMore)
-        if (ivInfoMore != null) {
-            ivInfoMore.setImageResource(resIcon)
-            ivInfoMore.visibility = View.VISIBLE
+        toolbarRootView?.apply {
+            val ivInfoMore = findViewById<ImageView>(R.id.ivInfoMore)
+            if (ivInfoMore != null) {
+                ivInfoMore.setImageResource(resIcon)
+                ivInfoMore.visibility = View.VISIBLE
+            }
         }
     }
 
     override fun setEndIcon2(resIcon: Int) {
-        val ivInfoMore = findViewById<ImageView>(R.id.ivInfoMore2)
-        if (ivInfoMore != null) {
+        toolbarRootView?.apply {
+            val ivInfoMore = findViewById<ImageView>(R.id.ivInfoMore2)
             ivInfoMore.setImageResource(resIcon)
             ivInfoMore.visibility = View.VISIBLE
         }
     }
 
     override fun getEndView(): RelativeLayout? {
-        val findViewById = findViewById<RelativeLayout>(R.id.rlEndViewRoot)
-        return findViewById
+        return toolbarRootView?.findViewById(R.id.rlEndViewRoot)
     }
 
     override fun getEndView2(): RelativeLayout? {
-        val findViewById = findViewById<RelativeLayout>(R.id.rlEndViewRoot2)
-        return findViewById
+        return toolbarRootView?.findViewById(R.id.rlEndViewRoot2)
     }
 
     override fun setEndDesc(desc: String) {
-        val tvInfoMore = findViewById<TextView>(R.id.tvInfoMore)
-        if (tvInfoMore != null) {
+        toolbarRootView?.apply {
+            val tvInfoMore = findViewById<TextView>(R.id.tvInfoMore)
             tvInfoMore.text = desc
             tvInfoMore.visibility = View.VISIBLE
         }
     }
 
+
+    override fun setBaseTitle(title: String) {
+        toolbarRootView?.apply {
+            val tvName = findViewById<TextView>(R.id.tvCommToolbarName)
+            tvName.text = title
+            tvName.visibility = View.VISIBLE
+        }
+    }
+
     override fun getTVEndDesc(): TextView? {
-        val tvInfoMore = findViewById<TextView>(R.id.tvInfoMore)
-        return tvInfoMore
+        return toolbarRootView?.findViewById(R.id.tvInfoMore)
     }
 
     override fun getBaseBackRl(): RelativeLayout? {
-        val findViewById = findViewById<RelativeLayout>(R.id.rlCommToolbarBack)
-        return findViewById
+        return toolbarRootView?.findViewById(R.id.rlCommToolbarBack)
     }
 
     override fun setShowLine(isShow: Boolean) {
         if (isShow) {
-            val vToolbarLine = findViewById<View>(R.id.vToolbarLine)
-            if (vToolbarLine != null) {
+            toolbarRootView?.apply {
+                val vToolbarLine = findViewById<View>(R.id.vToolbarLine)
                 vToolbarLine.visibility = View.VISIBLE
             }
         }
     }
 
     override fun setBackGone() {
-        val rlCommToolbarBack = findViewById<RelativeLayout>(R.id.rlCommToolbarBack)
-        if (rlCommToolbarBack != null) {
+        toolbarRootView?.apply {
+            val rlCommToolbarBack = findViewById<RelativeLayout>(R.id.rlCommToolbarBack)
             rlCommToolbarBack.visibility = View.GONE
         }
     }
 
     override fun setToolbarDark() {
-        val ivInfoBack = findViewById<ImageView>(R.id.ivInfoBack)
-        val tvCommToolbarName = findViewById<TextView>(R.id.tvCommToolbarName)
-        ivInfoBack.setImageResource(com.lsn.lib.ui.R.drawable.ic_svg_back_b)
-        tvCommToolbarName.setTextColor(resources.getColor(com.lsn.lib.ui.R.color.white))
+        toolbarRootView?.apply {
+            val ivInfoBack = findViewById<ImageView>(R.id.ivInfoBack)
+            val tvCommToolbarName = findViewById<TextView>(R.id.tvCommToolbarName)
+            ivInfoBack.setImageResource(com.lsn.lib.ui.R.drawable.ic_svg_back_b)
+            tvCommToolbarName.setTextColor(resources.getColor(com.lsn.lib.ui.R.color.white))
+        }
     }
 
 

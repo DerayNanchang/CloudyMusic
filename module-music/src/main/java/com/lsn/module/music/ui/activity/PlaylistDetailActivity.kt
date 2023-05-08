@@ -104,6 +104,11 @@ class PlaylistDetailActivity :
                 binding.vColor.alpha = i
             }
         }
+
+
+        binding.bgBack.setOnClickListener {
+            finish()
+        }
     }
 
     override fun onSuccess(it: ResponseEntity) {
@@ -143,8 +148,6 @@ class PlaylistDetailActivity :
                         }
                     }
                 }
-
-                println("数据大小 : " + tracksCurts.size)
                 mAdapter.setData(tracksCurts as MutableList<TracksCurt>)
             }
         }

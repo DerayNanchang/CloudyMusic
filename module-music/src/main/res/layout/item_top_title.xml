@@ -14,7 +14,6 @@
         android:text="曲风榜"
         android:textColor="@color/black"
         android:textSize="@dimen/sp16"
-        android:textStyle="bold">
+        android:textStyle="bold"/>
 
-    </TextView>
 </layout>

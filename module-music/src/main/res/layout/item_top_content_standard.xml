@@ -1,20 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
+        <variable
+            name="item"
+            type="com.lsn.module.music.entity.MusicTopCurtData" />
     </data>
 
-    <TextView
-        android:id="@+id/tvTopTitle"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clContent"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:gravity="center_vertical"
-        android:paddingStart="10dp"
-        android:text="曲风榜"
-        android:textColor="@color/black"
-        android:textSize="@dimen/sp16"
-        android:textStyle="bold">
+        android:layout_height="130dp">
 
-    </TextView>
+
+        <ImageView
+            android:id="@+id/ivCoverImgUrl"
+            xRUrl="@{item.coverImgUrl}"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="4dp"
+            android:text="@{item.name}"
+            android:textColor="@color/c333333"
+            android:textSize="@dimen/sp12"
+            app:layout_constraintStart_toStartOf="@id/ivCoverImgUrl"
+            app:layout_constraintTop_toBottomOf="@id/ivCoverImgUrl" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

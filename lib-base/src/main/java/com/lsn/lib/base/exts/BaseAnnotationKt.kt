@@ -59,69 +59,70 @@ private fun registerNetReceiver(context: Context): NetConnectReceiver? {
     return receiver
 }
 
-fun ViewGroup?.addToolbar() {
+fun ViewGroup?.addToolbar(): View? {
 
     val defHeight = 50f
-
+    var toolbarView: View? = null
     this?.apply {
         val toolBarClazz: Class<out Context?> = context.javaClass
         toolBarClazz.getAnnotation(Toolbar::class.java)?.let { toolbar ->
-
             if (toolbar.isAdd) {
-                val toolbarView = LayoutInflater.from(context)
+                toolbarView = LayoutInflater.from(context)
                     .inflate(R.layout.include_comm_toolbar, this, false)
+                toolbarView?.let {
+                    it.layoutParams = LinearLayout.LayoutParams(
+                        matchParent,
+                        SizeUtils.dp2px(defHeight)
+                    )
+                    addView(toolbarView)
 
-                toolbarView.layoutParams = LinearLayout.LayoutParams(
-                    matchParent,
-                    SizeUtils.dp2px(defHeight)
-                )
-                addView(toolbarView)
-
-                val tvTitle = toolbarView.findViewById<TextView>(R.id.tvCommToolbarName)
-                if (!TextUtils.isEmpty(toolbar.title)) {
-                    if (tvTitle != null) {
-                        tvTitle.text = toolbar.title
-                    }
-                }
-                val rlCommToolbarBack =
-                    toolbarView.findViewById<RelativeLayout>(R.id.rlCommToolbarBack)
-                if (toolbar.showBack) {
-                    rlCommToolbarBack.visibility = View.VISIBLE
-                } else {
-                    rlCommToolbarBack.visibility = View.GONE
-                }
-
-
-                toolbar.color.apply {
-                    when (this) {
-                        StatusColorCategory.DEFAULT_COLOR, StatusColorCategory.WHITE_COLOR -> {
-                            toolbarView.setBackgroundColor(resources.getColor(com.lsn.lib.ui.R.color.white))
-                        }
-                        StatusColorCategory.TRANSPARENT_COLOR -> {
-                            toolbarView.setBackgroundColor(resources.getColor(com.lsn.lib.ui.R.color.transparent))
-                        }
-                        StatusColorCategory.BLACK_COLOR -> {
-                            toolbarView.setBackgroundColor(resources.getColor(com.lsn.lib.ui.R.color.black))
-                        }
-                        StatusColorCategory.THEME_COLOR -> {
-                            toolbarView.setBackgroundColor(resources.getColor(com.lsn.lib.ui.R.color.colorAccent))
-                        }
-                        StatusColorCategory.FD_COLOR -> {
-                            toolbarView.setBackgroundColor(resources.getColor(com.lsn.lib.ui.R.color.fdfdfd))
-                        }
-                        StatusColorCategory.F6F5F3_COLOR -> {
-                            toolbarView.setBackgroundColor(resources.getColor(com.lsn.lib.ui.R.color.F6F5F3))
-                        }
-                        StatusColorCategory.E9E9E9_COLOR -> {
-                            toolbarView.setBackgroundColor(resources.getColor(com.lsn.lib.ui.R.color.e9e9e9))
+                    val tvTitle = it.findViewById<TextView>(R.id.tvCommToolbarName)
+                    if (!TextUtils.isEmpty(toolbar.title)) {
+                        if (tvTitle != null) {
+                            tvTitle.text = toolbar.title
                         }
                     }
+                    val rlCommToolbarBack =
+                        it.findViewById<RelativeLayout>(R.id.rlCommToolbarBack)
+                    if (toolbar.showBack) {
+                        rlCommToolbarBack.visibility = View.VISIBLE
+                    } else {
+                        rlCommToolbarBack.visibility = View.GONE
+                    }
+
+
+                    toolbar.color.apply {
+                        when (this) {
+                            StatusColorCategory.DEFAULT_COLOR, StatusColorCategory.WHITE_COLOR -> {
+                                it.setBackgroundColor(resources.getColor(com.lsn.lib.ui.R.color.white))
+                            }
+                            StatusColorCategory.TRANSPARENT_COLOR -> {
+                                it.setBackgroundColor(resources.getColor(com.lsn.lib.ui.R.color.transparent))
+                            }
+                            StatusColorCategory.BLACK_COLOR -> {
+                                it.setBackgroundColor(resources.getColor(com.lsn.lib.ui.R.color.black))
+                            }
+                            StatusColorCategory.THEME_COLOR -> {
+                                it.setBackgroundColor(resources.getColor(com.lsn.lib.ui.R.color.colorAccent))
+                            }
+                            StatusColorCategory.FD_COLOR -> {
+                                it.setBackgroundColor(resources.getColor(com.lsn.lib.ui.R.color.fdfdfd))
+                            }
+                            StatusColorCategory.F6F5F3_COLOR -> {
+                                it.setBackgroundColor(resources.getColor(com.lsn.lib.ui.R.color.F6F5F3))
+                            }
+                            StatusColorCategory.E9E9E9_COLOR -> {
+                                it.setBackgroundColor(resources.getColor(com.lsn.lib.ui.R.color.e9e9e9))
+                            }
+                        }
+                    }
+
+                    return toolbarView
                 }
-
-
             }
         }
     }
+    return null
 }
 
 

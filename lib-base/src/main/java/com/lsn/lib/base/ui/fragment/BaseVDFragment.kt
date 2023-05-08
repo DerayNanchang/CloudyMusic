@@ -140,6 +140,10 @@ abstract class BaseVDFragment<VM : BaseViewModel, DB : ViewDataBinding>(@LayoutR
         getBaseVDActivity()?.setEndDesc(desc)
     }
 
+    override fun setBaseTitle(title: String) {
+        getBaseVDActivity()?.setBaseTitle(title)
+    }
+
     override fun getTVEndDesc(): TextView? {
         return getBaseVDActivity()?.getTVEndDesc()
     }

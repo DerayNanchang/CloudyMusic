@@ -15,19 +15,18 @@ data class MusicTopRoot(
 )
 
 
-
-
 data class MusicTopCurtData(
     var id: Long,
     var name: String,
-    var desc: String,
+    var desc: String = "",
     var coverImgUrl: String,
     var updateFrequency: String,
     var trackCount: Long,
     var playCount: Long,
     var tracks: List<TopArtist>?,
+    var trackStrList: List<String>,
     var type: Int,
-    var viewType:Int,
+    var viewType: Int,
 )
 
 
@@ -46,7 +45,7 @@ data class MusicTopData(
     val coverText: Any,
     val createTime: Long,
     val creator: Any,
-    val description: String,
+    val description: String?,
     val englishTitle: Any,
     val highQuality: Boolean,
     val id: Long,
@@ -70,7 +69,7 @@ data class MusicTopData(
     val trackCount: Long,
     val trackNumberUpdateTime: Long,
     val trackUpdateTime: Long,
-    val tracks: List<TopArtist>,
+    val tracks: List<TopArtist>?,
     val updateFrequency: String,
     val updateTime: Long,
     val userId: Long

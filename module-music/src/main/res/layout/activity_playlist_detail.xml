@@ -78,6 +78,8 @@
 
                     <View
                         android:id="@+id/vCoverGB"
+                        drawable_radiusLT="@{10}"
+                        drawable_radiusRT="@{10}"
                         android:layout_width="120dp"
                         android:layout_height="15dp"
                         android:alpha="0.2"
@@ -138,10 +140,8 @@
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toEndOf="@+id/ivCover"
                         app:layout_constraintTop_toBottomOf="@+id/tvName"
-                        app:rmtv_showTrimExpandedText="false"
-                        app:rmtv_trimLength="60"
-                        app:rmtv_trimLines="2"
-                        app:rmtv_trimMode="length" />
+                        app:rmtv_showTrimExpandedText="true"
+                        app:rmtv_trimLength="60" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -273,6 +273,16 @@
                     android:textSize="@dimen/sp18"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@id/ivBack"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <View
+                    android:id="@+id/bgBack"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
 

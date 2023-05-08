@@ -7,7 +7,8 @@
     <color name="windowBackground">@color/pBgC</color>                          <!--app 页面背景色-->
     <color name="navigationBarColor">@color/white</color>                       <!--底部导航栏颜色-->
     <color name="colorControlNormal">@color/themeColor</color>                  <!--各个控制控件的默认颜色-->
-    <color name="textColorPrimary">@color/black</color>                         <!--ToolBar上的Title颜色-->
+    <color name="textColorPrimary">@color/black
+    </color>                         <!--ToolBar上的Title颜色-->
 
 
     <color name="themeColor">@color/DDCAE2</color>
@@ -17,7 +18,8 @@
     <color name="white">@android:color/white</color>
     <color name="transparent">@android:color/transparent</color>
     <color name="black">@android:color/black</color>
-    <color name="pBgC">@color/f5f5f5</color>
+    <color name="pBgC">@color/FBF8FC</color>
+    <color name="FBF8FC">#FBF8FC</color>
     <color name="fafafa">#fafafa</color>
     <color name="f5f5f5">#F5F5F5</color>
     <color name="ffdddd">#FFDDDD</color>
@@ -42,8 +44,6 @@
     <color name="E4D5995">#4D5995</color>
 
 
-
-
     <color name="BDD4DE">#BDD4DE</color>
     <color name="X8AAD8D">#8AAD8D</color>
     <color name="X71A157">#71A157</color>
@@ -51,8 +51,6 @@
     <color name="DDCAE2">#DDCAE2</color>
     <color name="C3C9C9">#C3C9C9</color>
     <color name="X636266">#636266</color>
-
-
 
 
     <color name="cred">#FA3D3D</color>    <!--红-->

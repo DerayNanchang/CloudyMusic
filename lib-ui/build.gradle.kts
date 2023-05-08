@@ -48,4 +48,5 @@ dependencies {
     api(libs.github.inflationx.calligraphy3)
     api(libs.github.inflationx.viewpump)
     api(project(":lib-res-pillar"))
+    implementation(project(":lib-utils"))
 }

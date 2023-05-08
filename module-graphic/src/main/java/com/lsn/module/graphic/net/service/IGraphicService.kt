@@ -1,5 +1,8 @@
 package com.lsn.module.graphic.net.service
 
+import com.lsn.module.provider.comm.api.ApiConstants
+import retrofit2.http.GET
+
 
 /**
  * @Author : lsn
@@ -7,6 +10,9 @@ package com.lsn.module.graphic.net.service
  * @Description :
  */
 interface IGraphicService {
+
+
+
 
 
 }
