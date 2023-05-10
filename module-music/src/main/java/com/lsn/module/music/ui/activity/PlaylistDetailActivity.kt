@@ -25,8 +25,8 @@ import com.lsn.lib.utils.util.SizeUtils
 import com.lsn.module.music.R
 import com.lsn.module.music.adapter.PlaylistDetailAdapter
 import com.lsn.module.music.databinding.ActivityPlaylistDetailBinding
-import com.lsn.module.music.entity.MusicPlaylistCurtRoot
-import com.lsn.module.music.entity.TracksCurt
+import com.lsn.module.music.entity.StandardMusic
+import com.lsn.module.music.entity.StandardPlaylist
 import com.lsn.module.music.ui.viewmodel.PlaylistDetailViewModel
 import com.lsn.module.provider.comm.api.ApiConstants
 import dagger.hilt.android.AndroidEntryPoint
@@ -83,7 +83,7 @@ class PlaylistDetailActivity :
             if (maxHeight != 0) {
                 val i = abs(verticalOffset) * 1f / maxHeight / 2
                 if (i >= 0.4) {
-                    viewModel.playlistCurtData.get()?.let {
+                    viewModel.standardPlaylist.get()?.let {
                         binding.tvToolbarName.text = it?.title
                     }
                     if (i >= 0.495) {
@@ -116,8 +116,8 @@ class PlaylistDetailActivity :
 
         when (it.api) {
             ApiConstants.Music.PLAYLIST_DETAIL -> {
-                val musicPlaylistCurtRoot = it.data as MusicPlaylistCurtRoot
-                val tracksCurts = musicPlaylistCurtRoot.tracksCurts
+                val musicPlaylistCurtRoot = it.data as StandardPlaylist
+                val standardPlaylist = musicPlaylistCurtRoot.standardMusicList
 
 
                 CoilUtil.loadBlur(binding.ivBackground, musicPlaylistCurtRoot.coverImgUrl) {
@@ -148,7 +148,7 @@ class PlaylistDetailActivity :
                         }
                     }
                 }
-                mAdapter.setData(tracksCurts as MutableList<TracksCurt>)
+                mAdapter.setData(standardPlaylist as MutableList<StandardMusic>)
             }
         }
 

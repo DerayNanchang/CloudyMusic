@@ -1,7 +1,5 @@
 package com.lsn.module.music.repository.net.impl
 
-import android.text.TextUtils
-import com.google.gson.Gson
 import com.lsn.comm.core.net.ResponseEntity
 import com.lsn.comm.core.net.flowTranData
 import com.lsn.lib.ui.widget.banner.widget.banner.BannerItem
@@ -24,7 +22,6 @@ import com.lsn.module.music.MusicConstants.Companion.TOP_ORIGINAL
 import com.lsn.module.music.MusicConstants.Companion.TOP_SURGE
 import com.lsn.module.music.entity.*
 import com.lsn.module.music.exts.topListDetailContentData
-import com.lsn.module.music.exts.topListDetailTitleData
 import com.lsn.module.music.net.client.MusicClient
 import com.lsn.module.music.repository.net.i.IMusicRepository
 import com.lsn.module.music.ui.activity.TopActivity.Companion.VIEW_TYPE_CONTENT_HOT
@@ -130,8 +127,7 @@ class MusicRepositoryImpl @Inject constructor(var musicClient: MusicClient) :
         offset: Int
     ): Flow<ResponseEntity> {
 
-        val playlists = musicClient.getUserPlaylist(userId).playlist
-        val data = playlists.map {
+        val data = musicClient.getUserPlaylist(userId).playlist.map {
             var type: Int = if (it.creator.authenticationTypes == 2048) {
                 2
             } else {
@@ -143,17 +139,29 @@ class MusicRepositoryImpl @Inject constructor(var musicClient: MusicClient) :
                     1
                 }
             }
-            Playlist(
-                id = it.id,
-                name = it.name,
-                desc = it.description,
-                picUrl = it.coverImgUrl,
-                ownerId = it.creator.userId,
-                ownerName = it.creator.nickname,
-                trackCount = it.trackCount,
-                playCount = it.playCount,
-                type = type
+            var value = ""
+            if (it.playCount in 10000L..100000000L) {
+                value = (it.playCount / 10000).toInt().toString() + "万"
+            } else if (it.playCount > 100000000L) {
+                value = (it.playCount / 100000000L).toInt().toString() + "亿"
+            } else {
+                value = it.playCount.toString()
+            }
+            var valueStr = "▷ $value"
 
+            DecUserPlaylist(
+                type = type,
+                id = it.id,
+                title = it.name,
+                desc = it.description,
+                playSize = it.playCount,
+                playCountStr = valueStr,
+                coverImgUrl = it.coverImgUrl,
+                userId = it.userId,
+                createTime = it.createTime,
+                updateTime = it.updateTime,
+                subscribedCount = it.subscribedCount,
+                cloudTrackCount = it.cloudTrackCount,
             )
         }
         return flowTranData(tag, data)
@@ -209,37 +217,37 @@ class MusicRepositoryImpl @Inject constructor(var musicClient: MusicClient) :
     override suspend fun getPlaylistDetail(tag: String, id: Long): Flow<ResponseEntity> {
 
         val playlist = musicClient.getPlaylistDetail(id).playlist
-
-        val tracksCurts = ArrayList<TracksCurt>()
-
+        val standardMusicList = ArrayList<StandardMusic>()
         playlist.tracks?.forEach {
-
             var arNameStr = ""
+            val arList = ArrayList<StandardAR>()
             for (i in 0 until it.ar.size) {
                 if (i == it.ar.size - 1) {
                     arNameStr += it.ar[i].name
                 } else {
                     arNameStr += (it.ar[i].name + "/")
                 }
+                arList.add(StandardAR(it.ar[i].id, it.ar[i].name))
             }
-
             var sq = false
             if (it.sq != null) {
                 sq = true
             }
-
-            val tracksCurt = TracksCurt(
-                id = it.id,
-                name = it.name,
-                picUrl = it.al.picUrl,
-                arName = arNameStr,// 歌手
-                alName = it.al.name,// 专辑
-                fee = it.fee,    // 是否免费
-                sq = sq,
-                mv = it.mv
+            // 无损 sq 32000 ，极高 h 25600 , 较高 192000 m ,标准 0 128000 l  高保帧 hr 1676254
+            val netInfo = NetInfo(it.fee, maxbr = 32000)
+            val al = StandardAl(it.al.id, it.al.name, it.al.picUrl)
+            val standardMusic = StandardMusic(
+                SourceKind.NET,
+                it.id,
+                it.name,
+                it.al.picUrl,
+                arList,
+                arNameStr,
+                al,
+                netInfo,
+                null,
             )
-
-            tracksCurts.add(tracksCurt)
+            standardMusicList.add(standardMusic)
         }
 
 
@@ -253,7 +261,7 @@ class MusicRepositoryImpl @Inject constructor(var musicClient: MusicClient) :
         }
         value = "▷ $value"
 
-        val musicPlaylistCurtRoot = MusicPlaylistCurtRoot(
+        val musicPlaylistCurtRoot = StandardPlaylist(
             id = playlist.id,
             title = playlist.name,
             desc = playlist.description,
@@ -265,7 +273,7 @@ class MusicRepositoryImpl @Inject constructor(var musicClient: MusicClient) :
             updateTime = playlist.updateTime,
             subscribedCount = playlist.subscribedCount,
             cloudTrackCount = playlist.cloudTrackCount,
-            tracksCurts = tracksCurts,
+            standardMusicList = standardMusicList,
         )
         return flowTranData(tag, musicPlaylistCurtRoot)
     }

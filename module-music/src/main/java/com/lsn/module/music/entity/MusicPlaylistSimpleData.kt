@@ -6,10 +6,6 @@ package com.lsn.module.music.entity
  * @CreateTime : 2023/5/4 上午 08:08
  * @Description :
  */
-data class MusicPlaylistSimpleRoot(
-    val tracksCurts: List<Playlist>,
-)
-
 data class PlaylistTitle(
     var id: Long,
     var title: String,
@@ -18,6 +14,7 @@ data class PlaylistTitle(
 )
 
 
+/*
 data class Playlist(
     val id: Long,
     val name: String,
@@ -28,4 +25,4 @@ data class Playlist(
     val trackCount: Long,
     val playCount: Long,
     val type: Int,
-)
+)*/

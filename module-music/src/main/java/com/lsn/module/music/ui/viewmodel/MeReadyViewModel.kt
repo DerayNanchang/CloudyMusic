@@ -2,6 +2,7 @@ package com.lsn.module.music.ui.viewmodel
 
 import androidx.databinding.ObservableField
 import com.lsn.comm.core.viewmodel.BaseNetViewModel
+import com.lsn.module.music.entity.DecUserPlaylist
 import com.lsn.module.music.entity.Playlist
 import com.lsn.module.music.entity.PlaylistTitle
 import com.lsn.module.music.repository.net.i.IMusicRepository
@@ -45,7 +46,7 @@ class MeReadyViewModel @Inject constructor(
             val hpImageArchive =
                 iMusicRepository.getUserPlaylist(ApiConstants.Music.USER_PLAYLIST, uid, 0, 0)
                     .first()
-            val musicPlaylistCurtRoot = hpImageArchive.data as ArrayList<Playlist>
+            val musicPlaylistCurtRoot = hpImageArchive.data as ArrayList<DecUserPlaylist>
 
 
             val contentArrayList = ArrayList<ArrayList<Playlist>>()

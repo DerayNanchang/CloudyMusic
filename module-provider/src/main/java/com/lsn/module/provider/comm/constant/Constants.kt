@@ -47,6 +47,10 @@ interface Constants {
 
         companion object {
 
+            const val MMKV_SMART_FILTER = "SMART_FILTER"
+            const val MMKV_FILTER_RECORD = "FILTER_RECORD"
+
+
         }
 
     }

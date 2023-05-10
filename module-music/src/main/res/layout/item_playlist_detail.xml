@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="com.lsn.module.music.entity.TracksCurt" />
+            type="com.lsn.module.music.entity.StandardMusic" />
 
     </data>
 
@@ -31,7 +31,7 @@
 
         <ImageView
             android:id="@+id/ivCover"
-            xRUrl="@{item.picUrl}"
+            xRUrl="@{item.imageUrl}"
             android:layout_width="50dp"
             android:layout_height="50dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -90,7 +90,7 @@
                 android:paddingStart="4dp"
                 android:paddingEnd="4dp"
                 android:singleLine="true"
-                android:text='@{item.arName + " - " + item.alName}'
+                android:text='@{item.arNames + " - " + item.al.name}'
                 android:textColor="@color/c999999"
                 android:textSize="12sp"
                 tools:ignore="SpUsage" />

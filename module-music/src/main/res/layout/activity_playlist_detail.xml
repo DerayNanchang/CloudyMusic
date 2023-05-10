@@ -66,7 +66,7 @@
 
                     <ImageView
                         android:id="@+id/ivCover"
-                        xRUrl="@{vm.playlistCurtData.coverImgUrl}"
+                        xRUrl="@{vm.standardPlaylist.coverImgUrl}"
                         android:layout_width="120dp"
                         android:layout_height="120dp"
                         android:layout_marginStart="15dp"
@@ -96,7 +96,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="5dp"
-                        android:text='@{vm.playlistCurtData.playCountStr}'
+                        android:text='@{vm.standardPlaylist.playCountStr}'
                         android:textColor="@color/white"
                         android:textSize="@dimen/sp12"
                         app:layout_constraintBottom_toBottomOf="@id/vCoverGB"
@@ -113,7 +113,7 @@
                         android:layout_marginEnd="16dp"
                         android:lines="2"
                         android:maxLines="2"
-                        android:text="@{vm.playlistCurtData.title}"
+                        android:text="@{vm.standardPlaylist.title}"
                         android:textColor="@color/white"
                         android:textIsSelectable="true"
                         android:textSize="@dimen/sp18"
@@ -131,7 +131,7 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginEnd="16dp"
                         android:layout_marginBottom="24dp"
-                        android:text='@{textUtils.isEmpty(vm.playlistCurtData.desc)? "":vm.playlistCurtData.desc }'
+                        android:text='@{textUtils.isEmpty(vm.standardPlaylist.desc)? "":vm.standardPlaylist.desc }'
                         android:textColor="@color/white"
                         android:textIsSelectable="true"
                         android:textSize="12sp"
