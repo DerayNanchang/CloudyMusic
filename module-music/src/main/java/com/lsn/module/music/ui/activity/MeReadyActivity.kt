@@ -7,12 +7,11 @@ import com.lsn.comm.core.ui.activity.BaseCoreActivity
 import com.lsn.comm.core.utils.WeakCacheUtil
 import com.lsn.lib.base.PARA
 import com.lsn.lib.base.annotation.Toolbar
-import com.lsn.lib.ui.widget.TypeTextView
 import com.lsn.module.music.R
 import com.lsn.module.music.adapter.MeReadyAdapter
 import com.lsn.module.music.databinding.ActivityMeReadyBinding
+import com.lsn.module.music.entity.DecUserPlaylist
 import com.lsn.module.music.entity.HitokotoEncodeEntity
-import com.lsn.module.music.entity.Playlist
 import com.lsn.module.music.ui.viewmodel.MeReadyViewModel
 import com.lsn.module.provider.comm.api.ApiConstants
 import dagger.hilt.android.AndroidEntryPoint
@@ -61,7 +60,7 @@ class MeReadyActivity :
         }
 
         mAdapter?.setOnContentListener(object : MeReadyAdapter.ContentListener {
-            override fun onClick(data: Playlist, groupPosition: Int, childPosition: Int) {
+            override fun onClick(data: DecUserPlaylist, groupPosition: Int, childPosition: Int) {
                 showToast("点击事件 : $childPosition")
                 // 跳转到详情界面
 

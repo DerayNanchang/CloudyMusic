@@ -13,7 +13,7 @@ import com.lsn.module.entrance.R
 import com.lsn.module.entrance.databinding.ActivityAuthBinding
 import com.lsn.module.provider.comm.manager.SPManager
 import com.lsn.module.entrance.ui.viewmodel.AuthViewModel
-import com.lsn.module.provider.comm.constant.Constants
+import com.lsn.comm.core.constant.Constants
 import com.umeng.commonsdk.UMConfigure
 
 

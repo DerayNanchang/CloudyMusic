@@ -13,6 +13,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/comm-core" />
+            <option value="$PROJECT_DIR$/comm-player" />
             <option value="$PROJECT_DIR$/lib-base" />
             <option value="$PROJECT_DIR$/lib-net" />
             <option value="$PROJECT_DIR$/lib-obs" />

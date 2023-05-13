@@ -16,7 +16,7 @@ class MusicHomeSimpleItemAdapter :
     BaseBindAdapter<HomeSimpleItemData, ItemHomeCommBinding>(R.layout.item_home_comm)
 
 class MusicPersonalizedAdapter :
-    BaseBindAdapter<MusicPersonalized, ItemPersonalizedBinding>(R.layout.item_personalized)
+    BaseBindAdapter<StandardPlaylist, ItemPersonalizedBinding>(R.layout.item_personalized)
 
 
 class PlaylistDetailAdapter :

@@ -2,8 +2,7 @@ package com.lsn.module.music.exts
 
 import android.text.TextUtils
 import com.google.gson.Gson
-import com.lsn.module.music.entity.MusicTopCurtData
-import com.lsn.module.music.entity.MusicTopData
+import com.lsn.module.music.entity.*
 import com.lsn.module.music.repository.net.impl.MusicRepositoryImpl
 import com.lsn.module.music.ui.activity.TopActivity
 
@@ -15,31 +14,11 @@ import com.lsn.module.music.ui.activity.TopActivity
  */
 
 
-fun MusicRepositoryImpl.topListDetailTitleData(
-    title: String,
-    content: String,
-    type: Int
-): MusicTopCurtData {
-    return MusicTopCurtData(
-        id = 0L,
-        name = title,
-        desc = content,
-        coverImgUrl = "",
-        updateFrequency = "",
-        trackCount = 0L,
-        trackStrList = ArrayList(),
-        playCount = 0L,
-        tracks = null,
-        type = type,
-        viewType = TopActivity.VIEW_TYPE_TITLE,
-    )
-}
-
 fun MusicRepositoryImpl.topListDetailContentData(
     it: MusicTopData,
     type: Int,
     viewType: Int
-): MusicTopCurtData {
+): TopPlaylist {
     var desc = ""
     if (TextUtils.isEmpty(desc)) {
         desc = "这个人很懒什么都没有留下"
@@ -52,20 +31,37 @@ fun MusicRepositoryImpl.topListDetailContentData(
         trackList.add(it.first + " - " + it.second)
     }
 
+    var value = ""
+    if (it.playCount in 10000L..100000000L) {
+        value = (it.playCount / 10000).toInt().toString() + "万"
+    } else if (it.playCount > 100000000L) {
+        value = (it.playCount / 100000000L).toInt().toString() + "亿"
+    } else {
+        value = it.playCount.toString()
+    }
+    var valueStr = "▷ $value"
 
-    val musicTopCurtData = MusicTopCurtData(
-        id = it.id,
-        name = it.name,
-        desc = desc,
-        coverImgUrl = it.coverImgUrl,
-        updateFrequency = it.updateFrequency,
-        trackCount = it.trackCount,
-        playCount = it.playCount,
-        tracks = it.tracks,
-        trackStrList = trackList,
+
+
+    val topPlaylist = TopPlaylist(
         type = type,
-        viewType = viewType
-    )
+        viewType = viewType,
+        updateFrequency = it.updateFrequency,
+        trackStrList = trackList,
+        id = it.id,
+        title = it.name,
+        desc = desc,
+        playSize = it.playCount,
+        playCountStr = valueStr,
+        coverImgUrl = it.coverImgUrl,
+        trackCount = it.trackCount,
+        userId = it.userId,
+        createTime = it.createTime,
+        updateTime = it.updateTime,
+        subscribedCount = it.subscribedCount,
+        cloudTrackCount = it.cloudTrackCount,
+        )
 
-    return musicTopCurtData
+
+    return topPlaylist
 }

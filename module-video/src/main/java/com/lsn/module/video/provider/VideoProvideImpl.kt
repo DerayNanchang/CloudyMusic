@@ -3,7 +3,7 @@ package com.lsn.module.video.provider
 import android.content.Context
 import androidx.fragment.app.Fragment
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.lsn.module.provider.comm.constant.Constants
+import com.lsn.comm.core.constant.Constants
 import com.lsn.module.provider.scheduler.RouterHelp
 import com.lsn.module.provider.video.provide.VideoProvider
 import com.lsn.module.video.ui.fragment.VideoHomeFragment

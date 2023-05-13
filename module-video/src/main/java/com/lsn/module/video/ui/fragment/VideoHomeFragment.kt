@@ -5,7 +5,7 @@ import com.lsn.comm.core.ui.fragment.BaseCoreFragment
 import com.lsn.module.video.R
 import com.lsn.module.video.databinding.FragmentVideoHomeBinding
 import com.lsn.module.video.ui.viewmodel.VideoViewModel
-import com.lsn.module.provider.comm.constant.Constants
+import com.lsn.comm.core.constant.Constants
 
 
 /**

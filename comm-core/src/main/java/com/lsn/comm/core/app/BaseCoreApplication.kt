@@ -1,12 +1,11 @@
 package com.lsn.comm.core.app
 
 import android.app.Application
-import com.lsn.comm.core.constant.CoreConstant
+import com.lsn.comm.core.CoreExecutor
 import com.lsn.comm.core.utils.MMKVUtil
 import com.lsn.lib.net.core.NetConfigEntity
 import com.lsn.lib.obs.core.OBSConfig
 import com.lsn.lib.utils.util.SPUtils
-import com.umeng.commonsdk.UMConfigure
 import java.io.File
 
 
@@ -32,9 +31,9 @@ abstract class BaseCoreApplication : Application() {
         super.onCreate()
         app = this@BaseCoreApplication
         // 初始化
-        CoreConstant.initUtil(this)
-        CoreConstant.initView(this)
-        netConfigEntity = CoreConstant.initNetWork(this)
+        CoreExecutor.initUtil(this)
+        CoreExecutor.initView(this)
+        netConfigEntity = CoreExecutor.initNetWork(this)
 
 
 

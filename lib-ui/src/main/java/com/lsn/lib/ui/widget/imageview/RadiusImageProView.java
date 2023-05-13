@@ -32,7 +32,7 @@ import com.lsn.lib.ui.widget.textview.label.LabelViewHelper;
  * @CreateTime : 2023/4/28 下午 02:42
  * @Description :
  */
-public class RadiusImageProView extends AppCompatImageView {
+public class  RadiusImageProView extends AppCompatImageView {
     private static final int DEFAULT_BORDER_COLOR = Color.GRAY;
 
     private static final Bitmap.Config BITMAP_CONFIG = Bitmap.Config.ARGB_8888;

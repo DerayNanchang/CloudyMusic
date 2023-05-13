@@ -15,20 +15,6 @@ data class MusicTopRoot(
 )
 
 
-data class MusicTopCurtData(
-    var id: Long,
-    var name: String,
-    var desc: String = "",
-    var coverImgUrl: String,
-    var updateFrequency: String,
-    var trackCount: Long,
-    var playCount: Long,
-    var tracks: List<TopArtist>?,
-    var trackStrList: List<String>,
-    var type: Int,
-    var viewType: Int,
-)
-
 
 data class MusicTopData(
     val ToplistType: String,

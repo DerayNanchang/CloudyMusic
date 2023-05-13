@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="com.lsn.module.music.entity.MusicPersonalized" />
+            type="com.lsn.module.music.entity.StandardPlaylist" />
 
     </data>
 
@@ -24,7 +24,7 @@
 
 
             <ImageView
-                xRUrl="@{item.picUrl}"
+                xRUrl="@{item.coverImgUrl}"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:riv_corner_radius="5dp" />
@@ -48,7 +48,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
-            android:text="@{item.name}"
+            android:text="@{item.title}"
             android:textSize="@dimen/sp12" />
 
 

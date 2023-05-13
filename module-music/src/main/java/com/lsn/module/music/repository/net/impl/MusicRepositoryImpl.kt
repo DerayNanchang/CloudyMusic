@@ -57,7 +57,7 @@ class MusicRepositoryImpl @Inject constructor(var musicClient: MusicClient) :
 
     override suspend fun getPersonalized(tag: String, limit: Int): Flow<ResponseEntity> {
         val personalized = musicClient.getPersonalized(limit).result
-        val data = ArrayList<MusicPersonalized>()
+        val data = ArrayList<StandardPlaylist>()
         personalized?.forEach {
             var value = ""
             if (it.playCount in 10000L..100000000L) {
@@ -68,7 +68,22 @@ class MusicRepositoryImpl @Inject constructor(var musicClient: MusicClient) :
                 value = it.playCount.toString()
             }
             it.playCountStr = "▷ $value"
-            data.add(it)
+            val playlist = StandardPlaylist(
+                id = it.id,
+                title = it.name,
+                desc = "",
+                playSize = it.playCount,
+                playCountStr = value,
+                coverImgUrl = it.picUrl,
+                trackCount = it.trackCount,
+                userId = 0, //366231393
+                createTime = 0L,
+                updateTime = 0L,
+                subscribedCount = 0L,
+                cloudTrackCount = 0L,
+                standardMusicList = null,
+            )
+            data.add(playlist)
         }
         return flowTranData(tag, data)
     }
@@ -76,7 +91,7 @@ class MusicRepositoryImpl @Inject constructor(var musicClient: MusicClient) :
     override suspend fun getRelatedPlaylist(tag: String): Flow<ResponseEntity> {
         val playlists = musicClient.getRelatedPlaylist().playlists
         val data = playlists.map {
-            val homeSimpleItemData = HomeSimpleItemData(
+            HomeSimpleItemData(
                 it.id,
                 it.coverImgUrl,
                 it.name,
@@ -157,6 +172,7 @@ class MusicRepositoryImpl @Inject constructor(var musicClient: MusicClient) :
                 playSize = it.playCount,
                 playCountStr = valueStr,
                 coverImgUrl = it.coverImgUrl,
+                trackCount = it.trackCount,
                 userId = it.userId,
                 createTime = it.createTime,
                 updateTime = it.updateTime,
@@ -185,12 +201,10 @@ class MusicRepositoryImpl @Inject constructor(var musicClient: MusicClient) :
         val netListStr = netList.toString()
         val recommendListStr = recommendList.toString()
         val list = musicClient.getToplistDetail().list
-        var title = ""
-        var content = ""
-        val data = HashMap<String, List<MusicTopCurtData>>()
-        val hotDataList = ArrayList<MusicTopCurtData>()
-        val netDataList = ArrayList<MusicTopCurtData>()
-        val recommendDataList = ArrayList<MusicTopCurtData>()
+        val data = HashMap<String, List<TopPlaylist>>()
+        val hotDataList = ArrayList<TopPlaylist>()
+        val netDataList = ArrayList<TopPlaylist>()
+        val recommendDataList = ArrayList<TopPlaylist>()
         list.forEach {
             var type = 0
             var viewType = 0
@@ -268,6 +282,7 @@ class MusicRepositoryImpl @Inject constructor(var musicClient: MusicClient) :
             playSize = playlist.playCount,
             playCountStr = value,
             coverImgUrl = playlist.coverImgUrl,
+            trackCount = playlist.trackCount,
             userId = playlist.userId, //366231393
             createTime = playlist.createTime,
             updateTime = playlist.updateTime,

@@ -1,19 +1,13 @@
-package com.lsn.comm.core.constant
+package com.lsn.comm.core
 
 import android.app.Application
 import androidx.databinding.library.baseAdapters.BR
-import com.lsn.comm.core.BuildConfig
 import com.lsn.lib.base.FileHelp
 import com.lsn.lib.net.core.NetConfigEntity
 import com.lsn.lib.net.core.setOkCode
 import com.lsn.lib.ui.XUI
 import com.lsn.lib.ui.widget.rv.PageRefreshLayout
 import com.lsn.lib.ui.widget.rv.state.StateConfig
-import com.lsn.lib.ui.widget.rv.state.StateConfig.emptyLayout
-import com.lsn.lib.ui.widget.rv.state.StateConfig.errorLayout
-import com.lsn.lib.ui.widget.rv.state.StateConfig.loadingLayout
-import com.lsn.lib.ui.widget.rv.state.StateConfig.onLoading
-import com.lsn.lib.ui.widget.rv.state.StateConfig.setRetryIds
 import com.lsn.lib.ui.widget.rv.utils.BRV
 import com.lsn.lib.utils.util.DeviceUtils
 import com.lsn.lib.utils.util.Utils
@@ -28,7 +22,7 @@ import java.io.File
  * @CreateTime : 2023/3/28 下午 03:48
  * @Description :
  */
-object CoreConstant {
+object CoreExecutor {
 
     private var fileName = "CloudyMusic"
 

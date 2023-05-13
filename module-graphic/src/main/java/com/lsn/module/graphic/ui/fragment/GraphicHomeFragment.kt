@@ -5,7 +5,7 @@ import com.lsn.comm.core.ui.fragment.BaseCoreFragment
 import com.lsn.module.graphic.R
 import com.lsn.module.graphic.databinding.FragmentGraphicHomeBinding
 import com.lsn.module.graphic.ui.viewmodel.GraphicViewModel
-import com.lsn.module.provider.comm.constant.Constants
+import com.lsn.comm.core.constant.Constants
 
 
 /**

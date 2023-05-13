@@ -1,8 +1,6 @@
 package com.lsn.module.music.ui.activity
 
 import android.os.Bundle
-import androidx.recyclerview.widget.GridLayoutManager
-import com.google.gson.Gson
 import com.lsn.comm.core.exts.comm.startActivity
 import com.lsn.comm.core.net.ResponseEntity
 import com.lsn.comm.core.ui.activity.BaseCoreActivity
@@ -12,16 +10,11 @@ import com.lsn.lib.ui.widget.rv.BindingAdapter
 import com.lsn.lib.ui.widget.rv.utils.grid
 import com.lsn.lib.ui.widget.rv.utils.linear
 import com.lsn.lib.ui.widget.rv.utils.setup
-import com.lsn.lib.utils.util.DeviceUtils
-import com.lsn.lib.utils.util.DeviceUtils.getModel
 import com.lsn.module.music.R
 import com.lsn.module.music.databinding.ActivityTopBinding
-import com.lsn.module.music.entity.MusicTopCurtData
-import com.lsn.module.music.ui.custom.CommItemDecorator
+import com.lsn.module.music.entity.TopPlaylist
 import com.lsn.module.music.ui.viewmodel.TopViewModel
 import com.lsn.module.provider.comm.api.ApiConstants
-import com.uc.crashsdk.export.LogType.addType
-import com.umeng.analytics.pro.t
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -52,15 +45,15 @@ class TopActivity : BaseCoreActivity<TopViewModel, ActivityTopBinding>(R.layout.
     override fun initView(savedInstanceState: Bundle?) {
         super.initView(savedInstanceState)
         mHotAdapter = binding.rvHotContent.linear().setup {
-            addType<MusicTopCurtData>(R.layout.item_top_content_hot)
+            addType<TopPlaylist>(R.layout.item_top_content_hot)
             actionDetail()
         }
         mNetAdapter = binding.rvNetContent.grid(3).setup {
-            addType<MusicTopCurtData>(R.layout.item_top_content_standard)
+            addType<TopPlaylist>(R.layout.item_top_content_standard)
             actionDetail()
         }
         mRecommendAdapter = binding.rvRecommendContent.grid(3).setup {
-            addType<MusicTopCurtData>(R.layout.item_top_content_standard)
+            addType<TopPlaylist>(R.layout.item_top_content_standard)
             actionDetail()
         }
     }
@@ -80,18 +73,18 @@ class TopActivity : BaseCoreActivity<TopViewModel, ActivityTopBinding>(R.layout.
         super.onSuccess(it)
         when (it.api) {
             ApiConstants.Music.TOPLIST_DETAIL -> {
-                val musicTopCurtData = it.data as HashMap<String, List<MusicTopCurtData>>
+                val topPlaylist = it.data as HashMap<String, List<TopPlaylist>>
 
-                mHotAdapter.models = musicTopCurtData["官方榜"]
-                mNetAdapter.models = musicTopCurtData["曲风榜"]
-                mRecommendAdapter.models = musicTopCurtData["特色榜"]
+                mHotAdapter.models = topPlaylist["官方榜"]
+                mNetAdapter.models = topPlaylist["曲风榜"]
+                mRecommendAdapter.models = topPlaylist["特色榜"]
             }
         }
     }
 
     private fun BindingAdapter.actionDetail() {
         R.id.clContent.onClick {
-            val id = getModel<MusicTopCurtData>().id
+            val id = getModel<TopPlaylist>().id
             startActivity<PlaylistDetailActivity>(PARA.LONG_ID to id)
         }
     }

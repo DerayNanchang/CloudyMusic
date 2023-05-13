@@ -1,4 +1,4 @@
-package com.lsn.module.provider.comm.constant
+package com.lsn.comm.core.constant
 
 
 /**
@@ -7,6 +7,19 @@ package com.lsn.module.provider.comm.constant
  * @Description :
  */
 interface Constants {
+
+    interface Comm{
+
+        companion object {
+
+            const val CACHE_MODE = "CACHE_MODE"
+
+        }
+
+
+    }
+
+
 
     interface Entrance {
 

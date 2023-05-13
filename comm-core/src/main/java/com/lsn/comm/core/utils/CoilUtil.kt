@@ -31,7 +31,7 @@ object CoilUtil {
         if (imageView != null && path != null) {
             imageView.load(path) {
                 CoilDataEntity().apply(build).apply {
-                    buildParam(isCrossfade, isPlaceholder, isError)
+                    buildParam(isCrossfade, isDefPlaceholder,placeholderRes, isDefError,errorRes)
                 }
             }
         }
@@ -48,7 +48,7 @@ object CoilUtil {
         if (imageView != null && path != null) {
             imageView.load(path) {
                 CoilDataEntity().apply(build).apply {
-                    buildParam(isCrossfade, isPlaceholder, isError)
+                    buildParam(isCrossfade, isDefPlaceholder,placeholderRes, isDefError,errorRes)
                     transformations(RoundedCornersTransformation(radius))
                     scale(Scale.FILL)
                 }
@@ -66,7 +66,7 @@ object CoilUtil {
         if (imageView != null && path != null) {
             imageView.load(path) {
                 CoilDataEntity().apply(build).apply {
-                    buildParam(isCrossfade, isPlaceholder, isError)
+                    buildParam(isCrossfade, isDefPlaceholder,placeholderRes, isDefError,errorRes)
                     RoundedCornersTransformation(
                         topLeft = topStart,
                         topRight = topEnd,
@@ -103,7 +103,7 @@ object CoilUtil {
        }*/
 
                 CoilDataEntity().apply(build).apply {
-                    buildParam(isCrossfade, isPlaceholder, isError)
+                    buildParam(isCrossfade, isDefPlaceholder,placeholderRes, isDefError,errorRes)
                     transformations(BlurTransformation(imageView.context, blurRadius, blurSampling))
                     scale(Scale.FILL)
                 }
@@ -123,7 +123,7 @@ object CoilUtil {
         if (imageView != null && path != null) {
             imageView.load(path) {
                 CoilDataEntity().apply(build).apply {
-                    buildParam(isCrossfade, isPlaceholder, isError)
+                    buildParam(isCrossfade, isDefPlaceholder,placeholderRes, isDefError,errorRes)
                     transformations(CircleCropTransformation())
                     scale(Scale.FILL)
                 }
@@ -147,18 +147,29 @@ object CoilUtil {
 
     private fun ImageRequest.Builder.buildParam(
         isCrossfade: Boolean,
-        isPlaceholder: Boolean,
-        isError: Boolean
+        isDefPlaceholder: Boolean,
+        placeholderRes: Int,
+        isDefError: Boolean,
+        errorRes:Int,
     ) {
         if (isCrossfade) {
             crossfade(500)
         }
-        if (isPlaceholder) {
-            placeholder(com.lsn.lib.base.R.mipmap.ic_launcher)
+
+        if (placeholderRes != com.lsn.lib.base.R.mipmap.ic_launcher){
+            placeholder(placeholderRes)
+        }else{
+            if (isDefPlaceholder){
+                placeholder(com.lsn.lib.base.R.mipmap.ic_launcher)
+            }
         }
 
-        if (isError) {
-            error(com.lsn.lib.base.R.mipmap.ic_launcher)
+        if (errorRes != com.lsn.lib.base.R.mipmap.ic_launcher){
+            error(errorRes)
+        }else{
+            if (isDefError){
+                error(com.lsn.lib.base.R.mipmap.ic_launcher)
+            }
         }
     }
 

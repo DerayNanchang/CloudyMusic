@@ -16,13 +16,14 @@ import com.lsn.module.music.adapter.MusicHomeSimpleItemAdapter
 import com.lsn.module.music.adapter.MusicPersonalizedAdapter
 import com.lsn.module.music.databinding.FragmentMusicHomeBinding
 import com.lsn.module.music.entity.HomeSimpleItemData
-import com.lsn.module.music.entity.MusicPersonalized
+import com.lsn.module.music.entity.StandardPlaylist
+import com.lsn.module.music.ui.activity.LocalMusicActivity
 import com.lsn.module.music.ui.activity.MeReadyActivity
 import com.lsn.module.music.ui.activity.PlaylistDetailActivity
 import com.lsn.module.music.ui.activity.TopActivity
 import com.lsn.module.music.ui.viewmodel.MusicHomeViewModel
 import com.lsn.module.provider.comm.api.ApiConstants
-import com.lsn.module.provider.comm.constant.Constants
+import com.lsn.comm.core.constant.Constants
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -98,10 +99,14 @@ class MusicHomeFragment :
             startActivity<TopActivity>()
         }
 
+        binding.llLocalMusic.setOnClickListener {
+            startActivity<LocalMusicActivity>()
+        }
 
-        personalizedAdapter?.setOnItemClickListener(object :BaseBindAdapter.OnItemClickListener{
+
+        personalizedAdapter.setOnItemClickListener(object : BaseBindAdapter.OnItemClickListener {
             override fun onItemClick(position: Int, data: Any) {
-                val musicPersonalized = data as MusicPersonalized
+                val musicPersonalized = data as StandardPlaylist
                 startActivity<PlaylistDetailActivity>(PARA.LONG_ID to musicPersonalized.id)
             }
         })
@@ -145,7 +150,7 @@ class MusicHomeFragment :
             }
 
             ApiConstants.Music.PERSONALIZED -> {
-                val data = it.data as MutableList<MusicPersonalized>
+                val data = it.data as MutableList<StandardPlaylist>
                 personalizedAdapter.setData(data)
             }
 

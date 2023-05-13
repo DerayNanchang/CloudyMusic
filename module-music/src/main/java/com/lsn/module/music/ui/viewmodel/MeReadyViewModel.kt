@@ -3,14 +3,11 @@ package com.lsn.module.music.ui.viewmodel
 import androidx.databinding.ObservableField
 import com.lsn.comm.core.viewmodel.BaseNetViewModel
 import com.lsn.module.music.entity.DecUserPlaylist
-import com.lsn.module.music.entity.Playlist
 import com.lsn.module.music.entity.PlaylistTitle
 import com.lsn.module.music.repository.net.i.IMusicRepository
 import com.lsn.module.provider.comm.api.ApiConstants
-import com.lsn.module.provider.comm.api.ApiConstants.Music.Companion.HITOKOTO_ENCODE
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.first
-import java.util.stream.Collectors
 import javax.inject.Inject
 
 
@@ -28,8 +25,8 @@ class MeReadyViewModel @Inject constructor(
         ObservableField<ArrayList<PlaylistTitle>>()
 
 
-    var playlistContentData: ObservableField<ArrayList<ArrayList<Playlist>>> =
-        ObservableField<ArrayList<ArrayList<Playlist>>>()
+    var playlistContentData: ObservableField<ArrayList<ArrayList<DecUserPlaylist>>> =
+        ObservableField<ArrayList<ArrayList<DecUserPlaylist>>>()
 
 
     fun getHitokotoEncode() {
@@ -49,14 +46,14 @@ class MeReadyViewModel @Inject constructor(
             val musicPlaylistCurtRoot = hpImageArchive.data as ArrayList<DecUserPlaylist>
 
 
-            val contentArrayList = ArrayList<ArrayList<Playlist>>()
+            val contentArrayList = ArrayList<ArrayList<DecUserPlaylist>>()
 
             val titleArrayList = ArrayList<PlaylistTitle>().also {
                 musicPlaylistCurtRoot.apply {
                     val meTitleList = filter { it.type == 0 }
                     val otherTitleList = filter { it.type != 0 }
-                    contentArrayList.add(meTitleList as ArrayList<Playlist>)
-                    contentArrayList.add(otherTitleList as ArrayList<Playlist>)
+                    contentArrayList.add(meTitleList as ArrayList<DecUserPlaylist>)
+                    contentArrayList.add(otherTitleList as ArrayList<DecUserPlaylist>)
                     it.add(
                         PlaylistTitle(
                             0L,

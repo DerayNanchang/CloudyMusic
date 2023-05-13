@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.lsn.module.provider.scheduler.RouterHelp
 import com.lsn.module.mine.ui.fragment.MineHomeFragment
-import com.lsn.module.provider.comm.constant.Constants
+import com.lsn.comm.core.constant.Constants
 import com.lsn.module.provider.mine.provide.MineProvider
 
 

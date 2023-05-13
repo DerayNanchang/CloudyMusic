@@ -11,7 +11,7 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.lsn.comm.core.utils.CoilUtil
 import com.lsn.module.music.R
-import com.lsn.module.music.entity.Playlist
+import com.lsn.module.music.entity.DecUserPlaylist
 import com.lsn.module.music.entity.PlaylistTitle
 
 /**
@@ -22,7 +22,7 @@ import com.lsn.module.music.entity.PlaylistTitle
  */
 class MeReadyAdapter(
     var groups: ArrayList<PlaylistTitle>,
-    var contents: ArrayList<ArrayList<Playlist>>
+    var contents: ArrayList<ArrayList<DecUserPlaylist>>
 ) : BaseExpandableListAdapter() {
     override fun getGroupCount() = groups.size
 
@@ -102,7 +102,7 @@ class MeReadyAdapter(
         }
 
         childView.apply {
-            tvName.text = contents[groupPosition][childPosition].name
+            tvName.text = contents[groupPosition][childPosition].title
             tvCount.text = contents[groupPosition][childPosition].trackCount.toString() + "首"
             val desc = contents[groupPosition][childPosition].desc
             if (TextUtils.isEmpty(desc)){
@@ -110,7 +110,7 @@ class MeReadyAdapter(
             }else{
                 tvContent.text = desc
             }
-            CoilUtil.loadRounded(ivCover, contents[groupPosition][childPosition].picUrl) {
+            CoilUtil.loadRounded(ivCover, contents[groupPosition][childPosition].coverImgUrl) {
                 isCrossfade = true
             }
         }
@@ -134,7 +134,7 @@ class MeReadyAdapter(
     private var contentListener: ContentListener? = null
 
     interface ContentListener {
-        fun onClick(data: Playlist, groupPosition: Int, childPosition: Int)
+        fun onClick(data: DecUserPlaylist, groupPosition: Int, childPosition: Int)
     }
 
     fun setOnContentListener(contentListener: ContentListener) {

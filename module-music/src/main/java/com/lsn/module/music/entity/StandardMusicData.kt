@@ -13,7 +13,7 @@ data class StandardMusic(
     var imageUrl: String = "", // 图片 url
     var ar: ArrayList<StandardAR>?, // 艺术家
     var arNames: String = "",
-    var al: StandardAl?, // 专辑
+    var al: StandardAl, // 专辑
     var neteaseInfo: NetInfo?,
     var localInfo: LocalInfo?,
 )

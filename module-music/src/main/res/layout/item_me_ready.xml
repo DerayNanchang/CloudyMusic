@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="com.lsn.module.music.entity.Playlist" />
+            type="com.lsn.module.music.entity.DecUserPlaylist" />
 
     </data>
 

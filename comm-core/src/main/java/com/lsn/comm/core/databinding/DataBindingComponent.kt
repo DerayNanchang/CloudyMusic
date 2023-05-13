@@ -19,6 +19,7 @@ import androidx.databinding.BindingAdapter
 import androidx.databinding.BindingMethod
 import androidx.databinding.BindingMethods
 import com.bumptech.glide.Glide
+import com.lsn.comm.core.R
 import com.lsn.comm.core.utils.CoilUtil
 import com.lsn.lib.ui.utils.ResUtils.getResources
 import java.math.BigDecimal
@@ -107,6 +108,7 @@ object DataBindingComponent {
             }
         }
     }
+
 
 
     //<editor-fold desc="间距">

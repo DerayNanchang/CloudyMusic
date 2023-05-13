@@ -6,7 +6,7 @@
 
         <variable
             name="item"
-            type="com.lsn.module.music.entity.MusicTopCurtData" />
+            type="com.lsn.module.music.entity.TopPlaylist" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

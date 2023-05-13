@@ -7,7 +7,7 @@ import com.lsn.comm.core.utils.CoilUtil
 import com.lsn.module.mine.R
 import com.lsn.module.mine.databinding.FragmentMineHomeBinding
 import com.lsn.module.mine.ui.viewmodel.MineViewModel
-import com.lsn.module.provider.comm.constant.Constants
+import com.lsn.comm.core.constant.Constants
 
 
 /**

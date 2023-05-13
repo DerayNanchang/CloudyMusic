@@ -4,7 +4,7 @@ import android.content.Context
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.lsn.module.provider.main.provide.MainProvider
 import com.lsn.module.provider.scheduler.RouterHelp
-import com.lsn.module.provider.comm.constant.Constants
+import com.lsn.comm.core.constant.Constants
 
 
 /**

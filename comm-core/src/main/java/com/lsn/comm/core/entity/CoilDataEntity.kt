@@ -15,8 +15,8 @@ import com.lsn.comm.core.R
 
 data class CoilDataEntity(
     var isCrossfade: Boolean = false,
-    var isPlaceholder: Boolean = false,
-    var isError: Boolean = false,
+    var isDefPlaceholder: Boolean = false,
+    var isDefError: Boolean = false,
     var radius: Float = 10f,
     var topStart: Float = 10f,
     var topEnd: Float = 10f,
